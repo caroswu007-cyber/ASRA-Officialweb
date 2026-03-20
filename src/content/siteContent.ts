@@ -1,6 +1,15 @@
 export type Episode = {
   fileNumber: string;
   title: string;
+  abstract: string;
+  keyFeatures?: string;
+  videoLength: string;
+  youtubeLink?: string; // Optional youtube link
+};
+
+export type OldEpisode = {
+  fileNumber: string;
+  title: string;
   description: string;
   link: string;
   delay?: number;
@@ -8,7 +17,7 @@ export type Episode = {
 
 export type Volume = {
   title: string;
-  episodes: Episode[];
+  episodes: OldEpisode[];
 };
 
 export type DocumentaryPage = {
@@ -17,6 +26,16 @@ export type DocumentaryPage = {
   note: string;
   bannerImages: string[];
   volumes: Volume[];
+};
+
+export type RecordOfSoulContent = {
+  title: string;
+  description: string;
+  note: string;
+  episodesCount: string;
+  minutes: string;
+  backgroundImage: string;
+  timeline: Episode[];
 };
 
 export const siteContent = {
@@ -34,116 +53,89 @@ export const siteContent = {
   recordOfSoul: {
     title: 'Woos Record of Soul',
     description:
-      'This Documentary was shot earlier, recording the process of Woos father and son being possessed by spirits and fighting. And the scientific summary of human research on supernatural phenomena, near-death experience and reincarnation.',
-    note: 'When "Woos Record of Soul" was filmed, Spirits were sometimes called ghost and sometimes soul, but in the spirit medicine filmed in 2025, ghosts were clearly called spirit (ghost).',
-    bannerImages: [
-      'https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&w=2000&q=80',
-      'https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=2000&q=80',
-      'https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=2000&q=80',
+      'This Documentary Was Shot Earlier, Recording The Process Of Woos Father And Son Being Possessed By Spirits And Fighting. And The Scientific Summary Of Human Research On Supernatural Phenomena, Near-Death Experience And Reincarnation.',
+    note: 'When Woos record of Soul were filmed, Spirits were sometimes called ghost and sometimes soul, but in the spirit medicine filmed in 2025, ghosts were clearly called spirit(ghost).',
+    episodesCount: '11',
+    minutes: '942+',
+    backgroundImage: 'https://images.unsplash.com/photo-1445264618034-159aa57a1535?auto=format&fit=crop&w=1920&q=80',
+    timeline: [
+      {
+        fileNumber: 'FILE 1-1-1',
+        title: 'Introduction to Woos Record of Soul',
+        abstract: 'An overview of the entire documentary , its methodology, and its revolutionary premise.',
+        videoLength: '17mins',
+      },
+      {
+        fileNumber: 'FILE 1-1-2',
+        title: 'Scientifically prove the Existence of Souls through Epilepsy',
+        abstract: 'Demonstrating how electromagnetic, thermal, and quantum sensors can detect and record phenomena attributable to spirit presence.',
+        videoLength: '6mins',
+      },
+      {
+        fileNumber: 'FILE 1-1-3',
+        title: 'Authenticity Research of PSI',
+        abstract: 'PSI phenomena — telepathy, psychokinesis, clairvoyance — are the foundational gateway to understanding spiritual forces. Yet their legitimacy has long been dismissed as pseudoscience. This episode reveals groundbreaking research from China’s 507 Institute (China’s equivalent to NASA) — proving that spirit-derived forces are real, measurable, and reproducible.',
+        keyFeatures: 'Unprecedented high-speed camera footage and irrefutable PSI experimental data never before shown to the public. The authenticity of these experiments — rigorously controlled, peer-reviewed, and non-fakeable — forms the core of this video.',
+        videoLength: '64mins',
+      },
+      {
+        fileNumber: 'FILE 1-2-1',
+        title: 'Origin, Destination after death of Souls & Impact on human',
+        abstract: 'Where do human souls come from? Where do they go after death? Do they ascend to heaven, descend to hell, or reincarnate according to religious doctrines?This episode reveals a startling truth: The primary destination of ancestral human spirits is not another realm — but parasitic attachment to living human beings.',
+        keyFeatures: 'Drawing on 12 peer-reviewed studies from Western universities and ICD-11 Category 6B6 (Spirit Attachment Disorders), this series maps the global distribution of spirit attachment and demonstrates its direct link to dissociative disorders, identity fragmentation, and unexplained psychological symptoms.',
+        videoLength: '154mins',
+      },
+      {
+        fileNumber: 'FILE 1-2-2',
+        title: 'Material Foundation of soul: Spiritual World has Natural Internet Attribute',
+        abstract: 'Traditional materialism denies spirit(Ghost) existence by asserting that consciousness is merely an epiphenomenon of the brain — and thus ceases at death. But Chinese PSI research proves otherwise: The ethereal realm possesses an innate, internet-like architecture capable of transmitting conscious information in GIF-like formats via a “blog-style” addressing system.This proves: Consciousness and the soul can exist independently of the physical brain.',
+        keyFeatures: 'Four groundbreaking PSI papers by Professor Shao Laisheng of Fudan University and colleagues demonstrate that humans can transmit pure conscious information — without instruments — from Shanghai to Beijing, directly through mental intent.',
+        videoLength: '32mins',
+      },
+      {
+        fileNumber: 'FILE 1-2-3',
+        title: 'Scientific Proof of Soul Parasitism/Possession caused Mental / Psychosis Illnesses',
+        abstract: 'In this world, where is it easy to find a spirit(ghost)? In countless patients with dissociative disorder, schizophrenia, epilepsy, depression, somatization disorder and many other diseases. This series of videos will deeply discuss the etiology research and pain brought by spirit(ghost) to mental patients.',
+        keyFeatures: 'This series of videos shows the distribution of spiritual body in the world with 15 medical research papers from famous western universities and precious real video materials of spirit(ghost) possession. The statistics of psychiatry are often the distribution data of spirit(ghost).',
+        videoLength: '154mins',
+      },
+      {
+        fileNumber: 'FILE 1-2-4',
+        title: 'Deep Exploration of Soul-triggering Epilepsy’s Mechanism',
+        abstract: 'The Woos own epilepsy is caused by spirit(ghost) possession — directly contradicting modern neurology’s claim that epilepsy arises solely from abnormal neural firing. This series reveals: spirit(ghost) are material entities capable of emitting electromagnetic charges. These charges induce epileptogenic foci in the human brain, triggering seizures.',
+        keyFeatures: 'Supported by 15 peer-reviewed medical papers from global universities and the Wu family’s personal medical records, this series provides irrefutable evidence that spirit-induced illness operates through physical, material mechanisms — not metaphysical mysticism.',
+        videoLength: '76mins',
+      },
+      {
+        fileNumber: 'FILE 1-2-5',
+        title: 'The truth of NDE – sophisticated illusions orchestrated by parasitic souls',
+        abstract: 'Near-death experiences (NDEs) — tunnels of light, deceased relatives, out-of-body journeys — are widely cited as proof of an afterlife. But this series proves: NDEs are not glimpses of death — they are hallucinations generated by attached spirits(ghosts). Through five analytical dimensions — consistency with other possession phenomena, visual structure, cross-cultural variation, and post-NDE psychic sequelae — this series dismantles the myth of NDEs as evidence of an afterlife.',
+        keyFeatures: 'A deep analysis of 34 peer-reviewed NDE studies from top Western universities. Unlike popular media, which cherry-pick romanticized accounts, this series presents the full, unfiltered dataset — revealing NDEs as culturally conditioned, neurobiologically induced illusions orchestrated by spirit entities.',
+        videoLength: '74mins',
+      },
+      {
+        fileNumber: 'FILE 1-2-6',
+        title: 'Past life memories come from parasitic souls, it can not prove reincarnation',
+        abstract: 'Through the human mind’s “consciousness input port” — particularly the memory system — attached spirits(ghosts) transmit their own life experiences in first-person narrative form. The host misinterprets these as their own past-life memories, leading to the widespread belief in reincarnation. This series demonstrates that reincarnation is a cognitive illusion, not a metaphysical reality.',
+        keyFeatures: 'Rigorous logical analysis: The alleged “reincarnated self” has no biological continuity. It lacks a coherent sense of “I” — no unified identity, no persistent consciousness. Memory transfer ≠ identity transfer. This series exposes a fundamental error in spiritual research: mistaking information transfer for soul migration.',
+        videoLength: '42mins',
+      },
+      {
+        fileNumber: 'FILE 1-3',
+        title: 'Whether Souls have Eyes? Scientific Discovery on Spiritual Vision',
+        abstract: 'Eyes are a fundamental condition shaping the very nature of spirits(ghost) existence. If spirits(ghost) lack eyes, this fundamentally challenges every cultural, religious, and metaphysical assumption about the afterlife. Across nearly all human cultures, the ethereal realm is depicted as containing hellfires, paradisiacal realms, demons, gods, and other spirits. But how can spirits(ghost) perceive these environments — or each other — without visual organs? How can the imagined existence of spirits(ghost) even be coherent without sight?',
+        keyFeatures: 'This series draws upon 19 peer-reviewed academic papers from China’s most prestigious institutions — including the Institute of Physics and Institute of Biophysics (Chinese Academy of Sciences), Peking University, National Taiwan University, Beijing Normal University, and the Shanghai Institute of Laser Technology — combined with the firsthand experiential accounts of the Wu family. Collectively, they provide conclusive evidence: spirits(ghost) do not possess eyes.',
+        videoLength: '77mins',
+      },
+      {
+        fileNumber: 'FILE 1-4',
+        title: 'Discover the truth of body shape, organs, material composition and metabolism of souls',
+        abstract: 'The ethereal body is material in nature. This series represents the first systematic scientific exploration into the physical structure, organ systems, material composition, and energy metabolism of human spirits(soul) after death — marking humanity’s initial step toward understanding the material reality of the ethereal realm.',
+        keyFeatures: 'Drawing on 8 international academic studies, the ICD-11 classification (Category 6B6: Spirit Attachment Disorders) from the World Health Organization, and rare archival footage, this series presents the most comprehensive and empirically grounded analysis to date of the spirit body’s anatomical and physiological characteristics..',
+        videoLength: '243mins',
+      },
     ],
-    volumes: [
-      {
-        title: 'Vol. 1 - Foundational Insights',
-        episodes: [
-          {
-            fileNumber: 'FILE 1-1-1',
-            title: 'Introduction to Woos Record of Soul',
-            link: 'https://youtu.be/AaeSiJzgDws',
-            description:
-              'An introduction to the profound scientific research and documented evidence exploring the intersection of the physical and ethereal realms.',
-          },
-          {
-            fileNumber: 'FILE 1-1-2',
-            title: 'Scientifically Prove the Existence of Souls through Epilepsy',
-            link: 'https://youtu.be/Tna3F0rRPGY',
-            delay: 0.1,
-            description:
-              'Demonstrating how electromagnetic, thermal, and quantum sensors can detect and record phenomena attributable to spirit presence.',
-          },
-          {
-            fileNumber: 'FILE 1-1-3',
-            title: 'Authenticity Research of PSI',
-            link: 'https://youtu.be/DBAXNiDF8qM',
-            delay: 0.2,
-            description:
-              'PSI phenomena — telepathy, psychokinesis, clairvoyance — are the foundational gateway to understanding spiritual forces. Yet their legitimacy has long been dismissed as pseudoscience. This episode reveals groundbreaking research from China’s 507 Institute — proving that spirit-derived forces are real, measurable, and reproducible.',
-          },
-        ],
-      },
-      {
-        title: 'Vol. 2 - The Mechanics of Spirits',
-        episodes: [
-          {
-            fileNumber: 'FILE 1-2-1',
-            title: 'Origin, Destination After Death of Souls & Impact on Human',
-            link: 'https://youtu.be/RURvSBHvKu0',
-            description:
-              'Where do human souls come from? Where do they go after death? This episode reveals an unprecedented truth regarding the primary destination of ancestral human spirits and their attachment to the living. Drawing on 12 peer-reviewed studies.',
-          },
-          {
-            fileNumber: 'FILE 1-2-2',
-            title: 'Material Foundation of Soul: Spiritual World has Natural Internet Attribute',
-            link: 'https://youtu.be/zQ2fzctwkY0',
-            delay: 0.1,
-            description:
-              'Traditional materialism denies spirit existence. But the ethereal realm possesses an innate, internet-like architecture capable of transmitting conscious information. Features groundbreaking PSI papers demonstrating mental intent transmission without instruments.',
-          },
-          {
-            fileNumber: 'FILE 1-2-3',
-            title: 'Scientific Proof of Soul Parasitism/Possession Caused Illnesses',
-            link: 'https://youtu.be/41OSBcImghk',
-            delay: 0.15,
-            description:
-              'In this world, where is it easy to find a spirit? In patients with dissociative disorder, schizophrenia, epilepsy, and depression. Explores the etiology research and pain brought by spirits, featuring real video materials of spirit possession.',
-          },
-          {
-            fileNumber: 'FILE 1-2-4',
-            title: 'Deep Exploration of Soul-Triggering Epilepsy’s Mechanism',
-            link: 'https://youtu.be/GtyfFk8O5oA',
-            delay: 0.2,
-            description:
-              'A deep dive into the physiological and metaphysical mechanisms connecting soul interference with neurological occurrences such as epilepsy.',
-          },
-          {
-            fileNumber: 'FILE 1-2-5',
-            title: 'The Truth of NDE – Sophisticated Illusions Orchestrated by Parasitic Souls',
-            link: 'https://youtu.be/9cbr96i2MVg',
-            delay: 0.25,
-            description:
-              'Investigating the reality behind Near-Death Experiences, deciphering them not as spiritual liberation, but as intricate illusions manipulated by external ethereal entities.',
-          },
-          {
-            fileNumber: 'FILE 1-2-6',
-            title: 'Past Life Memories Come from Parasitic Souls, It Can Not Prove Reincarnation',
-            link: 'https://youtu.be/iB_yNqGJ1Ds',
-            delay: 0.3,
-            description:
-              'Dismantling common misconceptions regarding past-life regression. The memories often belong to foreign attached entities, fundamentally challenging global reincarnation narratives.',
-          },
-        ],
-      },
-      {
-        title: 'Vol. 3 - Anatomy of the Ethereal',
-        episodes: [
-          {
-            fileNumber: 'FILE 1-3',
-            title: 'Whether Souls Have Eyes? Scientific Discovery on Spiritual Vision',
-            link: 'https://youtu.be/6haJUyUxrqc',
-            description:
-              'Eyes outline the nature of existence. This series draws upon 19 peer-reviewed academic papers from prestigious institutions, providing conclusive evidence regarding the visual perception and organ faculties of spirits.',
-          },
-          {
-            fileNumber: 'FILE 1-4',
-            title: 'Discover the truth of body shape, organs, material composition and metabolism of souls',
-            link: 'https://youtu.be/V6ua2xkHpE0',
-            delay: 0.1,
-            description:
-              'The ethereal body is material in nature. This represents the first systematic scientific exploration into the physical structure, organ systems, material composition, and energy metabolism of human spirits after death.',
-          },
-        ],
-      },
-    ] as Volume[],
-  } as DocumentaryPage,
+  },
   spiritMedicine: {
     title: 'Woos Spirit Medicine',
     description:
@@ -151,12 +143,12 @@ export const siteContent = {
     note: 'This page follows the original documentary-series structure and is prepared for continuous content refinement. Full chapter media can be updated progressively.',
     bannerImages: [
       'https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=2000&q=80',
-      'https://images.unsplash.com/photo-1478760329108-5c3ed9d495a0?auto=format&fit=crop&w=2000&q=80',
-      'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=2000&q=80',
+      'https://images.unsplash.com/photo-1512678080530-7760d81faba6?auto=format&fit=crop&w=2000&q=80',
+      'https://images.unsplash.com/photo-1490818387583-1baba5e638af?auto=format&fit=crop&w=2000&q=80',
     ],
     volumes: [
       {
-        title: 'Vol. 1 - Clinical Foundation',
+        title: 'Vol. 1 - Foundational Medicine',
         episodes: [
           {
             fileNumber: 'FILE 2-1-1',
@@ -170,46 +162,6 @@ export const siteContent = {
             title: 'Assessment and Case Intake',
             description:
               'A structured approach for symptom mapping, progression tracking, and identifying high-priority intervention windows.',
-            link: 'https://ess-esw.org/',
-            delay: 0.1,
-          },
-        ],
-      },
-      {
-        title: 'Vol. 2 - Recovery Protocols',
-        episodes: [
-          {
-            fileNumber: 'FILE 2-2-1',
-            title: 'Stabilization and Symptom Control',
-            description:
-              'Methods to reduce acute distress, restore daily functionality, and protect long-term recovery continuity.',
-            link: 'https://ess-esw.org/',
-          },
-          {
-            fileNumber: 'FILE 2-2-2',
-            title: 'Guided Rehabilitation Workflow',
-            description:
-              'A protocol-oriented care flow from guided sessions to independent maintenance and periodic reassessment.',
-            link: 'https://ess-esw.org/',
-            delay: 0.1,
-          },
-        ],
-      },
-      {
-        title: 'Vol. 3 - Systemized Practice',
-        episodes: [
-          {
-            fileNumber: 'FILE 2-3-1',
-            title: 'Administrator Collaboration Model',
-            description:
-              'Team-based operating model for case coordination, escalation handling, and outcome verification.',
-            link: 'https://ess-esw.org/',
-          },
-          {
-            fileNumber: 'FILE 2-3-2',
-            title: 'Long-Term Follow-up and Governance',
-            description:
-              'How to sustain recovery quality through periodic review, relapse prevention, and standard operating controls.',
             link: 'https://ess-esw.org/',
             delay: 0.1,
           },
@@ -243,46 +195,6 @@ export const siteContent = {
             title: 'Origins of Universal Order',
             description:
               'Explores first principles behind life orchestration, continuity mechanics, and order-preserving constraints.',
-            link: 'https://ess-esw.org/',
-            delay: 0.1,
-          },
-        ],
-      },
-      {
-        title: 'Vol. 2 - Governance and Destiny',
-        episodes: [
-          {
-            fileNumber: 'FILE 3-2-1',
-            title: 'Control Logic Across Civilizations',
-            description:
-              'How macro-governance influences collective development trajectories and civilization-scale turning points.',
-            link: 'https://ess-esw.org/',
-          },
-          {
-            fileNumber: 'FILE 3-2-2',
-            title: 'The Pathway of Human Ultimate Destiny',
-            description:
-              'A focused interpretation of destiny models, milestones, and threshold transitions within the broader system.',
-            link: 'https://ess-esw.org/',
-            delay: 0.1,
-          },
-        ],
-      },
-      {
-        title: 'Vol. 3 - Meta Awareness in Practice',
-        episodes: [
-          {
-            fileNumber: 'FILE 3-3-1',
-            title: 'Applied Awareness and Daily Alignment',
-            description:
-              'Practical guidance for aligning daily behavior with higher-order system principles and long-range purpose.',
-            link: 'https://ess-esw.org/',
-          },
-          {
-            fileNumber: 'FILE 3-3-2',
-            title: 'Integration with Ethereal Life Research',
-            description:
-              'Bridges meta-awareness models with documented ethereal-life findings for a unified explanatory framework.',
             link: 'https://ess-esw.org/',
             delay: 0.1,
           },
