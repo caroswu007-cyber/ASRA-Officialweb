@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { siteContent } from '../../content/siteContent';
+import StarBackground from '../common/StarBackground';
 
 const Hero = () => {
   const [isHovered, setIsHovered] = useState(false);
@@ -13,19 +14,19 @@ const Hero = () => {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {/* Background 1: Universe (Opening animation included) */}
+      {/* Background 1: Universe (Star animation) */}
       <motion.div 
-        initial={{ opacity: 0, scale: 1.2 }}
+        initial={{ opacity: 0 }}
         animate={{ 
-          opacity: isHovered ? 0 : 0.6,
-          scale: isHovered ? 1.1 : 1,
+          opacity: isHovered ? 0 : 1,
         }}
         transition={{
           opacity: { duration: isHovered ? 0.1 : 2, ease: "easeOut" },
-          scale: { duration: isHovered ? 0.3 : 3, ease: "easeOut" }
         }}
-        className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&w=1920&q=80')] bg-cover bg-center pointer-events-none"
-      />
+        className="absolute inset-0 bg-black pointer-events-none"
+      >
+        <StarBackground />
+      </motion.div>
 
       {/* Background 2: Spirit Realm (Sudden entrance on hover) */}
       <motion.div 
