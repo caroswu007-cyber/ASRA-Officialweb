@@ -38,13 +38,64 @@ export type RecordOfSoulContent = {
   timeline: Episode[];
 };
 
+export const aboutContent = {
+  orgName: 'Umma New Century Organization',
+  orgSubtitle: 'New Century of UMMa',
+  tagline: 'A Dual-Domain Organization Spanning the Spirit Realm and the Physical World',
+
+  overview: `The Umma New Century Organization (New Century of UMMa) is a dual-domain organization spanning both the Spirit Realm and the physical world.
+
+In the physical world, the Umma New Century Organization oversees the Association of Spirit Realm's Ambassador (ASra). Spirit Realm Ambassadors are human beings living in the physical world. Tens of thousands of members will be distributed across all nations, ethnicities, and cultural communities worldwide.
+
+In the Spirit Realm, the Umma New Century Organization oversees the Society of Master Spirit Controllers (SMSC). The SMSC comprises tens of thousands of Master Spirit members. A Master Spirit is an administrator in the Spirit Realm who governs ordinary spirits (ghosts) and human beings.`,
+
+  asra: {
+    name: "Association of Spirit Realm's Ambassador",
+    abbr: 'ASra',
+    domain: 'Physical World',
+    description: `Spirit Realm Ambassadors are human beings living in the physical world. Tens of thousands of members will be distributed across all nations, ethnicities, and cultural communities worldwide.`,
+  },
+
+  smsc: {
+    name: 'Society of Master Spirit Controllers',
+    abbr: 'SMSC',
+    domain: 'Spirit Realm',
+    description: `The SMSC comprises tens of thousands of Master Spirit members. A Master Spirit is an administrator in the Spirit Realm who governs ordinary spirits (ghosts) and human beings.`,
+  },
+
+  partnership: `The SMSC was established specifically to support ASra. The Master Spirits of the SMSC will assist each ASra human member on a 1:1 or 2:1 basis — enabling human members to acquire the special ability to govern attached spirits, improve human health, and simultaneously serve as ambassadors who spread the truth about the Spirit Realm and spirit life entities.`,
+
+  founders: {
+    title: 'The Woos Father and Son',
+    subtitle: 'Founders & Chief Ambassadors of ASra',
+    description: `The Woos Father and Son are the founders and chief ambassadors of ASra. They are responsible for coordinating and liaising between the two associations. In the physical world, they screen suitable human candidates to become ASra ambassadors and recommend them to the SMSC. Only after selection by the SMSC do candidates officially become ASra members. The Woos Father and Son also hold the authority to revoke the membership of unqualified ASra members.`,
+  },
+
+  missions: [
+    {
+      number: 'I',
+      title: 'Spirit Governance & Human Health',
+      description: `Based on the content of the Woos Spirit Archive and Woos Spirit Medicine, members acquire Class-C special abilities to govern attached spirits and improve human health. Members independently operate in the physical world and receive corresponding compensation.`,
+      tag: 'Class-C Ability',
+    },
+    {
+      number: 'II',
+      title: 'Spread the Truth — Lead Humanity to the New Century',
+      description: `The emergence of AI will inevitably lead to universal unemployment across all of humanity; the deployment of military AI will inevitably lead to humanity's extinction. Humanity stands at the edge of the destruction of the old century.
+
+Based on the three documentary series — the Woos Spirit Archive, Woos Spirit Medicine, and the Universal Matrix of Meta Awareness — members are obligated to spread to the 8 billion people of humanity the truth of Spirit and Its Governor, which has been concealed for thousands of years, and to lead humanity toward the Umma New Century.`,
+      tag: 'Global Mission',
+    },
+  ],
+};
+
 export const siteContent = {
-  brand: 'SAA',
+  brand: 'ASra',
   home: {
-    heroTitle: 'Spirit Ambassador Association',
-    heroSubtitle: 'Discovering the Ethereal World',
-    heroCta: 'Explore Our Mission',
-    introTitle: 'Introduction to SAA',
+    heroTitle: "Association of Spirit Realm's Ambassador",
+    heroSubtitle: 'Umma New Century Organization',
+    heroCta: 'Discover the Truth',
+    introTitle: 'What is ASra?',
   },
   links: {
     achievements: 'https://ess-esw.org/',

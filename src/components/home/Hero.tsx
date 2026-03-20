@@ -56,14 +56,57 @@ const Hero = () => {
         className="relative z-10 transition-transform duration-300"
         style={{ transform: isHovered ? "scale(1.02)" : "scale(1)" }}
       >
-        <h1 className="font-serif text-3xl sm:text-4xl md:text-7xl text-transparent bg-clip-text bg-gradient-to-br from-white to-accent mb-4 tracking-[0.08em] md:tracking-widest drop-shadow-2xl transition-all duration-300"
-            style={{ textShadow: isHovered ? "0 0 40px rgba(251,191,36,0.8)" : "none" }}>
+        {/* Pre-title badge */}
+        <p
+          className="font-cinzel text-xs uppercase tracking-[0.45em] mb-5"
+          style={{ color: 'rgba(251,191,36,0.55)' }}
+        >
+          {heroSubtitle}
+        </p>
+
+        <h1
+          className="font-cinzel font-bold text-transparent bg-clip-text bg-gradient-to-br from-white via-amber-200 to-accent mb-3 drop-shadow-2xl transition-all duration-300 tracking-tight"
+          style={{
+            fontSize: 'clamp(1.8rem, 6vw, 5.5rem)',
+            lineHeight: 1.1,
+            textShadow: isHovered ? "0 0 60px rgba(251,191,36,0.8)" : "none",
+            WebkitTextFillColor: isHovered ? 'transparent' : undefined,
+          }}
+        >
           {heroTitle}
         </h1>
-        <p className="text-accent text-sm sm:text-base md:text-xl font-light tracking-[0.12em] sm:tracking-[0.2em] md:tracking-[0.5em] uppercase mb-8 md:mb-12">{heroSubtitle}</p>
-        <a href="#introduction" className="inline-block bg-gradient-to-r from-yellow-600 to-accent hover:from-accent hover:to-yellow-400 text-black font-bold uppercase tracking-[0.08em] md:tracking-widest py-3 md:py-4 px-7 md:px-10 rounded-full transition-transform hover:-translate-y-1 shadow-lg shadow-accent/20 text-sm md:text-base">
-          {heroCta}
-        </a>
+
+        <p
+          className="font-cinzel text-xs sm:text-sm uppercase tracking-[0.35em] mb-10 md:mb-14"
+          style={{ color: 'rgba(251,191,36,0.45)' }}
+        >
+          Umma New Century Organization
+        </p>
+
+        <div className="flex flex-col sm:flex-row items-center gap-4 justify-center">
+          <a
+            href="#introduction"
+            className="inline-block font-cinzel font-bold uppercase tracking-widest py-3 md:py-4 px-8 md:px-12 rounded-full transition-transform hover:-translate-y-1 shadow-lg text-sm md:text-base"
+            style={{
+              background: 'linear-gradient(135deg, #92610a, #fbbf24, #d97706)',
+              color: '#0f0a00',
+              boxShadow: '0 4px 30px rgba(251,191,36,0.35)',
+            }}
+          >
+            {heroCta}
+          </a>
+          <a
+            href="/about"
+            className="inline-block font-cinzel font-bold uppercase tracking-widest py-3 md:py-4 px-8 md:px-12 rounded-full transition-all hover:-translate-y-1 text-sm md:text-base"
+            style={{
+              border: '1px solid rgba(251,191,36,0.35)',
+              color: '#fbbf24',
+              background: 'rgba(251,191,36,0.05)',
+            }}
+          >
+            About ASra
+          </a>
+        </div>
       </motion.div>
     </section>
   );
