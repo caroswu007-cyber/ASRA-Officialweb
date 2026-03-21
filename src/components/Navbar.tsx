@@ -9,13 +9,13 @@ const Navbar = () => {
 
   return (
     <nav
-      className="fixed w-full z-50 backdrop-blur-md shadow-lg border-b border-white/5 py-4 md:py-5 px-4 sm:px-6 md:px-12 flex flex-wrap gap-y-3 justify-between items-center transition-all"
-      style={{ background: 'rgba(5,8,15,0.88)' }}
+      className="font-ui fixed w-full z-50 backdrop-blur-md shadow-lg border-b border-amber-900/20 py-4 md:py-5 px-4 sm:px-6 md:px-12 flex flex-wrap gap-y-3 justify-between items-center transition-all"
+      style={{ background: 'rgba(28,18,14,0.9)' }}
     >
       <Link
         to="/"
-        className="font-cinzel font-bold tracking-[0.25em] uppercase drop-shadow-[0_0_10px_rgba(251,191,36,0.3)] transition-colors hover:text-white"
-        style={{ color: '#fbbf24', fontSize: '1.2rem' }}
+        className="font-cinzel font-bold tracking-[0.25em] uppercase drop-shadow-[0_0_10px_rgba(251,191,36,0.3)] transition-colors hover:text-white text-base md:text-[1.2rem]"
+        style={{ color: '#fbbf24' }}
       >
         ASra
       </Link>
@@ -50,6 +50,11 @@ const Navbar = () => {
                 </Link>
               </li>
               <li>
+                <Link to="/our-achievements" className="hover:text-accent transition-colors text-slate-300">
+                  {t('nav.achievements')}
+                </Link>
+              </li>
+              <li>
                 <a href="#join" className="hover:text-accent transition-colors text-slate-300">
                   {t('nav.join')}
                 </a>
@@ -70,6 +75,17 @@ const Navbar = () => {
                 onMouseLeave={e => (e.currentTarget.style.color = 'rgba(251,191,36,0.6)')}
               >
                 {t('nav.about')}
+              </Link>
+            )}
+            {location.pathname !== '/our-achievements' && (
+              <Link
+                to="/our-achievements"
+                className="font-cinzel text-sm tracking-widest uppercase transition-colors hidden md:block"
+                style={{ color: 'rgba(251,191,136,0.75)' }}
+                onMouseEnter={e => (e.currentTarget.style.color = '#fcd9a8')}
+                onMouseLeave={e => (e.currentTarget.style.color = 'rgba(251,191,136,0.75)')}
+              >
+                {t('nav.achievements')}
               </Link>
             )}
             <Link

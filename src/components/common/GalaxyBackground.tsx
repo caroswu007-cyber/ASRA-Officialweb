@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 
 /**
- * GalaxyBackground — Canvas spiral galaxy (high-DPI for crisp stars).
+ * GalaxyBackground — Soft spiral of warm light (dawn / hope palette), not cold starfield.
  */
 
 const ROTATION_SPEED = 0.0003;
@@ -51,7 +51,7 @@ const GalaxyBackground: React.FC<{ className?: string }> = ({ className }) => {
           const radius = 16 + t * maxR;
           const spread = (Math.random() - 0.5) * 0.55 * (1 + t);
           const angle = armOffset + t * Math.PI * 3.5 + spread;
-          const hue = 42 + t * 218 + (Math.random() - 0.5) * 28;
+          const hue = 22 + t * 48 + (Math.random() - 0.5) * 18;
           particles.push({
             angle,
             radius,
@@ -71,15 +71,15 @@ const GalaxyBackground: React.FC<{ className?: string }> = ({ className }) => {
           size: Math.random() * 2.6 + 0.55,
           opacity: Math.random() * 0.35 + 0.65,
           opacityDelta: (Math.random() - 0.5) * 0.02,
-          hue: 38 + Math.random() * 45,
+          hue: 32 + Math.random() * 28,
         });
       }
     };
 
     const drawCore = (cx: number, cy: number) => {
       const haze = ctx.createRadialGradient(cx, cy, 0, cx, cy, CORE_RADIUS * 3.8);
-      haze.addColorStop(0, 'rgba(255, 235, 160, 0.26)');
-      haze.addColorStop(0.35, 'rgba(140, 180, 255, 0.14)');
+      haze.addColorStop(0, 'rgba(255, 220, 180, 0.32)');
+      haze.addColorStop(0.35, 'rgba(255, 160, 120, 0.12)');
       haze.addColorStop(1, 'rgba(0, 0, 0, 0)');
       ctx.fillStyle = haze;
       ctx.beginPath();
@@ -87,9 +87,9 @@ const GalaxyBackground: React.FC<{ className?: string }> = ({ className }) => {
       ctx.fill();
 
       const glow = ctx.createRadialGradient(cx, cy, 0, cx, cy, CORE_RADIUS * 1.05);
-      glow.addColorStop(0, 'rgba(255, 255, 245, 0.98)');
-      glow.addColorStop(0.18, 'rgba(255, 220, 120, 0.82)');
-      glow.addColorStop(0.5, 'rgba(150, 120, 255, 0.32)');
+      glow.addColorStop(0, 'rgba(255, 252, 245, 0.95)');
+      glow.addColorStop(0.2, 'rgba(255, 200, 130, 0.75)');
+      glow.addColorStop(0.55, 'rgba(255, 140, 90, 0.22)');
       glow.addColorStop(1, 'rgba(0, 0, 0, 0)');
       ctx.fillStyle = glow;
       ctx.beginPath();
@@ -139,7 +139,7 @@ const GalaxyBackground: React.FC<{ className?: string }> = ({ className }) => {
         const light = Math.min(1, p.opacity * 1.08);
         ctx.beginPath();
         ctx.arc(x, y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = `hsla(${p.hue}, 88%, 78%, ${light})`;
+        ctx.fillStyle = `hsla(${p.hue}, 72%, 74%, ${light})`;
         ctx.fill();
       }
 

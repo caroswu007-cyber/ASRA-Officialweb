@@ -7,13 +7,16 @@ const JoinSection = () => {
   const { t } = useI18n();
 
   return (
-    <section id="join" className="home-blur-surface relative py-36 px-6 text-center overflow-hidden">
+    <section
+      id="join"
+      className="home-blur-surface relative py-36 px-4 sm:px-6 text-center overflow-hidden scroll-mt-24 md:scroll-mt-28"
+    >
       {/* Ambient glow behind the CTA */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            'radial-gradient(ellipse 60% 50% at 50% 50%, rgba(251,191,36,0.06) 0%, transparent 70%)',
+            'radial-gradient(ellipse 60% 50% at 50% 50%, rgba(255,200,140,0.1) 0%, transparent 70%)',
         }}
       />
 

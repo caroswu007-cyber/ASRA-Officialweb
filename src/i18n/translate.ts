@@ -1,12 +1,10 @@
 import type { Locale } from './locales';
 import { messagesEn } from './messages/en';
-import { messagesZh } from './messages/zh';
-import { messagesJa } from './messages/ja';
+import { messagesEs } from './messages/es';
 
 const packs: Record<Locale, Record<string, string>> = {
   en: messagesEn,
-  zh: { ...messagesEn, ...messagesZh },
-  ja: { ...messagesEn, ...messagesJa },
+  es: { ...messagesEn, ...messagesEs },
 };
 
 export function translate(locale: Locale, key: string): string {

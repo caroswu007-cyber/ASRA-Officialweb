@@ -1,58 +1,19 @@
 import { motion } from 'framer-motion';
+import {
+  formatEpisodeDuration,
+  spiritMedicineEpisodeUrl,
+  spiritMedicineFileGroups,
+  spiritMedicinePlaylistUrl,
+  totalSpiritMedicineEpisodes,
+  type SpiritMedicineEpisode,
+} from '../../content/spiritMedicineData';
 import { useI18n } from '../../i18n/LocaleProvider';
 
-type SubChapter = {
-  id: string;
-  title: string;
-};
+function displayEpisodeTitle(raw: string): string {
+  const stripped = raw.replace(/^(?:File|FILE)\s+[\d.-]+\s+/i, '').trim();
+  return stripped || raw;
+}
 
-type MedicalFile = {
-  fileNumber: string;
-  title: string;
-  subChapters?: SubChapter[];
-};
-
-const files: MedicalFile[] = [
-  {
-    fileNumber: 'FILE 2-1',
-    title: 'General Principles and Definition of Spirit Medicine',
-  },
-  {
-    fileNumber: 'FILE 2-2',
-    title: 'Evidence for the Existence of Spirits (Ghosts)',
-  },
-  {
-    fileNumber: 'FILE 2-3',
-    title: 'Human Spirit (Soul) Physiology',
-    subChapters: [
-      { id: '2-3-1', title: 'Understand the Spirit (Soul) from Meridians' },
-      { id: '2-3-2', title: 'Physiological Systems of Spirit (Soul)' },
-    ],
-  },
-  {
-    fileNumber: 'FILE 2-4',
-    title: 'Overview: Physiology & Pathology of Spirits (Ghosts)',
-    subChapters: [
-      { id: '2-4-1', title: 'Overview: America Spirits (Ghosts)' },
-      { id: '2-4-2', title: 'PSI Ability of Spirits (Ghosts)' },
-      { id: '2-4-3', title: 'Process of Human Death & the Birth of a Ghost' },
-      { id: '2-4-4', title: 'The Intersection of Spirits (Ghosts) & the Physical World' },
-      { id: '2-4-5', title: 'Mutual Harm & Death Among Spirits (Ghosts)' },
-      { id: '2-4-6', title: 'Basic Pathology of Spirits (Ghosts)' },
-    ],
-  },
-  {
-    fileNumber: 'FILE 2-5',
-    title: 'Pathology of Human Spirit (Soul)',
-    subChapters: [
-      { id: '2-5-1', title: 'Intrinsic Pathology of the Human Own Spirits (Soul) Body' },
-      { id: '2-5-2', title: 'Diseases Caused by Possessed Spirits (Ghosts)' },
-      { id: '2-5-3', title: 'Harmonious Coexistence of Humans and Spirits (Ghosts)' },
-    ],
-  },
-];
-
-// Ghosted medical imagery layered in the background
 const ghostImages = [
   {
     src: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?auto=format&fit=crop&w=900&q=80',
@@ -76,32 +37,39 @@ const ghostImages = [
   },
 ];
 
-const ComingSoonBadge = () => {
+const YoutubeEpisodeButton = ({ episode }: { episode: SpiritMedicineEpisode }) => {
   const { t } = useI18n();
+  const href = spiritMedicineEpisodeUrl(episode.videoId);
   return (
-    <span
-      className="inline-flex items-center font-mono text-sm uppercase tracking-widest px-2 py-0.5 rounded-sm flex-shrink-0"
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="inline-flex items-center gap-2 font-mono text-xs sm:text-sm uppercase tracking-widest px-3 py-2 rounded-md flex-shrink-0 transition-all hover:brightness-110"
       style={{
-        background: 'rgba(56,189,248,0.1)',
-        color: '#38bdf8',
-        border: '1px solid rgba(56,189,248,0.25)',
+        background: 'rgba(239,68,68,0.12)',
+        color: '#fca5a5',
+        border: '1px solid rgba(239,68,68,0.35)',
       }}
     >
-      {t('common.comingSoon')}
-    </span>
+      <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+      </svg>
+      {t('spirit.watchYoutube')}
+    </a>
   );
 };
 
 const SpiritMedicineContents = () => {
   const { t, tFormat } = useI18n();
-  const totalSubs = files.reduce((acc, f) => acc + (f.subChapters?.length ?? 0), 0);
+  const fileCount = spiritMedicineFileGroups.length;
+  const episodeCount = totalSpiritMedicineEpisodes();
 
   return (
     <div
-      className="relative overflow-hidden text-white py-20 px-4 md:px-8"
+      className="relative overflow-hidden text-white py-20 px-5 sm:px-6 md:px-8"
       style={{ background: '#0a2535' }}
     >
-      {/* Ghosted medical background images */}
       {ghostImages.map((img, i) => (
         <div
           key={i}
@@ -118,7 +86,6 @@ const SpiritMedicineContents = () => {
         />
       ))}
 
-      {/* Edge vignette to keep text readable */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
@@ -128,17 +95,13 @@ const SpiritMedicineContents = () => {
         }}
       />
 
-      {/* Section header */}
       <div className="relative z-10 max-w-4xl mx-auto mb-16">
         <div className="flex items-center gap-4 mb-4">
           <div
             className="flex-1 h-px"
             style={{ background: 'linear-gradient(to right, transparent, rgba(56,189,248,0.4))' }}
           />
-          <span
-            className="font-mono text-sm tracking-[0.35em] uppercase"
-            style={{ color: '#38bdf8' }}
-          >
+          <span className="font-mono text-sm tracking-[0.35em] uppercase" style={{ color: '#38bdf8' }}>
             {t('common.fileIndex')}
           </span>
           <div
@@ -147,16 +110,29 @@ const SpiritMedicineContents = () => {
           />
         </div>
         <p
-          className="text-center font-serif tracking-widest text-base font-semibold"
+          className="text-center font-serif tracking-widest text-sm font-semibold mb-6"
           style={{ color: '#4a7a96' }}
         >
-          {tFormat('common.indexSummary', { files: files.length, subs: totalSubs })}
+          {tFormat('common.indexSummary', { files: fileCount, subs: episodeCount })}
+        </p>
+        <p className="text-center">
+          <a
+            href={spiritMedicinePlaylistUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest px-4 py-2 rounded-md transition-opacity hover:opacity-90"
+            style={{
+              color: '#7dd3fc',
+              border: '1px solid rgba(56,189,248,0.35)',
+              background: 'rgba(56,189,248,0.08)',
+            }}
+          >
+            {t('spirit.openPlaylist')}
+          </a>
         </p>
       </div>
 
-      {/* Timeline */}
       <div className="relative z-10 max-w-4xl mx-auto">
-        {/* Vertical line */}
         <div
           className="absolute top-0 h-full"
           style={{
@@ -167,16 +143,15 @@ const SpiritMedicineContents = () => {
           }}
         />
 
-        {files.map((file, index) => (
+        {spiritMedicineFileGroups.map((file, index) => (
           <motion.div
             key={file.fileNumber}
             initial={{ opacity: 0, x: -16 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-40px' }}
-            transition={{ duration: 0.45, delay: index * 0.07, ease: 'easeOut' }}
+            transition={{ duration: 0.45, delay: index * 0.06, ease: 'easeOut' }}
             className="relative pl-16"
           >
-            {/* Timeline node */}
             <div
               className="absolute flex items-center justify-center"
               style={{
@@ -199,13 +174,8 @@ const SpiritMedicineContents = () => {
               </span>
             </div>
 
-            {/* File content */}
-            <div
-              className="py-10 last:border-0"
-              style={{ borderBottom: '1px solid rgba(255,255,255,0.06)' }}
-            >
-              {/* FILE badge */}
-              <div className="flex items-center gap-3 mb-4">
+            <div className="py-10 last:border-0" style={{ borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
+              <div className="flex items-center gap-3 mb-2">
                 <span
                   className="font-mono text-sm tracking-[0.2em] uppercase px-2.5 py-1 rounded-sm font-semibold"
                   style={{
@@ -219,75 +189,63 @@ const SpiritMedicineContents = () => {
                 <div
                   className="flex-1 h-px max-w-16"
                   style={{
-                    background:
-                      'linear-gradient(to right, rgba(56,189,248,0.3), transparent)',
+                    background: 'linear-gradient(to right, rgba(56,189,248,0.3), transparent)',
                   }}
                 />
               </div>
 
-              {/* Title */}
-              <h3
-                className="font-serif font-bold leading-snug mb-6"
-                style={{
-                  fontSize: 'clamp(1.2rem, 2.5vw, 1.6rem)',
-                  color: '#dff0fa',
-                }}
-              >
-                {file.title}
-              </h3>
+              <p className="font-mono text-sm mb-6 pl-0.5" style={{ color: '#5a8aa8' }}>
+                {file.sectionTitle}
+              </p>
 
-              {/* Sub-chapters */}
-              {file.subChapters ? (
-                <div
-                  className="pl-5 py-2 space-y-0"
-                  style={{
-                    borderLeft: '2px solid rgba(56,189,248,0.3)',
-                  }}
-                >
-                  {file.subChapters.map((sub, si) => (
-                    <div
-                      key={sub.id}
-                      className="flex items-center justify-between gap-4 py-3"
-                      style={
-                        si < file.subChapters!.length - 1
-                          ? { borderBottom: '1px solid rgba(255,255,255,0.04)' }
-                          : {}
-                      }
-                    >
-                      <div className="flex items-center gap-3 min-w-0">
+              <div
+                className="pl-5 py-2 space-y-0"
+                style={{ borderLeft: '2px solid rgba(56,189,248,0.3)' }}
+              >
+                {file.episodes.map((ep, si) => (
+                  <div
+                    key={ep.videoId}
+                    className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 py-4"
+                    style={
+                      si < file.episodes.length - 1
+                        ? { borderBottom: '1px solid rgba(255,255,255,0.04)' }
+                        : {}
+                    }
+                  >
+                    <div className="flex items-start gap-3 min-w-0 flex-1">
+                      <span
+                        className="w-1.5 h-1.5 rounded-sm rotate-45 flex-shrink-0 mt-2"
+                        style={{ background: '#38bdf8' }}
+                      />
+                      <div className="min-w-0">
+                        <div className="flex flex-wrap items-center gap-2 mb-1">
+                          <span className="font-mono text-sm font-semibold" style={{ color: '#38bdf8' }}>
+                            {ep.code}
+                          </span>
+                          <span className="font-mono text-xs" style={{ color: '#5a8aa8' }}>
+                            {formatEpisodeDuration(ep.lengthSeconds)}
+                          </span>
+                        </div>
                         <span
-                          className="w-1.5 h-1.5 rounded-sm rotate-45 flex-shrink-0"
-                          style={{ background: '#38bdf8', marginTop: '1px' }}
-                        />
-                        <span
-                          className="font-mono text-sm font-semibold flex-shrink-0"
-                          style={{ color: '#38bdf8' }}
+                          className="font-serif font-bold leading-snug block"
+                          style={{
+                            fontSize: 'clamp(1.05rem, 2.8vw, 1.6rem)',
+                            color: '#94b8cc',
+                          }}
                         >
-                          {sub.id}
-                        </span>
-                        <span
-                          className="text-base leading-snug"
-                          style={{ color: '#94b8cc' }}
-                        >
-                          {sub.title}
+                          {displayEpisodeTitle(ep.title)}
                         </span>
                       </div>
-                      <ComingSoonBadge />
                     </div>
-                  ))}
-                </div>
-              ) : (
-                <ComingSoonBadge />
-              )}
+                    <YoutubeEpisodeButton episode={ep} />
+                  </div>
+                ))}
+              </div>
             </div>
           </motion.div>
         ))}
 
-        {/* End marker */}
-        <div
-          className="flex items-center gap-3 pl-16 pt-4"
-          style={{ opacity: 0.4 }}
-        >
+        <div className="flex items-center gap-3 pl-16 pt-4" style={{ opacity: 0.4 }}>
           <div
             className="w-3 h-3 rounded-full"
             style={{
@@ -296,21 +254,14 @@ const SpiritMedicineContents = () => {
               background: '#0a2535',
             }}
           />
-          <span
-            className="font-mono text-sm uppercase tracking-[0.25em]"
-            style={{ color: '#38bdf8' }}
-          >
+          <span className="font-mono text-sm uppercase tracking-[0.25em]" style={{ color: '#38bdf8' }}>
             {t('spirit.endSeries')}
           </span>
         </div>
       </div>
 
-      {/* Footer note */}
       <div className="relative z-10 max-w-4xl mx-auto mt-16 text-center">
-        <p
-          className="text-sm font-mono uppercase tracking-widest"
-          style={{ color: '#2d5c74' }}
-        >
+        <p className="text-sm font-mono uppercase tracking-widest" style={{ color: '#2d5c74' }}>
           {t('footer.researchNote')}
         </p>
       </div>

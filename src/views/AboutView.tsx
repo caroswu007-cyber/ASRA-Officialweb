@@ -36,7 +36,7 @@ const AboutHero = () => {
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 1, ease: 'easeOut' }}
-      className="relative z-10 max-w-5xl mx-auto px-6 py-28 flex flex-col items-center"
+      className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 py-28 flex flex-col items-center"
     >
       {/* Org badge */}
       <div className="flex items-center gap-3 mb-8">
@@ -102,7 +102,7 @@ const DualDomain = () => {
   const { locale, t } = useI18n();
   const about = useMemo(() => getAboutContent(locale), [locale]);
   return (
-  <section className="py-28 px-6 md:px-12" style={{ background: 'rgba(5,8,15,0.65)' }}>
+  <section className="py-28 px-4 sm:px-6 md:px-12" style={{ background: 'rgba(5,8,15,0.65)' }}>
     <div className="max-w-6xl mx-auto">
       <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-16">
         <OrnamLine />
@@ -221,7 +221,7 @@ const HowItWorks = () => {
   ];
 
   return (
-    <section className="py-28 px-6 md:px-12">
+    <section className="py-28 px-4 sm:px-6 md:px-12">
       <div className="max-w-6xl mx-auto">
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-16">
           <OrnamLine />
@@ -261,7 +261,7 @@ const Founders = () => {
   const { locale, t } = useI18n();
   const about = useMemo(() => getAboutContent(locale), [locale]);
   return (
-  <section className="py-28 px-6 md:px-12 relative overflow-hidden" style={{ background: 'rgba(5,8,15,0.7)' }}>
+  <section className="py-28 px-4 sm:px-6 md:px-12 relative overflow-hidden" style={{ background: 'rgba(5,8,15,0.7)' }}>
     <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse 60% 50% at 50% 50%, rgba(201,168,76,0.06) 0%, transparent 70%)' }} />
     <div className="max-w-5xl mx-auto relative z-10">
       <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-14">
@@ -308,7 +308,7 @@ const Missions = () => {
   const { locale, t } = useI18n();
   const about = useMemo(() => getAboutContent(locale), [locale]);
   return (
-  <section className="py-28 px-6 md:px-12">
+  <section className="py-28 px-4 sm:px-6 md:px-12">
     <div className="max-w-5xl mx-auto">
       <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-16">
         <OrnamLine />
@@ -374,7 +374,7 @@ const Missions = () => {
 const AboutCTA = () => {
   const { t } = useI18n();
   return (
-    <section className="py-24 px-6 text-center relative overflow-hidden" style={{ background: 'rgba(5,8,15,0.8)' }}>
+    <section className="py-24 px-4 sm:px-6 text-center relative overflow-hidden" style={{ background: 'rgba(5,8,15,0.8)' }}>
       <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse 50% 50% at 50% 50%, rgba(251,191,36,0.05) 0%, transparent 70%)' }} />
       <div className="relative z-10 max-w-3xl mx-auto">
         <OrnamLine />

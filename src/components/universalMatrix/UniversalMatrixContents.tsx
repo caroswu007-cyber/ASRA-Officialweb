@@ -113,7 +113,7 @@ const UniversalMatrixContents = () => {
 
   return (
     <div
-      className="relative overflow-hidden text-white py-20 px-4 md:px-8"
+      className="relative overflow-hidden text-white py-20 px-5 sm:px-6 md:px-8"
       style={{ background: pageBg }}
     >
       {ghostImages.map((img, i) => (

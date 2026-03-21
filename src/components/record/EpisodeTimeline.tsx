@@ -42,7 +42,7 @@ const EpisodeTimeline = () => {
 
   return (
     <div
-      className="relative text-white py-20 px-4 md:px-8 overflow-hidden"
+      className="relative text-white py-20 px-5 sm:px-6 md:px-8 overflow-hidden"
       style={{ background: '#14110c' }}
     >
       {/* ── Ghosted ethereal background images ── */}

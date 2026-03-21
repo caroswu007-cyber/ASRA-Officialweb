@@ -9,17 +9,18 @@ const Introduction = () => {
   return (
     <section
       id="introduction"
-      className="relative z-10 -mt-20 md:-mt-28 overflow-hidden pt-8 md:pt-10 pb-24 md:pb-28 px-6 md:px-12"
+      className="relative z-10 -mt-20 md:-mt-28 overflow-hidden pt-8 md:pt-10 pb-28 md:pb-36 px-4 sm:px-6 md:px-12 scroll-mt-24 md:scroll-mt-28"
       style={{
-        /* Light scaffold so the HomeView galaxy→nebula stack shows through; purple-tinted lower half */
         background: `linear-gradient(
           180deg,
           rgba(0,0,0,0) 0%,
-          rgba(10,8,18,0.12) 12%,
-          rgba(14,10,24,0.28) 28%,
-          rgba(18,12,32,0.38) 48%,
-          rgba(22,14,38,0.34) 68%,
-          rgba(18,10,30,0.4) 100%
+          rgba(22,14,10,0.08) 10%,
+          rgba(30,18,12,0.18) 26%,
+          rgba(34,20,16,0.28) 46%,
+          rgba(30,18,16,0.34) 62%,
+          rgba(24,14,12,0.42) 78%,
+          rgba(18,12,10,0.72) 92%,
+          rgba(18,12,10,0.95) 100%
         )`,
       }}
     >
@@ -27,7 +28,7 @@ const Introduction = () => {
       <div
         className="pointer-events-none absolute inset-x-0 bottom-0 top-[28%] opacity-90"
         style={{
-          background: `radial-gradient(ellipse 120% 70% at 50% 0%, rgba(167,139,250,0.06) 0%, transparent 55%)`,
+          background: `radial-gradient(ellipse 120% 70% at 50% 0%, rgba(255,180,120,0.08) 0%, transparent 55%)`,
         }}
         aria-hidden
       />
@@ -80,13 +81,13 @@ const Introduction = () => {
 
       {/* Vertical mist between overview and cards — removes the “cut line” */}
       <div
-        className="pointer-events-none max-w-6xl mx-auto h-16 md:h-24 mb-2 md:mb-4 rounded-[2rem]"
+        className="pointer-events-none max-w-6xl mx-auto h-20 md:h-28 mb-2 md:mb-4 rounded-[2rem]"
         style={{
           background: `linear-gradient(
             180deg,
-            rgba(12,8,20,0.06) 0%,
-            rgba(24,12,38,0.28) 50%,
-            rgba(32,14,48,0.36) 100%
+            rgba(16,10,12,0.08) 0%,
+            rgba(26,16,18,0.22) 45%,
+            rgba(28,18,20,0.3) 100%
           )`,
         }}
         aria-hidden
@@ -177,6 +178,16 @@ const Introduction = () => {
         </Link>
       </motion.div>
       </div>
+
+      {/* Feather into divider / next band — same base as HomeView #120e0c */}
+      <div
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-28 md:h-36 z-0"
+        style={{
+          background:
+            'linear-gradient(180deg, transparent 0%, rgba(18,12,10,0.55) 45%, rgba(18,12,10,0.98) 100%)',
+        }}
+        aria-hidden
+      />
     </section>
   );
 };

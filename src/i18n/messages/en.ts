@@ -8,6 +8,7 @@ export const messagesEn: Record<string, string> = {
   'nav.record': 'Record of Soul',
   'nav.spirit': 'Spirit Medicine',
   'nav.join': 'Join',
+  'nav.achievements': 'Achievements',
   'nav.back': '← Back to Home',
   'nav.menu': 'MENU',
 
@@ -69,23 +70,103 @@ export const messagesEn: Record<string, string> = {
   'home.truth.s3.cta': 'Explore Season III',
 
   'home.achievements.title': 'Our Achievements',
-  'home.achievements.subtitle': 'Discoveries & Documentation',
-  'home.achievements.card1Title': 'Live Room Content Summary',
+  'home.achievements.subtitle': 'Clinical-style field report · Live cohort',
+  'home.achievements.card1Title': 'TikTok live cohort (≈ one year)',
   'home.achievements.card1Body':
-    'Comprehensive overviews and key takeaways from our interactive live sessions. A summary of breakthroughs, patient recoveries, and spiritual revelations discussed with our community.',
-  'home.achievements.card2Title': 'Sample Display',
+    'Anonymous, walk-in presentations in live broadcasts. More than 240 individuals across major mental-health-related presentations received structured dialogue and spirit-realm–assisted intervention. Over 80% reported rapid, substantial improvement in mood and overall functioning after the first 30-minute session; a subset describe durable relief after a single intensive contact.',
+  'home.achievements.card2Title': 'Scope & highlighted narratives',
   'home.achievements.card2Body':
-    'Showcasing the Woos Spirit Management System. Real-world applications, tools, and verified methods utilized by patients and administrators to establish control and harmony.',
-  'home.achievements.ctaIntro': 'Explore our achievements network for detailed documentation:',
-  'home.achievements.cta': '✦   Visit: Our Achievements   ✦',
+    'Documented presentations span depression, anxiety spectrum, PTSD, schizophrenia, schizoaffective disorder, bipolar disorder, DID, phobias, ADHD, OCD, and related somatic and field-disturbance cases — with anonymized case summaries and methodology notes on the full dossier page.',
+  'home.achievements.ctaIntro': 'Open the structured report: metrics, taxonomy, case capsules, and collaboration model.',
+  'home.achievements.cta': '✦   Full report: Our Achievements   ✦',
+
+  'achievementsPage.hero.badge': 'Field documentation · ASra practice',
+  'achievementsPage.hero.title': 'Our Achievements in Mental Health Support',
+  'achievementsPage.hero.subtitle':
+    'A structured summary of anonymized, live-session outcomes coordinated with Master Spirit teams in China and the United States — written in a clinical reporting style for transparency.',
+  'achievementsPage.hero.pill1': 'Anonymized cohort',
+  'achievementsPage.hero.pill2': 'Session-based metrics',
+  'achievementsPage.hero.pill3': 'Cross-realm collaboration',
+
+  'achievementsPage.scope.title': 'Practice context & methodology',
+  'achievementsPage.scope.body':
+    'During approximately the past year of TikTok live broadcasts, participants arrived as anonymous, randomly presenting individuals without prior triage. Each encounter used a consistent initial window of thirty minutes for structured exchange, assessment, and spirit-realm–assisted regulation. Outcomes below combine session documentation with participant self-reports; they are presented to illustrate the breadth of the practice rather than as a substitute for peer-reviewed clinical trials.',
+  'achievementsPage.scope.caption': 'Listening, dignity, and steadiness in every first contact.',
+  'achievementsPage.banner.together':
+    'Behind every figure is a real person seeking relief — and a community of practitioners holding space for change.',
+
+  'achievementsPage.stat1.value': '240+',
+  'achievementsPage.stat1.label':
+    'Individuals with mental-health–related presentations engaged through the live program (cumulative, ~one year).',
+
+  'achievementsPage.stat2.value': '80%+',
+  'achievementsPage.stat2.label':
+    'Reported rapid, marked improvement in emotional state and overall condition after the first 30-minute structured session.',
+
+  'achievementsPage.stat3.value': '1×',
+  'achievementsPage.stat3.label':
+    'A notable subset describe complete symptomatic resolution or long-term stability after a single intensive session, with no recurrence reported to date (participant-described).',
+
+  'achievementsPage.conditions.title': 'Presentations & condition categories addressed',
+  'achievementsPage.conditions.caption': 'Taxonomy (non-exhaustive)',
+  'achievementsPage.conditions.list':
+    'Major depressive disorder and persistent depressive presentations · Generalized and panic spectrum anxiety · Post-traumatic stress disorder (PTSD) · Schizophrenia spectrum · Schizoaffective disorder · Bipolar spectrum · Dissociative identity disorder (DID) · Social anxiety / social phobia · Driving phobia · Attention-deficit hyperactivity disorder (ADHD) · Obsessive–compulsive disorder (OCD)',
+
+  'achievementsPage.cases.title': 'Highlighted case narratives',
+  'achievementsPage.cases.note':
+    'Condensed, anonymized summaries for readability; identifiers and timelines adjusted to protect privacy.',
+
+  'achievementsPage.case.did.title': 'DID — 30+ reported identity facets',
+  'achievementsPage.case.did.body':
+    'A woman with severe dissociative fragmentation (more than thirty distinct identity facets reported). After systematic regulation and internal harmonization, all facets were described as co-existing cooperatively; host-level distress and switching burden were substantially reduced.',
+
+  'achievementsPage.case.cult.title': 'Survivor of high-control ideological abuse',
+  'achievementsPage.case.cult.body':
+    'An individual exiting coercive group influence and medium-channel imprinting. Intervention targeted residual cultic and “spirit-medium” attachments described as negative spiritual load; subjective clearance of those influences was reported.',
+
+  'achievementsPage.case.depression.title': 'Treatment-resistant depression (>40 years)',
+  'achievementsPage.case.depression.body':
+    'Long-standing depressive illness without durable relief from conventional routes. A single 30-minute intensive session was associated with reported remission-like relief of mood and energy, with stability maintained afterward without relapse.',
+
+  'achievementsPage.case.ptsd.title': 'Complex PTSD (>33 years)',
+  'achievementsPage.case.ptsd.body':
+    'Decades-long trauma imprint and hypervigilance. One focused regulatory session was described as fully processing the traumatic residue; the participant reported that the trauma “no longer occupied” their lived experience.',
+
+  'achievementsPage.case.psychosis.title': 'Severe schizophrenia with possessory steering',
+  'achievementsPage.case.psychosis.body':
+    'A malignant alter / possessory pattern reportedly directing major life decisions. Across roughly one month of layered suppression protocol, the intrusive entity influence was heavily dampened; positive and negative symptoms were reported to fall to a manageable baseline.',
+
+  'achievementsPage.case.somatization.title': 'Residential field disturbance + severe somatization',
+  'achievementsPage.case.somatization.body':
+    'Frequent anomalous activity in the home environment together with intense somatic symptom clusters. Field-level cleansing and attachment suppression paralleled a large reduction in bodily distress and functional limitation.',
+
+  'achievementsPage.team.title': 'Master Spirit collaboration (China & United States)',
+  'achievementsPage.team.body':
+    'The interventions summarized here are attributed to coordinated work with a large trans-Pacific Master Spirit collective. Master Spirits function as senior administrators in the Spirit Realm; their role in these sessions was to execute technical regulation, containment, and informational alignment alongside the human-facing dialogue.',
+  'achievementsPage.team.body2':
+    'In later phases of care, Master Spirits increasingly disclosed presence directly. Each participant received individualized revelatory information appropriate to their trajectory — strengthening continuity between ethereal governance and lived recovery.',
+
+  'achievementsPage.phenomenology.title': 'Phenomenological correlates (late-phase reports)',
+  'achievementsPage.phenomenology.body':
+    'Some participants described luminous or angelic presence and a felt sense of protective arrival. Others reported encounter with the divine designation “Elohim” and received directive guidance, which they associated with a durable uplift in meaning, agency, and overall life stance.',
+
+  'achievementsPage.closing.title': 'This is only the beginning',
+  'achievementsPage.closing.body':
+    'The figures and stories above are the visible tip of a much larger iceberg — an opening chapter for the Association of Spirit Realm’s Ambassador (ASra).',
+  'achievementsPage.closing.body2':
+    'Your participation can open the same class of transformative trajectory: measurable subjective shift, structured spirit-realm support, and a journey whose scale grows with the community.',
+
+  'achievementsPage.disclaimer':
+    'This page describes experiential and session-documented outcomes from a specific spiritual–therapeutic practice. It is not medical advice, not a randomized controlled trial, and does not replace diagnosis or care by licensed professionals. Terminology aligns with common clinical labels for reader orientation only.',
+
+  'achievementsPage.backHome': '← Back to Home',
+  'achievementsPage.ctaJoin': '✦   Apply / Join   ✦',
 
   'home.join.title': 'Join & Participate',
   'home.join.subtitle': 'Your Ethereal Journey Begins',
   'home.join.body':
     'Become a part of the Spirit Ambassador Association. Whether you seek guidance, wish to share your journey, or want to join our team of administrators — your ethereal life begins here.',
   'home.join.cta': '✦   Visit: Join Us   ✦',
-
-  'hero.aboutCta': 'About ASra',
 
   'common.files': 'Files',
   'common.subChapters': 'Sub-chapters',
@@ -116,6 +197,8 @@ export const messagesEn: Record<string, string> = {
   'spirit.hero.body':
     'This documentary scientifically reveals the Human Spirit (Soul) Medicine — organs, physiological systems, and basic pathology of the Spirit (Soul), along with the evidence and pathogenesis of Spirit (Ghost) harm to the human host after death.',
   'spirit.endSeries': 'End of Series II',
+  'spirit.watchYoutube': 'Watch on YouTube',
+  'spirit.openPlaylist': 'Open full YouTube playlist',
 
   'matrix.seriesBadge': 'Meta Documentary · Series III',
   'matrix.title': 'Universal Matrix of Meta Awareness',

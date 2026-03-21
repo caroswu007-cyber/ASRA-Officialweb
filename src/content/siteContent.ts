@@ -1,3 +1,9 @@
+import {
+  formatEpisodeDuration,
+  spiritMedicineEpisodeUrl,
+  spiritMedicineFileGroups,
+} from './spiritMedicineData';
+
 export type Episode = {
   fileNumber: string;
   title: string;
@@ -19,6 +25,23 @@ export type Volume = {
   title: string;
   episodes: OldEpisode[];
 };
+
+const spiritMedicinePlaylistEpisodes: OldEpisode[] = (() => {
+  let i = 0;
+  const out: OldEpisode[] = [];
+  for (const group of spiritMedicineFileGroups) {
+    for (const ep of group.episodes) {
+      out.push({
+        fileNumber: `FILE ${ep.code}`,
+        title: ep.title,
+        description: `${group.sectionTitle} · ${formatEpisodeDuration(ep.lengthSeconds)}`,
+        link: spiritMedicineEpisodeUrl(ep.videoId),
+        delay: i++ * 0.012,
+      });
+    }
+  }
+  return out;
+})();
 
 export type DocumentaryPage = {
   title: string;
@@ -96,11 +119,9 @@ export const siteContent = {
   home: {
     heroTitle: "Association of Spirit Realm's Ambassador",
     heroSubtitle: 'Umma New Century Organization',
-    heroCta: 'Discover the Truth',
     introTitle: 'What is ASra?',
   },
   links: {
-    achievements: 'https://ess-esw.org/',
     join: 'https://ess-esw.org/',
   },
   recordOfSoul: {
@@ -205,7 +226,7 @@ export const siteContent = {
     title: 'Woos Spirit Medicine',
     description:
       'Healing methodologies connecting the physical body and ethereal consciousness. This season focuses on practical intervention, structured recovery pathways, and ongoing restoration of balance for mind and soul.',
-    note: 'This page follows the original documentary-series structure and is prepared for continuous content refinement. Full chapter media can be updated progressively.',
+    note: 'Episode list and links mirror the official YouTube playlist “Spirit Medicine” (same order as FILE 2-1 → 2-5 curriculum groups on /spirit-medicine).',
     bannerImages: [
       'https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=2000&q=80',
       'https://images.unsplash.com/photo-1512678080530-7760d81faba6?auto=format&fit=crop&w=2000&q=80',
@@ -213,24 +234,8 @@ export const siteContent = {
     ],
     volumes: [
       {
-        title: 'Vol. 1 - Foundational Medicine',
-        episodes: [
-          {
-            fileNumber: 'FILE 2-1-1',
-            title: 'Principles of Spirit Medicine',
-            description:
-              'Foundational framework for evaluating cases, defining intervention boundaries, and establishing treatment baselines.',
-            link: 'https://ess-esw.org/',
-          },
-          {
-            fileNumber: 'FILE 2-1-2',
-            title: 'Assessment and Case Intake',
-            description:
-              'A structured approach for symptom mapping, progression tracking, and identifying high-priority intervention windows.',
-            link: 'https://ess-esw.org/',
-            delay: 0.1,
-          },
-        ],
+        title: 'Season II — Spirit Medicine (YouTube playlist)',
+        episodes: spiritMedicinePlaylistEpisodes,
       },
     ],
   } as DocumentaryPage,

@@ -10,18 +10,18 @@ const SectionDivider: React.FC<SectionDividerProps> = ({ label, compact }) => {
   return (
     <div
       className={`relative flex flex-col items-center justify-center px-6 overflow-hidden ${
-        compact ? 'py-3 md:py-4' : 'py-5 md:py-6'
+        compact ? 'py-8 md:py-12' : 'py-10 md:py-14'
       }`}
     >
-      {/* Soft bridge between bands — blur + gentle tint */}
+      {/* Warm bridge — matches #120e0c / hero stack (no cool blue band) */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          backdropFilter: compact ? 'blur(8px)' : 'blur(14px)',
-          WebkitBackdropFilter: compact ? 'blur(8px)' : 'blur(14px)',
+          backdropFilter: compact ? 'blur(12px)' : 'blur(18px)',
+          WebkitBackdropFilter: compact ? 'blur(12px)' : 'blur(18px)',
           background: compact
-            ? 'linear-gradient(180deg, rgba(5,8,15,0.12) 0%, rgba(5,8,15,0.18) 50%, rgba(5,8,15,0.12) 100%)'
-            : 'linear-gradient(180deg, rgba(5,8,15,0.05) 0%, rgba(5,8,15,0.22) 50%, rgba(5,8,15,0.05) 100%)',
+            ? 'linear-gradient(180deg, rgba(18,12,10,0.92) 0%, rgba(26,18,14,0.45) 22%, rgba(28,20,16,0.35) 50%, rgba(26,18,14,0.45) 78%, rgba(18,12,10,0.92) 100%)'
+            : 'linear-gradient(180deg, rgba(16,11,9,0.88) 0%, rgba(30,20,16,0.4) 25%, rgba(32,22,18,0.32) 50%, rgba(30,20,16,0.4) 75%, rgba(16,11,9,0.88) 100%)',
         }}
         aria-hidden
       />

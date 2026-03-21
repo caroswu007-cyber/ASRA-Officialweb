@@ -4,13 +4,23 @@
 
 ## 项目核心架构
 - **技术栈**: React 19 + Vite + Tailwind CSS v4 + Framer Motion + React Router v7
-- **字体**: Playfair Display（衬线正文）、Cinzel Decorative（艺术标题）、Cinzel（副标题）、Inter（无衬线）
+- **字体**: Lora（正文默认）、Playfair Display、Cinzel Decorative / Cinzel（标题）、Inter（`font-ui` 导航等）
 - **组件化**: 位于 `src/components`，按功能模块划分子目录：`common/`、`home/`、`record/`、`spiritMedicine/`
-- **内容管理**: 所有文案和剧集数据集中在 `src/content/siteContent.ts`，修改内容只需改此文件
+- **内容管理**: 主数据在 `src/content/siteContent.ts`；**灵体医学分集唯一数据源**为 `src/content/spiritMedicineData.ts`（`siteContent.spiritMedicine.volumes` 由该文件派生）
+- **AI 速读入口**: 根目录 **`AGENTS.md`** — 路由表、改哪里、playlist 规则；新会话优先读该文件而非全仓扫描
 
 ---
 
 ## 更新日志 (Update Log)
+
+### 2026-03-21 [Session]: Spirit Medicine 对接 YouTube 播放列表 + AGENTS 指引
+
+- **`src/content/spiritMedicineData.ts`**（新建）: 收录官方 playlist `PL-pt7dbiRizs3yIAao06SPk2NrDTBc9q_` 中 **17 集**（已删视频未列入）；按 FILE **2-1 → 2-5** 课程组排序；导出 `spiritMedicineEpisodeUrl`、`spiritMedicinePlaylistUrl`。
+- **`SpiritMedicineContents.tsx`**: 目录改为读取 `spiritMedicineFileGroups`；每集右侧 **「Watch on YouTube」** 按钮（含 playlist 参数）；索引区增加 **打开完整播放列表** 链接。
+- **`siteContent.ts`**: `spiritMedicine.volumes` 改为由 `spiritMedicineData` 扁平化生成的 `OldEpisode[]`，与页面一致。
+- **i18n**: `spirit.watchYoutube`、`spirit.openPlaylist`（en/zh）。
+- **`AGENTS.md`**（新建）: 给后续 AI/协作者的精简项目地图与修改指南。
+- **本地预览**: `npm run dev` → 默认 `http://localhost:5173/spirit-medicine`。
 
 ### 2026-03-20 [Session 4]: 首页全面改版 — 星系宇宙主题
 
@@ -57,10 +67,9 @@
     - FILE 2-4: Overview: Physiology & Pathology of Spirits（含 6 个子章节）
     - FILE 2-5: Pathology of Human Spirit (Soul)（含 3 个子章节）
 
-- **给 AI 协作者的提示**:
-    - Spirit Medicine 的文件数据定义在 `SpiritMedicineContents.tsx` 文件内的 `files` 数组，不在 `siteContent.ts`。
-    - 如需更新 "Coming Soon" 为真实链接，修改对应条目加上 `youtubeLink` 字段并扩展 `MedicalFile` 类型即可。
-    - 颜色主色调：`#38bdf8`（sky-400），背景：`#0a2535`。
+- **给 AI 协作者的提示**（已过期 — 见 2026-03-21 日志）:
+    - ~~Spirit Medicine 数据在 `SpiritMedicineContents.tsx`~~ → 现已在 **`src/content/spiritMedicineData.ts`** 统一维护。
+    - 颜色主色调：`#38bdf8`，背景：`#0a2535`。
 
 ---
 
@@ -114,12 +123,12 @@
 |---|---|---|
 | `/` | 首页 | ✅ 完成（星系主题改版） |
 | `/record-of-soul` | Season 1: Woos Record of Soul | ✅ 完成（11集，档案馆风格） |
-| `/spirit-medicine` | Season 2: Woos Spirit Medicine | 🔵 框架完成（5 Files，全部 Coming Soon） |
+| `/spirit-medicine` | Season 2: Woos Spirit Medicine | ✅ 目录与 YouTube 播放列表同步（17 集 + 每集按钮） |
 | `/universal-matrix` | Season 3: Universal Matrix | ⚪ 待开发 |
 
 ## 待完成事项
 
-- [ ] Season 2 (Spirit Medicine): 填入真实 YouTube 链接
+- [x] Season 2 (Spirit Medicine): YouTube 播放列表已对接（见 `spiritMedicineData.ts`）
 - [ ] Season 3 (Universal Matrix): 参照 Spirit Medicine 模式搭建页面
 - [ ] 移动端汉堡菜单（Navbar 当前在移动端显示静态 "MENU" 文字）
 - [ ] 页面 `<title>` 已更新为 "Spirit Ambassador Association"

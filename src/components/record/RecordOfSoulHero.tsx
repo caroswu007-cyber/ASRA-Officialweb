@@ -51,7 +51,7 @@ const RecordOfSoulHero = () => {
       />
 
       {/* Main content */}
-      <div className="relative z-20 flex flex-col items-center text-center max-w-4xl mx-auto px-6 py-32">
+      <div className="relative z-20 flex flex-col items-center text-center max-w-4xl mx-auto px-4 sm:px-6 py-32">
 
         {/* Archive classification label */}
         <div className="flex items-center gap-4 mb-10">
@@ -105,12 +105,12 @@ const RecordOfSoulHero = () => {
           style={{ border: '1px solid rgba(240,205,120,0.85)' }}
         >
           <div
-            className="px-12 py-5 text-center"
+            className="px-6 md:px-12 py-5 text-center"
             style={{ borderRight: '1px solid rgba(240,205,120,0.85)' }}
           >
             <p
               className="font-mono font-bold mb-1"
-              style={{ fontSize: '2.8rem', color: '#ffe090', lineHeight: 1 }}
+              style={{ fontSize: 'clamp(2rem, 8vw, 2.8rem)', color: '#ffe090', lineHeight: 1 }}
             >
               {episodesCount}
             </p>
@@ -121,10 +121,10 @@ const RecordOfSoulHero = () => {
               {t('common.episodes')}
             </p>
           </div>
-          <div className="px-12 py-5 text-center">
+          <div className="px-6 md:px-12 py-5 text-center">
             <p
               className="font-mono font-bold mb-1"
-              style={{ fontSize: '2.8rem', color: '#ffe090', lineHeight: 1 }}
+              style={{ fontSize: 'clamp(2rem, 8vw, 2.8rem)', color: '#ffe090', lineHeight: 1 }}
             >
               {minutes}
             </p>

@@ -5,60 +5,56 @@ import Achievements from '../components/home/Achievements';
 import JoinSection from '../components/home/JoinSection';
 import SectionDivider from '../components/common/SectionDivider';
 import GalaxyBackground from '../components/common/GalaxyBackground';
+import { warmImagery } from '../content/visualTheme';
 import { useI18n } from '../i18n/LocaleProvider';
-
-/** Same plate as `body` in index.css — feathered over rotating galaxy so purple zone merges, not a hard line */
-const NEBULA_BG =
-  'https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?auto=format&fit=crop&w=1920&q=80';
 
 const HomeView = () => {
   const { t } = useI18n();
   return (
-    <div className="relative">
+    <div className="relative bg-[#120e0c]">
       {/* Hero + Introduction: one column so galaxy + nebula fill the full scroll height */}
       <div className="relative">
         <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden" aria-hidden>
-          <div className="absolute inset-0 bg-[#010105]" />
+          <div className="absolute inset-0 bg-[#120e0c]" />
           <GalaxyBackground />
-          {/* Violet wash — builds toward lower intro (over galaxy) */}
+          {/* Warm golden-hour wash over soft light spiral */}
           <div
             className="absolute inset-0"
             style={{
               background: `linear-gradient(
                 180deg,
                 rgba(0,0,0,0) 0%,
-                rgba(0,0,0,0.06) 18%,
-                rgba(18,8,35,0.16) 40%,
-                rgba(40,12,62,0.34) 62%,
-                rgba(48,16,72,0.44) 82%,
-                rgba(38,12,58,0.5) 100%
+                rgba(40,24,16,0.08) 22%,
+                rgba(55,28,18,0.14) 45%,
+                rgba(45,22,28,0.2) 68%,
+                rgba(28,14,22,0.28) 100%
               )`,
             }}
           />
-          {/* Nebula photo: invisible at top, blends in mid → bottom (merged with page starfield look) */}
           <div
             className="absolute inset-0 bg-cover bg-center"
             style={{
-              backgroundImage: `url(${NEBULA_BG})`,
-              opacity: 0.5,
-              mixBlendMode: 'screen',
+              backgroundImage: `url(${warmImagery.homeAtmosphere})`,
+              opacity: 0.42,
+              mixBlendMode: 'soft-light',
               maskImage:
-                'linear-gradient(to bottom, transparent 0%, transparent 32%, rgba(0,0,0,0.35) 52%, rgba(0,0,0,0.85) 78%, black 100%)',
+                'linear-gradient(to bottom, transparent 0%, transparent 26%, rgba(0,0,0,0.3) 48%, rgba(0,0,0,0.82) 76%, black 100%)',
               WebkitMaskImage:
-                'linear-gradient(to bottom, transparent 0%, transparent 32%, rgba(0,0,0,0.35) 52%, rgba(0,0,0,0.85) 78%, black 100%)',
+                'linear-gradient(to bottom, transparent 0%, transparent 26%, rgba(0,0,0,0.3) 48%, rgba(0,0,0,0.82) 76%, black 100%)',
             }}
           />
-          {/* Readability scaffold */}
           <div
             className="absolute inset-0"
             style={{
               background: `linear-gradient(
                 180deg,
-                rgba(0,0,0,0.28) 0%,
-                rgba(0,0,0,0.08) 28%,
-                transparent 45%,
-                transparent 58%,
-                rgba(6,2,12,0.22) 100%
+                rgba(18,12,10,0.28) 0%,
+                rgba(18,12,10,0.08) 28%,
+                transparent 46%,
+                transparent 52%,
+                rgba(20,14,12,0.12) 72%,
+                rgba(18,12,10,0.55) 88%,
+                rgba(18,12,10,0.85) 100%
               )`,
             }}
           />

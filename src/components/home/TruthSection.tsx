@@ -36,7 +36,10 @@ const TruthSection = () => {
   ];
 
   return (
-    <section id="truth" className="home-blur-surface py-28 px-4 sm:px-6 relative">
+    <section
+      id="truth"
+      className="home-blur-surface py-28 px-4 sm:px-6 relative scroll-mt-24 md:scroll-mt-28"
+    >
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

@@ -1,18 +1,18 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #0f172a;
-  --color-accent: #fbbf24;
-  --font-sans: "Inter", sans-serif;
+  --color-primary: #1c1410;
+  --color-accent: #e8a54b;
+  --font-sans: "Lora", "Georgia", serif;
   --font-serif: "Playfair Display", serif;
   --font-display: "Cinzel Decorative", serif;
   --font-cinzel: "Cinzel", serif;
 }
 
 @layer base {
-  /* Slightly larger root type: scales all rem-based Tailwind utilities for readability */
+  /* Phone: browser-default rem so layouts are not oversized; desktop keeps larger scale */
   html {
-    font-size: 110%;
+    font-size: 100%;
   }
 
   @media (min-width: 768px) {
@@ -22,33 +22,50 @@
   }
 
   body {
-    background-color: #05080f;
-    /* Fixed starfield visible through all transparent sections */
-    background-image: url('https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?auto=format&fit=crop&w=1920&q=80');
+    background-color: #14100d;
+    /* Soft dawn landscape — warmth & hope; dark wash keeps contrast for text */
+    background-image:
+      linear-gradient(
+        168deg,
+        rgba(18, 12, 10, 0.94) 0%,
+        rgba(28, 18, 14, 0.82) 38%,
+        rgba(20, 16, 22, 0.88) 72%,
+        rgba(12, 10, 14, 0.92) 100%
+      ),
+      url('https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?auto=format&fit=crop&w=2000&q=82');
     background-attachment: fixed;
     background-size: cover;
-    background-position: center top;
-    color: #f8fafc;
+    background-position: center 35%;
+    color: #faf5ef;
     line-height: 1.65;
     font-size: 1rem;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
+
+  @media (max-width: 767px) {
+    body {
+      background-attachment: scroll;
+    }
+  }
 }
 
 @layer utilities {
   .hero-bg {
-    background: radial-gradient(circle at center top, rgba(30,41,59,0.8) 0%, rgba(5,8,15,1) 100%);
+    background: radial-gradient(circle at center top, rgba(60, 40, 32, 0.55) 0%, rgba(18, 12, 10, 1) 100%);
   }
 
-  /* Home: frosted section shells (matches Achievements’ muted depth + blur) */
+  /* Home: frosted section shells — amber glass; vertical feathers hide band seams */
   .home-blur-surface {
     backdrop-filter: blur(22px);
     -webkit-backdrop-filter: blur(22px);
-    background: rgba(5, 8, 15, 0.52);
+    background:
+      linear-gradient(180deg, rgba(14, 10, 8, 0.65) 0%, rgba(14, 10, 8, 0) 14%),
+      linear-gradient(0deg, rgba(14, 10, 8, 0.65) 0%, rgba(14, 10, 8, 0) 14%),
+      rgba(32, 22, 18, 0.52);
     box-shadow:
-      inset 0 1px 0 0 rgba(251, 191, 36, 0.05),
-      inset 0 -1px 0 0 rgba(251, 191, 36, 0.03);
+      inset 0 1px 0 0 rgba(255, 200, 140, 0.06),
+      inset 0 -1px 0 0 rgba(232, 165, 75, 0.04);
   }
 
   .home-hero-glass {
@@ -64,14 +81,19 @@
     font-family: "Cinzel", serif;
   }
 
-  /* Cosmic section title style */
+  /* Section titles — warm honey & dawn light */
   .cosmic-title {
     font-family: "Cinzel Decorative", serif;
-    background: linear-gradient(135deg, #ffffff 0%, #fbbf24 50%, #f8e4a0 100%);
+    background: linear-gradient(135deg, #fffaf4 0%, #f0c078 42%, #ffd89c 72%, #ffe8cc 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     text-shadow: none;
-    filter: drop-shadow(0 0 30px rgba(251,191,36,0.3));
+    filter: drop-shadow(0 0 28px rgba(232, 165, 75, 0.35));
+  }
+
+  /* UI chrome that should stay neutral despite Lora body */
+  .font-ui {
+    font-family: "Inter", system-ui, sans-serif;
   }
 }
