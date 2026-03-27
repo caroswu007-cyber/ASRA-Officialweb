@@ -13,7 +13,11 @@ export const STORYLINE_OF_WOOS_URL = 'https://ess-esw.org/storyline-of-woos/' as
 export const founderStorySurfaceCopy = {
   heroNamesLine: 'John Long Woo · Caros · Sam',
   backToAbout: '← Organization overview',
+  legacyTimelineLink: 'View full storyline archive',
+  achievementsFeaturePageLink: 'View our achievements',
 } as const;
+
+export const founderStoryIllustrations: { src: string; alt: string }[] = [];
 
 export const founderTimeline = [
   { phase: 'A', range: 'May 2014 — Feb 2025', label: 'Phase A — family field work', tone: 'sky' as const },
