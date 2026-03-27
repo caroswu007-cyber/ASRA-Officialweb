@@ -26,7 +26,7 @@ const SpiritMedicineHero = () => {
       />
 
       {/* Main content — typography scale aligned with Record of Soul hero */}
-      <div className="relative z-20 flex flex-col items-center text-center max-w-4xl mx-auto px-4 sm:px-6 py-32">
+      <div className="relative z-20 flex flex-col items-center text-center max-w-4xl mx-auto px-4 sm:px-6 py-24 sm:py-32">
 
         {/* Series badge */}
         <div className="flex items-center gap-4 mb-10">
@@ -76,7 +76,7 @@ const SpiritMedicineHero = () => {
 
         {/* Description */}
         <p
-          className="text-base md:text-lg leading-relaxed max-w-2xl mb-12 font-light tracking-wide"
+          className="text-sm sm:text-base md:text-lg leading-relaxed max-w-2xl mb-10 sm:mb-12 font-light tracking-wide px-1"
           style={{ color: 'rgba(255,255,255,0.9)' }}
         >
           {t('spirit.hero.body')}

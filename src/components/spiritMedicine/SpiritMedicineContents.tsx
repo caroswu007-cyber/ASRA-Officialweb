@@ -1,12 +1,13 @@
 import { motion } from 'framer-motion';
 import {
   formatEpisodeDuration,
+  orderSpiritMedicineFileGroupsForDetailView,
   spiritMedicineEpisodeUrl,
-  spiritMedicineFileGroups,
   spiritMedicinePlaylistUrl,
   totalSpiritMedicineEpisodes,
   type SpiritMedicineEpisode,
 } from '../../content/spiritMedicineData';
+import { getLocalizedSpiritMedicineFileGroups } from '../../content/pageCopyRuntime';
 import { useI18n } from '../../i18n/LocaleProvider';
 
 function displayEpisodeTitle(raw: string): string {
@@ -61,7 +62,10 @@ const YoutubeEpisodeButton = ({ episode }: { episode: SpiritMedicineEpisode }) =
 };
 
 const SpiritMedicineContents = () => {
-  const { t, tFormat } = useI18n();
+  const { t, tFormat, locale } = useI18n();
+  const spiritMedicineFileGroups = orderSpiritMedicineFileGroupsForDetailView(
+    getLocalizedSpiritMedicineFileGroups(locale),
+  );
   const fileCount = spiritMedicineFileGroups.length;
   const episodeCount = totalSpiritMedicineEpisodes();
 
@@ -151,7 +155,7 @@ const SpiritMedicineContents = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-40px' }}
             transition={{ duration: 0.45, delay: index * 0.06, ease: 'easeOut' }}
-            className="relative pl-16"
+            className="relative pl-12 sm:pl-16"
           >
             <div
               className="absolute flex items-center justify-center"
@@ -230,7 +234,7 @@ const SpiritMedicineContents = () => {
                         <span
                           className="font-serif font-bold leading-snug block"
                           style={{
-                            fontSize: 'clamp(1.05rem, 2.8vw, 1.6rem)',
+                            fontSize: 'clamp(0.95rem, 3.5vw, 1.6rem)',
                             color: '#94b8cc',
                           }}
                         >
@@ -246,7 +250,7 @@ const SpiritMedicineContents = () => {
           </motion.div>
         ))}
 
-        <div className="flex items-center gap-3 pl-16 pt-4" style={{ opacity: 0.4 }}>
+        <div className="flex items-center gap-3 pl-12 sm:pl-16 pt-4" style={{ opacity: 0.4 }}>
           <div
             className="w-3 h-3 rounded-full"
             style={{

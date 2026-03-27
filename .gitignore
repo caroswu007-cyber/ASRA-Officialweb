@@ -21,6 +21,9 @@ dist/
 .DS_Store
 Thumbs.db
 
+# Local staging for founder image crop (optional)
+founders-src.png
+
 # Excel temp lock files
 ~$*.xlsx
 

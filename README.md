@@ -1,6 +1,6 @@
 # thenewcenturyweb — ASra / SAA (ESS-ESW)
 
-**What:** Official site for **Spirit Ambassador Association (SAA)** / brand **ASra** — multi-route React app with documentary-style pages, EN + ES + ZH UI, long-form English (and partial ZH) in content modules.
+Official site for **Spirit Ambassador Association (SAA)** / brand **ASra** — multi-route React app with documentary-style pages, EN + ES + ZH UI, plus workbook-driven EN/ZH page copy.
 
 | Quick fact | Value |
 |------------|--------|
@@ -17,12 +17,15 @@
 |------|---------|
 | Routes, lazy loading | `src/App.tsx` — `/our-achievements` uses `React.lazy` + `Suspense` |
 | Nav labels / global UI strings | `src/i18n/messages/en.ts`, `es.ts`, `zh.ts` — merged via `src/i18n/translate.ts` |
-| **2025 achievements report** (long ZH/EN) | `src/i18n/messages/achievementsReport.i18n.ts`; layout `src/views/OurAchievementsView.tsx`; metrics/carousel/hero image `src/content/achievements2025Content.ts`; rich text `src/components/achievements/ReportRichText.tsx` |
-| **Founder story** | `src/content/founderStory2026Content.ts` + `src/views/FounderStoryView.tsx` (most body = English; Phase B + some labels = Chinese in source) |
-| Home hero / series / about chunks | `src/content/siteContent.ts`, components under `src/components/home/` |
-| 万有元神 FILE 目录（页面列表） | `src/content/universalMatrixSeries.ts` (`universalMatrixFiles`) — hero 仍在 `siteContent.universalMatrix` |
-| Theme / typography tokens | `src/index.css` (e.g. `.cosmic-title`, `.report-document`) |
-| Page copy workbooks (generated Excel) | `docs/page-copy/` — regenerate: `npm run export:page-xlsx`; mapping: [`docs/AI_PAGE_COPY_SYNC.md`](./docs/AI_PAGE_COPY_SYNC.md) |
+| Page copy runtime source of truth | `docs/page-copy/*.xlsx` → `npm run import:page-xlsx` → `src/content/pageCopyDocs.generated.ts` |
+| Runtime workbook mapping layer | `src/content/pageCopyRuntime.ts` |
+| Nav labels / global UI strings | `src/i18n/messages/en.ts`, `es.ts`, `zh.ts` — merged via `src/i18n/translate.ts` |
+| 2025 achievements report | `src/i18n/messages/achievementsReport.i18n.ts`; layout `src/views/OurAchievementsView.tsx`; assets in `src/content/achievements2025Content.ts` |
+| Founder story structural fallback | `src/content/founderStory2026Content.ts` + `src/views/FounderStoryView.tsx` |
+| Home / about / record structural fallback | `src/content/siteContent.ts`, components under `src/components/home/` |
+| Spirit Medicine structural data | `src/content/spiritMedicineData.ts`, `src/content/spiritMedicineOfficialOutline.ts` |
+| Universal Matrix structural data | `src/content/universalMatrixSeries.ts` |
+| Theme / typography tokens | `src/index.css` |
 
 **Emphasis in long strings:** wrap phrases in `**…**`; rendered on report page via `ReportInline` / `ReportParagraphs`.
 
@@ -33,12 +36,12 @@
 | Path | View | Main copy / data |
 |------|------|------------------|
 | `/` | `HomeView.tsx` | `siteContent` + i18n `home.*` |
-| `/about` | `AboutView.tsx` | `aboutContent` + i18n |
-| `/founder-story` | `FounderStoryView.tsx` | `founderStory2026Content.ts` |
-| `/our-achievements` | `OurAchievementsView.tsx` (lazy) | `achievementsReport.*` i18n + `achievements2025Content.ts` |
-| `/record-of-soul` | `RecordOfSoulView.tsx` | `siteContent` timeline |
-| `/spirit-medicine` | `WoosSpiritMedicineView.tsx` | `spiritMedicineData.ts` / site content |
-| `/universal-matrix` (alias: `…-meta-awareness`) | `UniversalMatrixView.tsx` | site content |
+| `/about` | `AboutView.tsx` | `pageCopyRuntime` + about i18n |
+| `/founder-story` | `FounderStoryView.tsx` | `pageCopyRuntime` + founder fallback content |
+| `/our-achievements` | `OurAchievementsView.tsx` (lazy) | `achievementsReport.*` i18n + `pageCopyRuntime` assets |
+| `/record-of-soul` | `RecordOfSoulView.tsx` | `pageCopyRuntime` + record fallback content |
+| `/spirit-medicine` | `WoosSpiritMedicineView.tsx` | `pageCopyRuntime` + `spiritMedicineData.ts` |
+| `/universal-matrix` (alias: `…-meta-awareness`) | `UniversalMatrixView.tsx` | `pageCopyRuntime` + matrix structural data |
 
 Shared chrome: `PageShell.tsx`, `Navbar.tsx`, `Footer.tsx`.
 
@@ -53,6 +56,7 @@ npm run build    # tsc -b && vite build → dist/
 npm run lint
 npm run preview  # preview production build
 npm run export:page-xlsx   # refresh docs/page-copy/*.xlsx
+npm run import:page-xlsx   # generate runtime page-copy source from workbooks
 ```
 
 ---
@@ -66,7 +70,7 @@ Dark UI, **amber/gold** accents; home uses `GalaxyBackground`. Founder story and
 ## Deeper docs
 
 - [`CHANGELOG.md`](./CHANGELOG.md) — release-oriented notes  
-- [`docs/AI_PAGE_COPY_SYNC.md`](./docs/AI_PAGE_COPY_SYNC.md) — workbook ↔ code, `block_key`, feeding edits back into i18n/content  
+- [`docs/AI_PAGE_COPY_SYNC.md`](./docs/AI_PAGE_COPY_SYNC.md) — workbook ↔ runtime mapping, `block_key`, import/export workflow  
 
 ---
 

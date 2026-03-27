@@ -38,7 +38,7 @@ const TruthSection = () => {
   return (
     <section
       id="truth"
-      className="home-blur-surface py-28 px-4 sm:px-6 relative scroll-mt-24 md:scroll-mt-28"
+      className="home-blur-surface py-16 md:py-24 px-4 sm:px-6 relative scroll-mt-24 md:scroll-mt-28"
     >
       <div className="max-w-6xl mx-auto">
         <motion.div
@@ -46,30 +46,33 @@ const TruthSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
-          className="text-center mb-16"
+          className="text-center mb-12 md:mb-16"
         >
           <div className="flex items-center justify-center gap-4 mb-6">
-            <div className="h-px w-20" style={{ background: 'linear-gradient(to right, transparent, rgba(251,191,36,0.5))' }} />
+            <div className="h-px w-12 sm:w-20" style={{ background: 'linear-gradient(to right, transparent, rgba(251,191,36,0.5))' }} />
             <span style={{ color: 'rgba(251,191,36,0.5)', fontSize: '0.6rem', letterSpacing: '0.4em' }}>✦ ✦ ✦</span>
-            <div className="h-px w-20" style={{ background: 'linear-gradient(to left, transparent, rgba(251,191,36,0.5))' }} />
+            <div className="h-px w-12 sm:w-20" style={{ background: 'linear-gradient(to left, transparent, rgba(251,191,36,0.5))' }} />
           </div>
 
-          <h2 className="cosmic-title mb-3" style={{ fontSize: 'clamp(1.95rem, 4.75vw, 3.75rem)', lineHeight: 1.1 }}>
+          <h2 className="cosmic-title mb-3" style={{ fontSize: 'clamp(1.65rem, 4.75vw, 3.75rem)', lineHeight: 1.1 }}>
             {t('home.truth.title')}
           </h2>
           <p
-            className="font-cinzel mt-2 mb-5"
-            style={{ fontSize: 'clamp(1.1rem, 2.65vw, 1.95rem)', color: 'rgba(248,250,252,0.45)', letterSpacing: '0.06em' }}
+            className="font-cinzel mt-2 mb-5 px-2"
+            style={{ fontSize: 'clamp(0.95rem, 2.65vw, 1.95rem)', color: 'rgba(248,250,252,0.45)', letterSpacing: '0.04em' }}
           >
             {t('home.truth.subtitle')}
           </p>
 
-          <div className="flex items-center justify-center gap-4">
-            <div className="h-px w-24" style={{ background: 'linear-gradient(to right, transparent, rgba(251,191,36,0.3))' }} />
-            <span className="font-cinzel text-sm uppercase tracking-[0.35em]" style={{ color: 'rgba(251,191,36,0.35)' }}>
+          <div className="flex items-center justify-center gap-3 flex-wrap">
+            <div className="h-px w-12 sm:w-24 shrink-0" style={{ background: 'linear-gradient(to right, transparent, rgba(251,191,36,0.3))' }} />
+            <span
+              className="font-cinzel text-xs sm:text-sm uppercase tracking-[0.2em] sm:tracking-[0.35em] text-center"
+              style={{ color: 'rgba(251,191,36,0.35)' }}
+            >
               {t('home.truth.seriesLabel')}
             </span>
-            <div className="h-px w-24" style={{ background: 'linear-gradient(to left, transparent, rgba(251,191,36,0.3))' }} />
+            <div className="h-px w-12 sm:w-24 shrink-0" style={{ background: 'linear-gradient(to left, transparent, rgba(251,191,36,0.3))' }} />
           </div>
         </motion.div>
 
@@ -78,32 +81,32 @@ const TruthSection = () => {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="backdrop-blur-md p-8 md:p-12 rounded-2xl text-center max-w-4xl mx-auto mb-20"
+          className="backdrop-blur-md p-6 sm:p-8 md:p-12 rounded-2xl text-center max-w-4xl mx-auto mb-14 md:mb-20"
           style={{
             background: 'rgba(15,23,42,0.6)',
             border: '1px solid rgba(251,191,36,0.18)',
             boxShadow: '0 0 60px rgba(251,191,36,0.06)',
           }}
         >
-          <div className="h-px mb-8" style={{ background: 'linear-gradient(to right, transparent, rgba(251,191,36,0.4), transparent)' }} />
+          <div className="h-px mb-6 md:mb-8" style={{ background: 'linear-gradient(to right, transparent, rgba(251,191,36,0.4), transparent)' }} />
           <h3
-            className="font-cinzel mb-5"
-            style={{ fontSize: 'clamp(1.2rem, 2.65vw, 1.65rem)', color: '#fbbf24', letterSpacing: '0.04em' }}
+            className="font-cinzel mb-4"
+            style={{ fontSize: 'clamp(1.05rem, 2.65vw, 1.65rem)', color: '#fbbf24', letterSpacing: '0.04em' }}
           >
             {t('home.truth.abstractHeading')}
           </h3>
-          <p className="text-slate-200 text-lg md:text-xl leading-relaxed font-light">{t('home.truth.abstractBody')}</p>
-          <div className="h-px mt-8" style={{ background: 'linear-gradient(to right, transparent, rgba(251,191,36,0.4), transparent)' }} />
+          <p className="text-slate-200 text-base sm:text-lg md:text-xl leading-relaxed font-light">{t('home.truth.abstractBody')}</p>
+          <div className="h-px mt-6 md:mt-8" style={{ background: 'linear-gradient(to right, transparent, rgba(251,191,36,0.4), transparent)' }} />
         </motion.div>
 
-        <div className="text-center mb-12">
-          <h3 className="font-cinzel text-white mb-3" style={{ fontSize: 'clamp(1.3rem, 3.15vw, 2.15rem)', letterSpacing: '0.06em' }}>
+        <div className="text-center mb-10 md:mb-12">
+          <h3 className="font-cinzel text-white mb-3 px-2" style={{ fontSize: 'clamp(1.1rem, 3.15vw, 2.15rem)', letterSpacing: '0.06em' }}>
             {t('home.truth.videoTitle')}
           </h3>
-          <p className="text-slate-400 text-base md:text-lg max-w-2xl mx-auto font-light">{t('home.truth.videoSubtitle')}</p>
+          <p className="text-slate-400 text-sm sm:text-base md:text-lg max-w-2xl mx-auto font-light px-2">{t('home.truth.videoSubtitle')}</p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6 md:gap-8">
+        <div className="grid md:grid-cols-3 gap-5 md:gap-8">
           {seasons.map((s, i) => (
             <motion.div
               key={s.link}
@@ -127,9 +130,9 @@ const TruthSection = () => {
             >
               <div className="h-0.5 w-full" style={{ background: `linear-gradient(to right, ${s.accent}, transparent)` }} />
 
-              <div className="p-7 md:p-8 flex flex-col flex-1">
+              <div className="p-6 md:p-7 lg:p-8 flex flex-col flex-1">
                 <span
-                  className="inline-block font-cinzel font-bold text-sm tracking-widest px-3 py-1.5 rounded-full mb-6 max-w-max"
+                  className="inline-block font-cinzel font-bold text-xs sm:text-sm tracking-widest px-3 py-1.5 rounded-full mb-5 max-w-max"
                   style={{
                     background: s.accent + '18',
                     border: `1px solid ${s.accent}40`,
@@ -139,15 +142,18 @@ const TruthSection = () => {
                   {s.season}
                 </span>
 
-                <h4 className="font-serif font-bold text-white mb-5 leading-snug" style={{ fontSize: 'clamp(1.2rem, 2.15vw, 1.5rem)' }}>
+                <h4
+                  className="font-serif font-bold text-white mb-4 leading-snug"
+                  style={{ fontSize: 'clamp(1.05rem, 2.15vw, 1.45rem)' }}
+                >
                   {s.title}
                 </h4>
 
-                <p className="text-slate-400 leading-relaxed flex-grow mb-8 text-base md:text-lg">{s.description}</p>
+                <p className="text-slate-400 leading-relaxed flex-grow mb-7 text-sm sm:text-base md:text-lg">{s.description}</p>
 
                 <Link
                   to={s.link}
-                  className="block w-full text-center font-cinzel font-bold uppercase tracking-widest text-sm py-3 rounded-full transition-all duration-300"
+                  className="block w-full text-center font-cinzel font-bold uppercase tracking-wide text-sm py-3 rounded-full transition-all duration-300"
                   style={{
                     border: `1px solid ${s.accent}60`,
                     color: s.accent,

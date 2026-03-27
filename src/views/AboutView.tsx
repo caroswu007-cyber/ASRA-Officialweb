@@ -1,7 +1,8 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { getAboutContent } from '../content/getAboutContent';
+import { ABOUT_PAGE_IMAGES } from '../constants/aboutImages';
 import { useI18n } from '../i18n/LocaleProvider';
 
 /* ─── Reusable small helpers ─── */
@@ -20,12 +21,42 @@ const SectionLabel = ({ children }: { children: React.ReactNode }) => (
   </p>
 );
 
+/** How it works card top — `<img>` + overlay so broken URLs show a gradient instead of an empty strip. */
+const HowItWorksStepBanner = ({ imageSrc, accentColor, stepNum }: { imageSrc: string; accentColor: string; stepNum: string }) => {
+  const [imgFailed, setImgFailed] = useState(false);
+  return (
+    <div className="h-44 relative overflow-hidden bg-slate-950">
+      {!imgFailed ? (
+        <img
+          src={imageSrc}
+          alt=""
+          className="absolute inset-0 h-full w-full object-cover pointer-events-none"
+          loading="lazy"
+          decoding="async"
+          onError={() => setImgFailed(true)}
+        />
+      ) : null}
+      <div
+        className="absolute inset-0 transition-[background] duration-300"
+        style={{
+          background: imgFailed
+            ? `linear-gradient(145deg, ${accentColor}40 0%, rgba(5,8,20,0.98) 72%)`
+            : 'rgba(5,8,20,0.55)',
+        }}
+      />
+      <div className="absolute top-4 left-4 z-[1]">
+        <span className="font-cinzel font-bold text-3xl" style={{ color: accentColor, opacity: 0.7 }}>{stepNum}</span>
+      </div>
+    </div>
+  );
+};
+
 /* ─── 1. Hero ─── */
 const AboutHero = () => {
   const { locale, t } = useI18n();
   const about = useMemo(() => getAboutContent(locale), [locale]);
   return (
-  <section className="relative flex flex-col items-center justify-center text-center overflow-hidden" style={{ minHeight: '88vh' }}>
+  <section className="relative flex flex-col items-center justify-center text-center overflow-hidden" style={{ minHeight: '80vh' }}>
     <div
       className="absolute inset-0 bg-cover bg-center scale-105"
       style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1543722530-d2c3201371e7?auto=format&fit=crop&w=1920&q=85)' }}
@@ -37,36 +68,36 @@ const AboutHero = () => {
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 1, ease: 'easeOut' }}
-      className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 py-28 flex flex-col items-center"
+      className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 py-24 sm:py-28 flex flex-col items-center"
     >
       {/* Org badge */}
-      <div className="flex items-center gap-3 mb-8">
-        <div className="h-px w-14" style={{ background: 'rgba(251,191,36,0.4)' }} />
-        <span className="font-cinzel text-sm tracking-[0.4em] uppercase" style={{ color: '#c9a84c' }}>
+      <div className="flex items-center gap-3 mb-6 md:mb-8 flex-wrap justify-center">
+        <div className="h-px w-10 sm:w-14 shrink-0" style={{ background: 'rgba(251,191,36,0.4)' }} />
+        <span className="font-cinzel text-xs sm:text-sm tracking-[0.3em] sm:tracking-[0.4em] uppercase text-center" style={{ color: '#c9a84c' }}>
           {about.orgName}
         </span>
-        <div className="h-px w-14" style={{ background: 'rgba(251,191,36,0.4)' }} />
+        <div className="h-px w-10 sm:w-14 shrink-0" style={{ background: 'rgba(251,191,36,0.4)' }} />
       </div>
 
       {/* Main title */}
       <h1
         className="cosmic-title font-bold leading-tight mb-5"
-        style={{ fontSize: 'clamp(2.2rem, 5.75vw, 4.85rem)' }}
+        style={{ fontSize: 'clamp(1.85rem, 5.75vw, 4.85rem)' }}
       >
         {t('about.hero.titleLine1')}<br />{t('about.hero.titleLine2')}
       </h1>
 
       {/* Abbr badge row */}
-      <div className="flex items-center gap-5 mb-8">
+      <div className="flex items-center gap-3 sm:gap-5 mb-6 md:mb-8 flex-wrap justify-center">
         <span
-          className="font-cinzel font-bold text-base tracking-[0.3em] px-4 py-1.5 rounded-full"
+          className="font-cinzel font-bold text-sm sm:text-base tracking-[0.3em] px-3 sm:px-4 py-1.5 rounded-full"
           style={{ border: '1px solid rgba(251,191,36,0.5)', color: '#fbbf24', background: 'rgba(251,191,36,0.07)' }}
         >
           ASra
         </span>
         <span style={{ color: 'rgba(251,191,36,0.3)', fontSize: '1.2rem' }}>·</span>
         <span
-          className="font-cinzel font-bold text-base tracking-[0.3em] px-4 py-1.5 rounded-full"
+          className="font-cinzel font-bold text-sm sm:text-base tracking-[0.3em] px-3 sm:px-4 py-1.5 rounded-full"
           style={{ border: '1px solid rgba(167,139,250,0.5)', color: '#a78bfa', background: 'rgba(167,139,250,0.07)' }}
         >
           SMSC
@@ -74,21 +105,21 @@ const AboutHero = () => {
       </div>
 
       <p
-        className="font-serif text-lg md:text-xl font-light leading-relaxed max-w-2xl mb-10"
+        className="font-serif text-base sm:text-lg md:text-xl font-light leading-relaxed max-w-2xl mb-8 md:mb-10 px-2"
         style={{ color: 'rgba(248,250,252,0.78)' }}
       >
         {about.tagline}
       </p>
 
       {/* Domain pills */}
-      <div className="flex flex-wrap justify-center gap-4">
-        <div className="flex items-center gap-2 px-5 py-2.5 rounded-full" style={{ background: 'rgba(251,191,36,0.08)', border: '1px solid rgba(251,191,36,0.2)' }}>
-          <div className="w-2 h-2 rounded-full" style={{ background: '#fbbf24' }} />
-          <span className="font-cinzel text-sm tracking-widest uppercase" style={{ color: '#fbbf24' }}>{t('about.hero.pillAsra')}</span>
+      <div className="flex flex-wrap justify-center gap-3 sm:gap-4">
+        <div className="flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full" style={{ background: 'rgba(251,191,36,0.08)', border: '1px solid rgba(251,191,36,0.2)' }}>
+          <div className="w-2 h-2 rounded-full shrink-0" style={{ background: '#fbbf24' }} />
+          <span className="font-cinzel text-xs sm:text-sm tracking-widest uppercase" style={{ color: '#fbbf24' }}>{t('about.hero.pillAsra')}</span>
         </div>
-        <div className="flex items-center gap-2 px-5 py-2.5 rounded-full" style={{ background: 'rgba(167,139,250,0.08)', border: '1px solid rgba(167,139,250,0.2)' }}>
-          <div className="w-2 h-2 rounded-full" style={{ background: '#a78bfa' }} />
-          <span className="font-cinzel text-sm tracking-widest uppercase" style={{ color: '#a78bfa' }}>{t('about.hero.pillSmsc')}</span>
+        <div className="flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full" style={{ background: 'rgba(167,139,250,0.08)', border: '1px solid rgba(167,139,250,0.2)' }}>
+          <div className="w-2 h-2 rounded-full shrink-0" style={{ background: '#a78bfa' }} />
+          <span className="font-cinzel text-xs sm:text-sm tracking-widest uppercase" style={{ color: '#a78bfa' }}>{t('about.hero.pillSmsc')}</span>
         </div>
       </div>
     </motion.div>
@@ -103,9 +134,9 @@ const DualDomain = () => {
   const { locale, t } = useI18n();
   const about = useMemo(() => getAboutContent(locale), [locale]);
   return (
-  <section className="py-28 px-4 sm:px-6 md:px-12" style={{ background: 'rgba(5,8,15,0.65)' }}>
+  <section className="py-16 md:py-24 px-4 sm:px-6 md:px-12" style={{ background: 'rgba(5,8,15,0.65)' }}>
     <div className="max-w-6xl mx-auto">
-      <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-16">
+      <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-12 md:mb-16">
         <OrnamLine />
         <h2 className="cosmic-title mt-5 mb-2" style={{ fontSize: 'clamp(1.95rem, 4.2vw, 3.45rem)' }}>
           {t('about.dual.title')}
@@ -138,11 +169,11 @@ const DualDomain = () => {
               <span className="font-cinzel font-bold text-sm tracking-[0.3em] uppercase px-3 py-1 rounded-full" style={{ background: 'rgba(251,191,36,0.15)', border: '1px solid rgba(251,191,36,0.4)', color: '#fbbf24' }}>{t('about.card.physicalLabel')}</span>
             </div>
           </div>
-          <div className="p-8">
-            <div className="h-0.5 mb-6" style={{ background: 'linear-gradient(to right, rgba(251,191,36,0.5), transparent)' }} />
-            <p className="font-cinzel text-sm uppercase tracking-[0.2em] mb-2" style={{ color: '#fbbf24' }}>ASra</p>
-            <h3 className="font-cinzel font-bold text-white text-lg mb-4 leading-snug">{about.asra.name}</h3>
-            <p className="text-slate-300 text-base leading-relaxed">{about.asra.description}</p>
+          <div className="p-6 sm:p-8">
+            <div className="h-0.5 mb-5" style={{ background: 'linear-gradient(to right, rgba(251,191,36,0.5), transparent)' }} />
+            <p className="font-cinzel text-xs sm:text-sm uppercase tracking-[0.2em] mb-2" style={{ color: '#fbbf24' }}>ASra</p>
+            <h3 className="font-cinzel font-bold text-white text-base sm:text-lg mb-3 leading-snug">{about.asra.name}</h3>
+            <p className="text-slate-300 text-sm sm:text-base leading-relaxed">{about.asra.description}</p>
           </div>
         </motion.div>
 
@@ -151,8 +182,8 @@ const DualDomain = () => {
           <div className="flex-1 w-px md:w-auto md:h-full border-t md:border-t-0 md:border-l border-dashed" style={{ borderColor: 'rgba(251,191,36,0.2)' }} />
           <div className="flex flex-col items-center gap-1 text-center px-4">
             <span style={{ color: 'rgba(251,191,36,0.4)', fontSize: '1.4rem' }}>⇄</span>
-            <span className="font-cinzel font-bold text-sm tracking-wider" style={{ color: 'rgba(251,191,36,0.6)', whiteSpace: 'nowrap' }}>{t('about.connector.ratio')}</span>
-            <span className="font-cinzel text-sm" style={{ color: 'rgba(251,191,36,0.35)', whiteSpace: 'nowrap' }}>{t('about.connector.partnership')}</span>
+            <span className="font-cinzel font-bold text-xs sm:text-sm tracking-wider text-center" style={{ color: 'rgba(251,191,36,0.6)' }}>{t('about.connector.ratio')}</span>
+            <span className="font-cinzel text-xs sm:text-sm text-center" style={{ color: 'rgba(251,191,36,0.35)' }}>{t('about.connector.partnership')}</span>
           </div>
           <div className="flex-1 w-px md:w-auto md:h-full border-t md:border-t-0 md:border-l border-dashed" style={{ borderColor: 'rgba(251,191,36,0.2)' }} />
         </div>
@@ -169,11 +200,11 @@ const DualDomain = () => {
               <span className="font-cinzel font-bold text-sm tracking-[0.3em] uppercase px-3 py-1 rounded-full" style={{ background: 'rgba(167,139,250,0.15)', border: '1px solid rgba(167,139,250,0.4)', color: '#a78bfa' }}>{t('about.card.spiritLabel')}</span>
             </div>
           </div>
-          <div className="p-8">
-            <div className="h-0.5 mb-6" style={{ background: 'linear-gradient(to right, rgba(167,139,250,0.5), transparent)' }} />
-            <p className="font-cinzel text-sm uppercase tracking-[0.2em] mb-2" style={{ color: '#a78bfa' }}>SMSC</p>
-            <h3 className="font-cinzel font-bold text-white text-lg mb-4 leading-snug">{about.smsc.name}</h3>
-            <p className="text-slate-300 text-base leading-relaxed">{about.smsc.description}</p>
+          <div className="p-6 sm:p-8">
+            <div className="h-0.5 mb-5" style={{ background: 'linear-gradient(to right, rgba(167,139,250,0.5), transparent)' }} />
+            <p className="font-cinzel text-xs sm:text-sm uppercase tracking-[0.2em] mb-2" style={{ color: '#a78bfa' }}>SMSC</p>
+            <h3 className="font-cinzel font-bold text-white text-base sm:text-lg mb-3 leading-snug">{about.smsc.name}</h3>
+            <p className="text-slate-300 text-sm sm:text-base leading-relaxed">{about.smsc.description}</p>
           </div>
         </motion.div>
       </div>
@@ -203,14 +234,14 @@ const HowItWorks = () => {
       color: '#a78bfa',
       title: t('about.how.step1.title'),
       body: t('about.how.step1.body'),
-      img: 'https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&w=600&q=70',
+      img: ABOUT_PAGE_IMAGES.howStep01,
     },
     {
       num: '02',
       color: '#38bdf8',
       title: t('about.how.step2.title'),
       body: t('about.how.step2.body'),
-      img: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=600&q=70',
+      img: ABOUT_PAGE_IMAGES.howStep02,
     },
     {
       num: '03',
@@ -222,11 +253,11 @@ const HowItWorks = () => {
   ];
 
   return (
-    <section className="py-28 px-4 sm:px-6 md:px-12">
+    <section className="py-16 md:py-24 px-4 sm:px-6 md:px-12">
       <div className="max-w-6xl mx-auto">
-        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-16">
+        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-10 md:mb-16">
           <OrnamLine />
-          <h2 className="cosmic-title mt-5 mb-2" style={{ fontSize: 'clamp(1.95rem, 4.2vw, 3.45rem)' }}>{t('about.how.title')}</h2>
+          <h2 className="cosmic-title mt-5 mb-2" style={{ fontSize: 'clamp(1.65rem, 4.2vw, 3.45rem)' }}>{t('about.how.title')}</h2>
           <SectionLabel>{t('about.how.label')}</SectionLabel>
         </motion.div>
 
@@ -238,12 +269,7 @@ const HowItWorks = () => {
               className="rounded-2xl overflow-hidden"
               style={{ background: 'rgba(10,18,35,0.8)', border: `1px solid ${s.color}28` }}
             >
-              <div className="h-44 bg-cover bg-center relative" style={{ backgroundImage: `url(${s.img})` }}>
-                <div className="absolute inset-0" style={{ background: 'rgba(5,8,20,0.55)' }} />
-                <div className="absolute top-4 left-4">
-                  <span className="font-cinzel font-bold text-3xl" style={{ color: s.color, opacity: 0.7 }}>{s.num}</span>
-                </div>
-              </div>
+              <HowItWorksStepBanner imageSrc={s.img} accentColor={s.color} stepNum={s.num} />
               <div className="p-6">
                 <div className="h-0.5 mb-5" style={{ background: `linear-gradient(to right, ${s.color}80, transparent)` }} />
                 <h3 className="font-cinzel font-bold text-lg text-white mb-3 tracking-wide">{s.title}</h3>
@@ -262,7 +288,7 @@ const Founders = () => {
   const { locale, t } = useI18n();
   const about = useMemo(() => getAboutContent(locale), [locale]);
   return (
-  <section className="py-28 px-4 sm:px-6 md:px-12 relative overflow-hidden" style={{ background: 'rgba(5,8,15,0.7)' }}>
+  <section className="py-16 md:py-24 px-4 sm:px-6 md:px-12 relative overflow-hidden" style={{ background: 'rgba(5,8,15,0.7)' }}>
     <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse 60% 50% at 50% 50%, rgba(201,168,76,0.06) 0%, transparent 70%)' }} />
     <div className="max-w-5xl mx-auto relative z-10">
       <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-14">
@@ -279,7 +305,7 @@ const Founders = () => {
         {/* Image side */}
         <div
           className="relative h-72 md:h-auto bg-cover bg-center"
-          style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?auto=format&fit=crop&w=800&q=75)' }}
+          style={{ backgroundImage: `url(${ABOUT_PAGE_IMAGES.founders})` }}
         >
           <div className="absolute inset-0" style={{ background: 'rgba(10,6,0,0.6)' }} />
           <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center">
@@ -292,7 +318,7 @@ const Founders = () => {
         </div>
 
         {/* Text side */}
-        <div className="p-8 md:p-10" style={{ background: 'rgba(10,18,35,0.85)' }}>
+        <div className="p-6 sm:p-8 md:p-10" style={{ background: 'rgba(10,18,35,0.85)' }}>
           <div className="h-0.5 mb-7" style={{ background: 'linear-gradient(to right, rgba(201,168,76,0.5), transparent)' }} />
           <h3 className="font-cinzel font-bold text-white text-xl md:text-2xl mb-2 leading-snug">{about.founders.title}</h3>
           <p className="font-cinzel text-sm uppercase tracking-widest mb-6" style={{ color: '#c9a84c' }}>{about.founders.subtitle}</p>
@@ -302,7 +328,7 @@ const Founders = () => {
           </p>
           <Link
             to="/founder-story"
-            className="mt-8 inline-flex items-center justify-center gap-2 font-cinzel font-bold uppercase tracking-[0.2em] text-sm md:text-base py-4 px-10 rounded-full transition-all hover:-translate-y-0.5 hover:shadow-[0_8px_32px_rgba(251,191,36,0.25)]"
+            className="mt-6 sm:mt-8 inline-flex items-center justify-center gap-2 font-cinzel font-bold uppercase tracking-[0.15em] sm:tracking-[0.2em] text-sm md:text-base py-3.5 sm:py-4 px-7 sm:px-10 rounded-full transition-all hover:-translate-y-0.5 hover:shadow-[0_8px_32px_rgba(251,191,36,0.25)]"
             style={{
               background: 'linear-gradient(135deg, #92610a, #fbbf24, #d97706)',
               color: '#0f0a00',
@@ -323,11 +349,11 @@ const Missions = () => {
   const { locale, t } = useI18n();
   const about = useMemo(() => getAboutContent(locale), [locale]);
   return (
-  <section className="py-28 px-4 sm:px-6 md:px-12">
+  <section className="py-16 md:py-24 px-4 sm:px-6 md:px-12">
     <div className="max-w-5xl mx-auto">
-      <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-16">
+      <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-10 md:mb-16">
         <OrnamLine />
-        <h2 className="cosmic-title mt-5 mb-2" style={{ fontSize: 'clamp(1.95rem, 4.2vw, 3.45rem)' }}>
+        <h2 className="cosmic-title mt-5 mb-2" style={{ fontSize: 'clamp(1.65rem, 4.2vw, 3.45rem)' }}>
           {t('about.missions.title')}
         </h2>
         <SectionLabel>{t('about.missions.label')}</SectionLabel>
@@ -341,22 +367,22 @@ const Missions = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 * i }}
-            className="grid md:grid-cols-[auto_1fr] gap-0 rounded-2xl overflow-hidden"
+            className="flex flex-col md:grid md:grid-cols-[auto_1fr] gap-0 rounded-2xl overflow-hidden"
             style={{ border: `1px solid ${i === 0 ? 'rgba(56,189,248,0.2)' : 'rgba(251,191,36,0.2)'}`, background: 'rgba(10,18,35,0.8)' }}
           >
             {/* Number column */}
             <div
-              className="flex flex-col items-center justify-center px-8 py-8 md:py-0"
-              style={{ background: i === 0 ? 'rgba(56,189,248,0.06)' : 'rgba(251,191,36,0.06)', borderRight: `1px solid ${i === 0 ? 'rgba(56,189,248,0.15)' : 'rgba(251,191,36,0.15)'}`, minWidth: '8rem' }}
+              className="flex flex-row md:flex-col items-center justify-center px-6 py-4 md:px-8 md:py-0 gap-3 md:gap-0 border-b md:border-b-0"
+              style={{ background: i === 0 ? 'rgba(56,189,248,0.06)' : 'rgba(251,191,36,0.06)', borderRight: `1px solid ${i === 0 ? 'rgba(56,189,248,0.15)' : 'rgba(251,191,36,0.15)'}`, borderBottom: `1px solid ${i === 0 ? 'rgba(56,189,248,0.15)' : 'rgba(251,191,36,0.15)'}`, minWidth: '0' }}
             >
               <span
                 className="font-cinzel font-bold"
-                style={{ fontSize: '3rem', color: i === 0 ? 'rgba(56,189,248,0.7)' : 'rgba(251,191,36,0.7)', lineHeight: 1 }}
+                style={{ fontSize: 'clamp(2rem, 5vw, 3rem)', color: i === 0 ? 'rgba(56,189,248,0.7)' : 'rgba(251,191,36,0.7)', lineHeight: 1 }}
               >
                 {m.number}
               </span>
               <span
-                className="font-cinzel text-sm uppercase tracking-widest mt-2 text-center"
+                className="font-cinzel text-xs sm:text-sm uppercase tracking-widest md:mt-2 text-center"
                 style={{ color: i === 0 ? 'rgba(56,189,248,0.45)' : 'rgba(251,191,36,0.45)' }}
               >
                 {m.tag}
@@ -364,7 +390,7 @@ const Missions = () => {
             </div>
 
             {/* Content column */}
-            <div className="p-7 md:p-9">
+              <div className="p-5 sm:p-7 md:p-9">
               <div className="h-0.5 mb-6" style={{ background: `linear-gradient(to right, ${i === 0 ? 'rgba(56,189,248,0.5)' : 'rgba(251,191,36,0.5)'}, transparent)` }} />
               <h3
                 className="font-cinzel font-bold text-white text-lg md:text-xl mb-4 leading-snug"
@@ -403,7 +429,7 @@ const AboutCTA = () => {
           href="https://ess-esw.org/"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-block font-cinzel font-bold uppercase tracking-widest py-4 px-14 rounded-full transition-all hover:-translate-y-1"
+          className="inline-block font-cinzel font-bold uppercase tracking-wide py-3.5 sm:py-4 px-8 sm:px-14 rounded-full transition-all hover:-translate-y-1"
           style={{ background: 'linear-gradient(135deg, #92610a, #fbbf24, #d97706)', color: '#0f0a00', boxShadow: '0 4px 30px rgba(251,191,36,0.3)' }}
         >
           {t('about.cta.button')}

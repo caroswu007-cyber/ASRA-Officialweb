@@ -9,9 +9,6 @@ export const warmImagery = {
   /** Home hero wash: golden-hour sky */
   homeAtmosphere:
     'https://images.unsplash.com/photo-1495616811223-4d98c6e9c869?auto=format&fit=crop&w=2000&q=82',
-  /** Achievements hero: alpine dawn — horizon & hope */
-  achievementsHero:
-    'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1800&q=82',
   /** Care / listening — next to methodology copy */
   healingConnection:
     'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=1200&q=82',

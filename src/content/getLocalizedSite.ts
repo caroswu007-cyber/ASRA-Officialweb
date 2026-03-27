@@ -1,6 +1,6 @@
 import type { Locale } from '../i18n/locales';
-import { siteContent } from './siteContent';
+import { getLocalizedSiteContent as getPageCopyLocalizedSiteContent } from './pageCopyRuntime';
 
-export function getLocalizedSiteContent(_locale: Locale) {
-  return siteContent;
+export function getLocalizedSiteContent(locale: Locale) {
+  return getPageCopyLocalizedSiteContent(locale);
 }

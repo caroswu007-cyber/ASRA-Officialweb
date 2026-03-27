@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { BarChart3, Microscope, Radio } from 'lucide-react';
-import { warmImagery } from '../../content/visualTheme';
 import { useI18n } from '../../i18n/LocaleProvider';
 
 /** Matches TruthSection / JoinSection: home-blur-surface + amber accents (same family as Founder Story) */
@@ -11,7 +10,7 @@ const Achievements = () => {
   return (
     <section
       id="achievements"
-      className="home-blur-surface py-28 px-4 sm:px-6 md:px-12 relative scroll-mt-24 md:scroll-mt-28 border-t border-[rgba(251,191,36,0.12)]"
+      className="home-blur-surface py-16 md:py-24 px-4 sm:px-6 md:px-12 relative scroll-mt-24 md:scroll-mt-28 border-t border-[rgba(251,191,36,0.12)]"
     >
       <div className="max-w-6xl mx-auto">
         <motion.div
@@ -19,7 +18,7 @@ const Achievements = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
-          className="text-center mb-16"
+          className="text-center mb-10 md:mb-16"
         >
           <p className="font-cinzel text-xs md:text-sm uppercase tracking-[0.22em] mb-6" style={{ color: 'rgba(251,191,36,0.45)' }}>
             {t('home.achievements.subtitle')}
@@ -32,7 +31,7 @@ const Achievements = () => {
             {t('home.achievements.title')}
           </h2>
 
-          <p className="text-slate-200/95 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed mb-10 font-light">
+          <p className="text-slate-200/95 text-base sm:text-lg md:text-xl max-w-3xl mx-auto leading-relaxed mb-8 md:mb-10 font-light">
             {t('home.achievements.lead')}
           </p>
 
@@ -48,47 +47,23 @@ const Achievements = () => {
           </div>
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="relative max-w-4xl mx-auto mb-16 rounded-lg overflow-hidden h-44 md:h-52 border border-white/[0.1]"
-          aria-hidden
-        >
-          <img
-            src={warmImagery.achievementsHero}
-            alt=""
-            className="absolute inset-0 w-full h-full object-cover"
-            loading="lazy"
-            decoding="async"
-          />
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                'linear-gradient(105deg, rgba(12,10,8,0.75) 0%, rgba(28,20,14,0.35) 45%, rgba(12,10,18,0.55) 100%)',
-            }}
-          />
-        </motion.div>
-
         <div className="grid md:grid-cols-2 gap-8 md:gap-12 mb-16">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="rounded-lg p-8 md:p-10 backdrop-blur-md border border-white/[0.1] bg-[rgba(15,23,42,0.55)]"
+            className="rounded-lg p-6 sm:p-8 md:p-10 backdrop-blur-md border border-white/[0.1] bg-[rgba(15,23,42,0.55)]"
           >
-            <div className="flex items-center gap-3 mb-6">
-              <BarChart3 className="w-7 h-7 text-sky-300/95" aria-hidden />
+            <div className="flex items-center gap-3 mb-5 md:mb-6">
+              <BarChart3 className="w-6 h-6 md:w-7 md:h-7 text-sky-300/95 shrink-0" aria-hidden />
               <div
                 className="h-px flex-1"
                 style={{ background: 'linear-gradient(to right, rgba(56,189,248,0.35), transparent)' }}
               />
             </div>
-            <h3 className="font-ui text-xl md:text-2xl text-white mb-5 font-semibold tracking-tight">{t('home.achievements.card1Title')}</h3>
-            <p className="text-slate-200/90 leading-relaxed text-lg md:text-xl font-ui">{t('home.achievements.card1Body')}</p>
+            <h3 className="font-ui text-lg sm:text-xl md:text-2xl text-white mb-4 font-semibold tracking-tight">{t('home.achievements.card1Title')}</h3>
+            <p className="text-slate-200/90 leading-relaxed text-sm sm:text-base md:text-lg font-ui">{t('home.achievements.card1Body')}</p>
           </motion.div>
 
           <motion.div
@@ -96,17 +71,17 @@ const Achievements = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.08, duration: 0.6 }}
-            className="rounded-lg p-8 md:p-10 backdrop-blur-md border border-white/[0.1] bg-[rgba(15,23,42,0.55)]"
+            className="rounded-lg p-6 sm:p-8 md:p-10 backdrop-blur-md border border-white/[0.1] bg-[rgba(15,23,42,0.55)]"
           >
-            <div className="flex items-center gap-3 mb-6">
-              <Microscope className="w-7 h-7 text-amber-200/95" aria-hidden />
+            <div className="flex items-center gap-3 mb-5 md:mb-6">
+              <Microscope className="w-6 h-6 md:w-7 md:h-7 text-amber-200/95 shrink-0" aria-hidden />
               <div
                 className="h-px flex-1"
                 style={{ background: 'linear-gradient(to right, rgba(251,191,36,0.35), transparent)' }}
               />
             </div>
-            <h3 className="font-ui text-xl md:text-2xl text-white mb-5 font-semibold tracking-tight">{t('home.achievements.card2Title')}</h3>
-            <p className="text-slate-200/90 leading-relaxed text-lg md:text-xl font-ui">{t('home.achievements.card2Body')}</p>
+            <h3 className="font-ui text-lg sm:text-xl md:text-2xl text-white mb-4 font-semibold tracking-tight">{t('home.achievements.card2Title')}</h3>
+            <p className="text-slate-200/90 leading-relaxed text-sm sm:text-base md:text-lg font-ui">{t('home.achievements.card2Body')}</p>
           </motion.div>
         </div>
 
@@ -116,7 +91,7 @@ const Achievements = () => {
           viewport={{ once: true }}
           className="text-center"
         >
-          <p className="text-slate-300/95 mb-8 text-lg md:text-xl font-ui font-light max-w-2xl mx-auto leading-relaxed">
+          <p className="text-slate-300/95 mb-6 md:mb-8 text-base sm:text-lg md:text-xl font-ui font-light max-w-2xl mx-auto leading-relaxed">
             {t('home.achievements.ctaIntro')}
           </p>
           <Link

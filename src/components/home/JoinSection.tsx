@@ -9,7 +9,7 @@ const JoinSection = () => {
   return (
     <section
       id="join"
-      className="home-blur-surface relative py-36 px-4 sm:px-6 text-center overflow-hidden scroll-mt-24 md:scroll-mt-28"
+      className="home-blur-surface relative py-20 sm:py-28 md:py-36 px-4 sm:px-6 text-center overflow-hidden scroll-mt-24 md:scroll-mt-28"
     >
       {/* Ambient glow behind the CTA */}
       <div
@@ -29,37 +29,39 @@ const JoinSection = () => {
       >
         {/* Ornament top */}
         <div className="flex items-center justify-center gap-4 mb-8">
-          <div className="h-px w-20" style={{ background: 'linear-gradient(to right, transparent, rgba(251,191,36,0.5))' }} />
+          <div className="h-px w-12 sm:w-20" style={{ background: 'linear-gradient(to right, transparent, rgba(251,191,36,0.5))' }} />
           <span style={{ color: 'rgba(251,191,36,0.5)', fontSize: '0.6rem', letterSpacing: '0.4em' }}>✦ ✦ ✦</span>
-          <div className="h-px w-20" style={{ background: 'linear-gradient(to left, transparent, rgba(251,191,36,0.5))' }} />
+          <div className="h-px w-12 sm:w-20" style={{ background: 'linear-gradient(to left, transparent, rgba(251,191,36,0.5))' }} />
         </div>
 
         <h2
           className="cosmic-title mb-6"
-          style={{ fontSize: 'clamp(2.15rem, 5.2vw, 4.1rem)', lineHeight: 1.15 }}
+          style={{ fontSize: 'clamp(1.85rem, 5.2vw, 4.1rem)', lineHeight: 1.15 }}
         >
           {t('home.join.title')}
         </h2>
 
         {/* Subtitle rule */}
-        <div className="flex items-center justify-center gap-4 mb-10">
-          <div className="h-px w-20" style={{ background: 'linear-gradient(to right, transparent, rgba(251,191,36,0.3))' }} />
+        <div className="flex items-center justify-center gap-3 flex-wrap mb-8 md:mb-10">
+          <div className="h-px w-12 sm:w-20 shrink-0" style={{ background: 'linear-gradient(to right, transparent, rgba(251,191,36,0.3))' }} />
           <span
-            className="font-cinzel text-sm uppercase tracking-[0.35em]"
+            className="font-cinzel text-xs sm:text-sm uppercase tracking-[0.2em] sm:tracking-[0.35em] text-center"
             style={{ color: 'rgba(251,191,36,0.35)' }}
           >
             {t('home.join.subtitle')}
           </span>
-          <div className="h-px w-20" style={{ background: 'linear-gradient(to left, transparent, rgba(251,191,36,0.3))' }} />
+          <div className="h-px w-12 sm:w-20 shrink-0" style={{ background: 'linear-gradient(to left, transparent, rgba(251,191,36,0.3))' }} />
         </div>
 
-        <p className="text-slate-300 text-xl md:text-2xl mb-14 leading-relaxed max-w-2xl mx-auto font-light">{t('home.join.body')}</p>
+        <p className="text-slate-300 text-base sm:text-xl md:text-2xl mb-10 md:mb-14 leading-relaxed max-w-2xl mx-auto font-light px-2">
+          {t('home.join.body')}
+        </p>
 
         <a
           href={join}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-block font-cinzel font-bold uppercase tracking-widest text-lg md:text-xl py-5 px-16 rounded-full transition-all hover:-translate-y-1"
+          className="inline-block font-cinzel font-bold uppercase tracking-wide text-base sm:text-lg md:text-xl py-4 sm:py-5 px-8 sm:px-14 md:px-16 rounded-full transition-all hover:-translate-y-1 max-w-full break-words text-center"
           style={{
             background: 'linear-gradient(135deg, #92610a, #fbbf24, #d97706)',
             color: '#0f0a00',
@@ -76,10 +78,10 @@ const JoinSection = () => {
         </a>
 
         {/* Bottom ornament */}
-        <div className="flex items-center justify-center gap-4 mt-16">
-          <div className="h-px w-32" style={{ background: 'linear-gradient(to right, transparent, rgba(251,191,36,0.2))' }} />
+        <div className="flex items-center justify-center gap-4 mt-12 md:mt-16">
+          <div className="h-px w-20 sm:w-32" style={{ background: 'linear-gradient(to right, transparent, rgba(251,191,36,0.2))' }} />
           <span style={{ color: 'rgba(251,191,36,0.2)', fontSize: '0.9rem' }}>◈</span>
-          <div className="h-px w-32" style={{ background: 'linear-gradient(to left, transparent, rgba(251,191,36,0.2))' }} />
+          <div className="h-px w-20 sm:w-32" style={{ background: 'linear-gradient(to left, transparent, rgba(251,191,36,0.2))' }} />
         </div>
       </motion.div>
     </section>

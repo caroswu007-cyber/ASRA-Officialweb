@@ -13,31 +13,7 @@ export const STORYLINE_OF_WOOS_URL = 'https://ess-esw.org/storyline-of-woos/' as
 export const founderStorySurfaceCopy = {
   heroNamesLine: 'John Long Woo · Caros · Sam',
   backToAbout: '← Organization overview',
-  legacyTimelineLink: 'Earlier staged timeline on the legacy site',
 } as const;
-
-export const founderStoryIllustrations = [
-  {
-    src: 'https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?auto=format&fit=crop&w=1200&q=80',
-    alt: 'Night sky — doorway imagery',
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&w=1200&q=80',
-    alt: 'Cosmos and emergence',
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1200&q=80',
-    alt: 'Mountain dawn — long journey',
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1200&q=80',
-    alt: 'Together — family path',
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?auto=format&fit=crop&w=1200&q=80',
-    alt: 'Broadcast and field',
-  },
-] as const;
 
 export const founderTimeline = [
   { phase: 'A', range: 'May 2014 — Feb 2025', label: 'Phase A — family field work', tone: 'sky' as const },
@@ -62,20 +38,7 @@ export const founderStoryPage = {
         label: 'Truth 1',
         blocks: [
           {
-            title: 'Body and spirit',
-            text: `A living person is composed of both the **physical body** and the **spirit (soul)**. **Spirits (ghosts)** exist after human death.`,
-          },
-          {
-            title: 'Parasitism and disease',
-            text: `For the billions of them, the only way to survive is to **attach to human beings** and draw energy. That pattern is bound up with widespread illness such as **epilepsy**, **depression**, **schizophrenia**, and **somatic symptom disorders**.`,
-          },
-          {
-            title: 'Spirit Medicine',
-            text: `By **managing spirits (ghosts) through Master Spirits**, these conditions can often be rapidly improved. From that work we created **Spirit Medicine**.`,
-          },
-          {
-            title: 'Archives',
-            text: `Further documentation appears in **Woos Record of Soul** and the **Woos Spirit Medicine** video archives.`,
+            text: `A living person is composed of both the **physical body** and the **spirit (soul)**. **Spirits (ghosts)** exist after human death. For the billions of them, the only way to survive is to **attach to human beings** and draw energy. That pattern is bound up with widespread illness such as **epilepsy**, **depression**, **schizophrenia**, and **somatic symptom disorders**. By **managing spirits (ghosts) through Master Spirits**, these conditions can often be rapidly improved. From that work we created **Spirit Medicine**. Further documentation appears in **Woos Record of Soul** and the **Woos Spirit Medicine** video archives.`,
           },
         ],
       },
@@ -141,9 +104,6 @@ export const founderStoryPage = {
       storylineClip: {
         legacyStage: '1',
         youtubeId: 'jQvr_xd7ruY',
-        figureSrc:
-          'https://images.unsplash.com/photo-1525371834076-27c9c0925249?auto=format&fit=crop&w=1200&q=80',
-        figureAlt: 'Wine and glassware in candlelight — visual echo of the “altered drink” period described in Stage 1',
       },
     },
     {
@@ -159,9 +119,6 @@ export const founderStoryPage = {
       storylineClip: {
         legacyStage: '2',
         youtubeId: 'BKcqPywrPco',
-        figureSrc:
-          'https://images.unsplash.com/photo-1609230441206-0d400f798ce3?auto=format&fit=crop&w=1200&q=80',
-        figureAlt: 'Golden Buddha statue — atmosphere of the religious theatre described in Stage 2',
       },
     },
     {

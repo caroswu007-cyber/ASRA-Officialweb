@@ -11,12 +11,7 @@ import { achievementsReportEn, achievementsReportZh } from '../src/i18n/messages
 import { messagesEn } from '../src/i18n/messages/en';
 import { messagesZh } from '../src/i18n/messages/zh';
 import { aboutContent, siteContent } from '../src/content/siteContent';
-import {
-  founderStoryIllustrations,
-  founderStoryPage,
-  founderStorySurfaceCopy,
-  founderTimeline,
-} from '../src/content/founderStory2026Content';
+import { founderStoryPage, founderStorySurfaceCopy, founderTimeline } from '../src/content/founderStory2026Content';
 import {
   carouselSlides,
   livestreamLinkPlaceholders,
@@ -194,10 +189,6 @@ function flattenFounderStory(zhPack: Record<string, string>): CopyRow[] {
     st.paragraphs.forEach((p, pi) => {
       add(`founderStoryPage.phaseAStages[${si}].paragraphs[${pi}]`, '创始人故事 / A 阶段', p.trim(), 'paragraph / other');
     });
-    if ('storylineClip' in st && st.storylineClip) {
-      const sc = st.storylineClip;
-      add(`founderStoryPage.phaseAStages[${si}].storylineClip.figureAlt`, '创始人故事 / A 阶段 / 配图', sc.figureAlt, 'label');
-    }
   });
   addPhaseBi18n(
     'founderStoryPage.phaseB.title',
@@ -226,9 +217,6 @@ function flattenFounderStory(zhPack: Record<string, string>): CopyRow[] {
     add(`founderTimeline[${ti}].range`, '创始人故事 / 年表', row.range, 'label');
     add(`founderTimeline[${ti}].label`, '创始人故事 / 年表', row.label, 'label');
   });
-  founderStoryIllustrations.forEach((fig, fi) => {
-    add(`founderStoryIllustrations[${fi}].alt`, '创始人故事 / 插图说明', fig.alt, 'label');
-  });
   return rows;
 }
 
@@ -249,7 +237,6 @@ function flattenFounderSurfaceCopy(): CopyRow[] {
   return [
     add('founderStorySurfaceCopy.heroNamesLine', '创始人故事 / 英雄区副标题', s.heroNamesLine, 'label'),
     add('founderStorySurfaceCopy.backToAbout', '创始人故事 / 返回', s.backToAbout, 'button / link'),
-    add('founderStorySurfaceCopy.legacyTimelineLink', '创始人故事 / 页脚外链', s.legacyTimelineLink, 'button / link'),
   ];
 }
 
@@ -522,10 +509,7 @@ function main() {
             Latin_Latina: '',
             notes: 'achievementsReport.i18n.ts — matches translate() merge on site',
           })),
-        ...rowsForKeys(pickKeys('home.achievements.'), '首页 / 成就摘要条（链到专页）', en, zh).map(r => ({
-          ...r,
-          notes: `${r.notes}; HomeView → components/home/Achievements.tsx`,
-        })),
+        /** `home.achievements.*` lives only in `01-首页.xlsx` — do not duplicate here or later sheets overwrite imports. */
         ...rowsForKeys(pickKeys('achievementsPage.'), '成就页页脚与说明文案', en, zh).map(r => ({
           ...r,
           notes: 'OurAchievementsView footer / CTA; not home marketing strip',

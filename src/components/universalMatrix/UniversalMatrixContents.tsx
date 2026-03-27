@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { universalMatrixFiles } from '../../content/universalMatrixSeries';
+import { getLocalizedUniversalMatrixFiles } from '../../content/pageCopyRuntime';
 import { useI18n } from '../../i18n/LocaleProvider';
 
 /** Desaturated blue-gray — distinct from Spirit Medicine (#0a2535 / #38bdf8). */
@@ -50,7 +50,8 @@ const ComingSoonBadge = () => {
 };
 
 const UniversalMatrixContents = () => {
-  const { t, tFormat } = useI18n();
+  const { t, tFormat, locale } = useI18n();
+  const universalMatrixFiles = getLocalizedUniversalMatrixFiles(locale);
   const totalSubs = universalMatrixFiles.reduce((acc, f) => acc + (f.subChapters?.length ?? 0), 0);
 
   return (
@@ -118,7 +119,7 @@ const UniversalMatrixContents = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-40px' }}
             transition={{ duration: 0.45, delay: index * 0.07, ease: 'easeOut' }}
-            className="relative pl-16"
+            className="relative pl-12 sm:pl-16"
           >
             <div
               className="absolute flex items-center justify-center"
@@ -182,25 +183,25 @@ const UniversalMatrixContents = () => {
                   {file.subChapters.map((sub, si) => (
                     <div
                       key={sub.id}
-                      className={`flex items-center justify-between gap-4 py-3 ${sub.indent ? 'md:pl-6' : ''}`}
+                      className={`flex flex-wrap items-start sm:items-center justify-between gap-3 sm:gap-4 py-3 ${sub.indent ? 'md:pl-6' : ''}`}
                       style={
                         si < file.subChapters!.length - 1
                           ? { borderBottom: '1px solid rgba(255,255,255,0.04)' }
                           : {}
                       }
                     >
-                      <div className="flex items-center gap-3 min-w-0">
+                      <div className="flex items-start gap-2 sm:gap-3 min-w-0 flex-1">
                         <span
-                          className="w-1.5 h-1.5 rounded-sm rotate-45 flex-shrink-0"
-                          style={{ background: accent, marginTop: '1px' }}
+                          className="w-1.5 h-1.5 rounded-sm rotate-45 flex-shrink-0 mt-1.5"
+                          style={{ background: accent }}
                         />
                         <span
-                          className="font-mono text-sm font-semibold flex-shrink-0"
+                          className="font-mono text-xs sm:text-sm font-semibold flex-shrink-0 mt-0.5"
                           style={{ color: accent }}
                         >
                           {sub.id}
                         </span>
-                        <span className="text-base leading-snug" style={{ color: bodyMuted }}>
+                        <span className="text-sm sm:text-base leading-snug" style={{ color: bodyMuted }}>
                           {sub.title}
                         </span>
                       </div>
@@ -215,7 +216,7 @@ const UniversalMatrixContents = () => {
           </motion.div>
         ))}
 
-        <div className="flex items-center gap-3 pl-16 pt-4" style={{ opacity: 0.4 }}>
+        <div className="flex items-center gap-3 pl-12 sm:pl-16 pt-4" style={{ opacity: 0.4 }}>
           <div
             className="w-3 h-3 rounded-full"
             style={{

@@ -1,0 +1,32 @@
+---
+description: Short project briefing and copy workflow
+alwaysApply: true
+---
+
+# Project Brief
+
+- This is the ASra React + Vite site with routes: `/`, `/about`, `/founder-story`, `/record-of-soul`, `/spirit-medicine`, `/universal-matrix`, `/our-achievements`.
+- Build before finishing substantive changes: `npm run build`.
+
+# Copy Source Of Truth
+
+- For rendered English and Chinese page copy, the source of truth is `docs/page-copy/*.xlsx`.
+- After workbook edits, run `npm run import:page-xlsx`.
+- This generates `src/content/pageCopyDocs.generated.ts`.
+- The app reads workbook text through `src/content/pageCopyRuntime.ts`.
+- Do not hand-edit `src/content/pageCopyDocs.generated.ts`.
+
+# Main Edit Points
+
+- UI strings: `src/i18n/messages/*.ts`
+- Workbook runtime mapping: `src/content/pageCopyRuntime.ts`
+- Structural fallback content: `src/content/siteContent.ts`, `src/content/founderStory2026Content.ts`
+- Spirit Medicine structural data: `src/content/spiritMedicineData.ts`, `src/content/spiritMedicineOfficialOutline.ts`
+- Universal Matrix structure: `src/content/universalMatrixSeries.ts`
+- Achievements assets: `src/content/achievements2025Content.ts`
+
+# Rules
+
+- Prefer updating workbook-driven content at the workbook source, not by patching rendered text in multiple places.
+- If duplicate `block_key` appears in multiple workbooks, the first workbook by filename wins.
+- Treat `AGENTS.md` and `README.md` as supporting docs; this rule is the shortest current briefing.

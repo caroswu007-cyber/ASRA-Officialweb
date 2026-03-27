@@ -11,12 +11,12 @@ const DocumentarySeriesView = ({ page }: DocumentarySeriesViewProps) => {
 
   return (
     <div className="bg-primary pb-24">
-      <header className="hero-bg pt-40 pb-20 px-6 text-center border-b border-white/5 relative">
+      <header className="hero-bg pt-28 sm:pt-36 md:pt-40 pb-16 sm:pb-20 px-4 sm:px-6 text-center border-b border-white/5 relative">
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="font-serif text-4xl md:text-6xl text-transparent bg-clip-text bg-gradient-to-br from-white to-accent mb-6 tracking-wide drop-shadow-2xl py-2"
+          className="font-serif text-3xl sm:text-4xl md:text-6xl text-transparent bg-clip-text bg-gradient-to-br from-white to-accent mb-6 tracking-wide drop-shadow-2xl py-2"
         >
           {title}
         </motion.h1>
@@ -54,7 +54,7 @@ const DocumentarySeriesView = ({ page }: DocumentarySeriesViewProps) => {
               className={`w-full h-48 md:h-72 object-cover brightness-50 contrast-125 border-y border-white/10 ${volumeIndex > 0 ? 'mt-4' : ''}`}
             />
 
-            <div className="max-w-4xl mx-auto py-12 px-6">
+            <div className="max-w-4xl mx-auto py-10 sm:py-12 px-4 sm:px-6">
               <h2 className="font-serif text-2xl md:text-3xl text-center mb-12 text-white border-b-2 border-accent/40 pb-4 inline-block mx-auto left-1/2 relative -translate-x-1/2">
                 {volume.title}
               </h2>

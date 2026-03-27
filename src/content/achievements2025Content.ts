@@ -1,67 +1,22 @@
-import { warmImagery } from './visualTheme';
-
 /**
  * 2025 program outcomes — long-form documentation copy (English).
- * Carousel imagery is placeholder; replace with YouTube thumbnails as needed.
+ * Hero + carousel use originals in `public/images/achievements/` (see filenames below).
  */
 export const LIVESTREAM_REPLAY_PLAYLIST =
   'https://www.youtube.com/playlist?list=PL-pt7dbiRizs_N5TVfKmj5ptuG15TeQgK';
 
-/** Unsplash URLs — shrink dimensions for faster loads (hero is blurred; cards are decorative). */
+/** Unsplash URLs only: shrink `w`/`q` for faster loads. Local `/images/...` paths are returned unchanged. */
 export function compressUnsplash(src: string, width: number, quality = 72): string {
+  if (!src.includes('images.unsplash.com')) return src;
   return src.replace(/\bw=\d+/i, `w=${width}`).replace(/\bq=\d+/i, `q=${quality}`);
 }
 
-/** Placeholder slides suggesting livestream / replay scale (swap for real screenshots). */
+/** Live session screenshots — `carousel-1.png` … `carousel-4.png` in `public/images/achievements/`. */
 export const carouselSlides: { src: string; alt: string }[] = [
-  {
-    src: 'https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?auto=format&fit=crop&w=1200&q=80',
-    alt: 'Live streaming studio aesthetic',
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?auto=format&fit=crop&w=1200&q=80',
-    alt: 'Mobile broadcast',
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1200&q=80',
-    alt: 'Audience and stage lights',
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&w=1200&q=80',
-    alt: 'Concert crowd energy',
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1598387993441-a364f854c3e1?auto=format&fit=crop&w=1200&q=80',
-    alt: 'Recording and content creation',
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&w=1200&q=80',
-    alt: 'Video production',
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80',
-    alt: 'Laptop and streaming setup',
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1478737270239-2f02b77fc618?auto=format&fit=crop&w=1200&q=80',
-    alt: 'Microphone and broadcast',
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1200&q=80',
-    alt: 'Team collaboration',
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1556740758-90de374c12ad?auto=format&fit=crop&w=1200&q=80',
-    alt: 'Digital engagement',
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1200&q=80',
-    alt: 'Event hall atmosphere',
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=1200&q=80',
-    alt: 'Cinematic lighting',
-  },
+  { src: '/images/achievements/carousel-1.png', alt: 'TikTok Live session screenshot' },
+  { src: '/images/achievements/carousel-2.png', alt: 'TikTok Live session screenshot' },
+  { src: '/images/achievements/carousel-3.png', alt: 'TikTok Live session screenshot' },
+  { src: '/images/achievements/carousel-4.png', alt: 'TikTok Live session screenshot' },
 ];
 
 export type MetricIcon =
@@ -425,14 +380,12 @@ export const caseArchiveNote =
   'For primary-source context, see the replay materials listed in §10.';
 
 /**
- * Lead figure at top of /our-achievements report. Set `imageSrc` to '' to show an empty slot
- * (dashed placeholder) until you wire a real asset or screenshot.
+ * Lead figure at top of /our-achievements — `public/images/achievements/report-hero.png`.
  */
 export const reportHeroFigure: { imageSrc: string; alt: string; caption: string } = {
-  imageSrc: warmImagery.achievementsHero,
-  alt: 'Horizon at dawn over mountains — illustrative hero image for the program report.',
-  caption:
-    'Figure 1 — Reserved hero figure. Replace `imageSrc`, `alt`, and `caption` in `reportHeroFigure` (achievements2025Content.ts).',
+  imageSrc: '/images/achievements/report-hero.png',
+  alt: 'Portrait — program principal',
+  caption: 'Figure 1 — Field leadership portrait',
 };
 
 /** Stock imagery for “open science / clinical lab” section strips on the achievements page. */

@@ -1,68 +1,72 @@
 # AGENTS.md — AI / contributor briefing
 
-Read this file first. **Do not scan the whole repo** unless a task requires it.
+Read this file first. Only scan deeper when the task needs it.
 
-## What this project is
+## Project
 
-Marketing / documentary hub for **ASra** (Association of Spirit Realm’s Ambassador), Umma New Century Organization. Three “seasons”: Record of Soul (I), Spirit Medicine (II), Universal Matrix (III), plus About and **Our Achievements** (`/our-achievements`).
+ASra marketing / documentary site built with React + Vite. Main routes:
+
+- `/`
+- `/about`
+- `/founder-story`
+- `/record-of-soul`
+- `/spirit-medicine`
+- `/universal-matrix`
+- `/our-achievements`
 
 ## Stack
 
-- **React 19 + Vite 8 + TypeScript**
-- **Tailwind CSS v4** (`@import "tailwindcss"` in `src/index.css`, `@theme` tokens)
-- **React Router** (`src/App.tsx`)
-- **Framer Motion** (section animations)
-- **i18n**: `src/i18n/` — `en` base, `es` full UI (falls back to `en` for missing keys)
+- React 19 + Vite 8 + TypeScript
+- Tailwind CSS v4
+- React Router
+- Framer Motion
+- i18n in `src/i18n/`
 
 ## Commands
 
 ```bash
 npm install
-npm run dev    # http://localhost:5173 (default Vite port)
+npm run dev
 npm run build
+npm run export:page-xlsx
+npm run import:page-xlsx
 ```
 
-## Routes (canonical)
+## Copy source of truth
 
-| Path | View |
-|------|------|
-| `/` | `HomeView` |
-| `/about` | `AboutView` |
-| `/record-of-soul` | `RecordOfSoulView` |
-| `/spirit-medicine` | `WoosSpiritMedicineView` |
-| `/universal-matrix` | `UniversalMatrixView` |
-| `/our-achievements` | `OurAchievementsView` |
+For rendered English / Chinese page copy, the authority is:
 
-## Where to change content
+- `docs/page-copy/*.xlsx`
 
-| What | Where |
-|------|--------|
-| Season I episodes (titles, abstracts, YouTube) | `src/content/siteContent.ts` → `recordOfSoul.timeline` |
-| Season II **structure + every episode link** | **`src/content/spiritMedicineData.ts`** (single source). Also auto-feeds `siteContent.spiritMedicine.volumes`. |
-| Season III scaffold | `src/content/siteContent.ts` → `universalMatrix` |
-| About copy | `src/content/siteContent.ts` → `aboutContent` + `getAboutContent.ts` |
-| UI strings (nav, buttons, hero) | `src/i18n/messages/en.ts`, `es.ts` |
-| Localized site hero blobs | none (all locales use `siteContent` as in English) |
-| Warm theme imagery URLs | `src/content/visualTheme.ts` |
+Runtime flow:
 
-## Spirit Medicine playlist rule
+1. Edit workbook text in `docs/page-copy/`
+2. Run `npm run import:page-xlsx`
+3. This generates `src/content/pageCopyDocs.generated.ts`
+4. The app reads that through `src/content/pageCopyRuntime.ts`
 
-Official playlist:  
-`https://www.youtube.com/playlist?list=PL-pt7dbiRizs3yIAao06SPk2NrDTBc9q_`
+Do not assume `src/content/siteContent.ts` or `src/i18n/messages/*.ts` are the final rendered truth for EN/ZH page copy. They are now fallback / structural sources in many places.
 
-- Episode rows on `/spirit-medicine` use `spiritMedicineEpisodeUrl(videoId)` so links include `list=` for continuity.
-- When YouTube adds/removes videos: update **`spiritMedicineFileGroups`** in `spiritMedicineData.ts` only; rebuild `siteContent` is derived.
+## Main content entry points
 
-## Layout / design notes
+| Need | File(s) |
+|------|---------|
+| Workbook runtime mapping | `src/content/pageCopyRuntime.ts` |
+| Generated workbook data | `src/content/pageCopyDocs.generated.ts` |
+| i18n merge | `src/i18n/translate.ts` |
+| Home / record / about fallback structures | `src/content/siteContent.ts` |
+| Founder story fallback structure | `src/content/founderStory2026Content.ts` |
+| Spirit Medicine playlist data | `src/content/spiritMedicineData.ts` |
+| Spirit Medicine outline | `src/content/spiritMedicineOfficialOutline.ts` |
+| Universal Matrix file list | `src/content/universalMatrixSeries.ts` |
+| Achievements assets | `src/content/achievements2025Content.ts` |
 
-- Global **warm** palette + Lora body text (see `index.css`, `visualTheme.ts`). **Navbar/Footer** use `font-ui` (Inter).
-- Home hero uses `GalaxyBackground` + atmosphere photo (`HomeView`).
-- **Spirit Medicine page** keeps its **teal medical** aesthetic (`#0a2535`, `#38bdf8`) in `SpiritMedicineHero` / `SpiritMedicineContents`.
+## Notes
 
-## Deployment
+- If duplicate `block_key` exists in multiple workbooks, first workbook by filename wins.
+- `spiritMedicineData.ts` remains the structural source for playlist video IDs / links.
+- `vercel.json` is SPA-only; there is no server API.
 
-`vercel.json` SPA rewrite to `index.html`. No server API.
+## History
 
-## Deeper history
-
-See `AI_CONTEXT.md` for dated session logs and past design decisions.
+Use `CHANGELOG.md` only as optional background. For current guidance, rely on this file and `docs/AI_PAGE_COPY_SYNC.md`.

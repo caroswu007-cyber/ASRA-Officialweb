@@ -12,9 +12,8 @@ import {
 import {
   LIVESTREAM_REPLAY_PLAYLIST,
   compressUnsplash,
-  livestreamLinkPlaceholders,
-  reportHeroFigure,
 } from '../content/achievements2025Content';
+import { getLocalizedAchievementsAssets } from '../content/pageCopyRuntime';
 import { siteContent } from '../content/siteContent';
 import { useI18n } from '../i18n/LocaleProvider';
 
@@ -26,7 +25,8 @@ const EXP_ROWS = ['1', '2', '3'] as const;
 const SPECIAL_ROWS = ['1', '2', '3', '4'] as const;
 
 function ReportHeroFigure() {
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
+  const { reportHeroFigure } = getLocalizedAchievementsAssets(locale);
   const { imageSrc, alt } = reportHeroFigure;
   const caption = t('achievementsReport.hero.caption');
   const src = imageSrc?.trim() ? compressUnsplash(imageSrc, 1600, 78) : '';
@@ -114,11 +114,12 @@ function ReportSection({
 }
 
 const OurAchievementsView = () => {
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
   const { join } = siteContent.links;
+  const { livestreamLinkPlaceholders } = getLocalizedAchievementsAssets(locale);
 
   return (
-    <div className="relative min-h-screen pt-24 pb-20 text-[#e8e6e3]">
+    <div className="relative min-h-screen pt-24 pb-20 text-[#e8e6e3] overflow-x-hidden">
       <div
         className="pointer-events-none fixed inset-0 z-0"
         aria-hidden

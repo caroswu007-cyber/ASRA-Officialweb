@@ -34,7 +34,8 @@ const spiritMedicinePlaylistEpisodes: OldEpisode[] = (() => {
       out.push({
         fileNumber: `FILE ${ep.code}`,
         title: ep.title,
-        description: `${group.sectionTitle} · ${formatEpisodeDuration(ep.lengthSeconds)}`,
+        description:
+          ep.description ?? `${group.sectionTitle} · ${formatEpisodeDuration(ep.lengthSeconds)}`,
         link: spiritMedicineEpisodeUrl(ep.videoId),
         delay: i++ * 0.012,
       });
@@ -62,15 +63,15 @@ export type RecordOfSoulContent = {
 };
 
 export const aboutContent = {
-  orgName: 'Umma New Century Organization',
-  orgSubtitle: 'New Century of UMMa',
+  orgName: 'New Era of UMMA Organization',
+  orgSubtitle: 'New Era of UMMa',
   tagline: 'A Dual-Domain Organization Spanning the Spirit Realm and the Physical World',
 
-  overview: `The Umma New Century Organization (New Century of UMMa) is a dual-domain organization spanning both the Spirit Realm and the physical world.
+  overview: `The New Era of UMMA Organization (New Era of UMMa) is a dual-domain organization spanning both the Spirit Realm and the physical world.
 
-In the physical world, the Umma New Century Organization oversees the Association of Spirit Realm's Ambassador (ASra). Spirit Realm Ambassadors are human beings living in the physical world. Tens of thousands of members will be distributed across all nations, ethnicities, and cultural communities worldwide.
+In the physical world, the New Era of UMMA Organization oversees the Association of Spirit Realm's Ambassador (ASRA). Spirit Realm Ambassadors are human beings living in the physical world. Tens of thousands of members will be distributed across all nations, ethnicities, and cultural communities worldwide.
 
-In the Spirit Realm, the Umma New Century Organization oversees the Society of Master Spirit Controllers (SMSC). The SMSC comprises tens of thousands of Master Spirit members. A Master Spirit is an administrator in the Spirit Realm who governs ordinary spirits (ghosts) and human beings.`,
+In the Spirit Realm, the New Era of UMMA Organization oversees the Society of Master Spirit Controllers (SMSC). The SMSC comprises tens of thousands of Master Spirit members. A Master Spirit is an administrator in the Spirit Realm who governs ordinary spirits (ghosts) and human beings.`,
 
   asra: {
     name: "Association of Spirit Realm's Ambassador",
@@ -86,13 +87,13 @@ In the Spirit Realm, the Umma New Century Organization oversees the Society of M
     description: `The SMSC comprises tens of thousands of Master Spirit members. A Master Spirit is an administrator in the Spirit Realm who governs ordinary spirits (ghosts) and human beings.`,
   },
 
-  partnership: `The SMSC was established specifically to support ASra. The Master Spirits of the SMSC will assist each ASra human member on a 1:1 or 2:1 basis — enabling human members to acquire the special ability to govern attached spirits, improve human health, and simultaneously serve as ambassadors who spread the truth about the Spirit Realm and spirit life entities.`,
+  partnership: `The SMSC was established specifically to support ASRA. The Master Spirits of the SMSC will assist each ASRA human member on a 1:1 or 2:1 basis — enabling human members to acquire the special ability to govern attached spirits, improve human health, and simultaneously serve as ambassadors who spread the truth about the Spirit Realm and spirit life entities.`,
 
   founders: {
     title: 'The Woos Father and Son',
-    subtitle: 'Founders & Chief Ambassadors of ASra',
-    description: `The Woo family — father John Long Woo and his sons — founded ASra and serve as chief ambassadors. They coordinate between ASra (physical world) and SMSC (Spirit Realm), screening candidates for membership until Master Spirit selection is complete.`,
-    storyTeaser: `Full chronology: first door-openers to the Spirit Realm, Phase A field work through Phase B TikTok North America — truths, timeline, and staged narrative in one place (English).`,
+    subtitle: 'Founders & Chief Ambassadors of ASRA',
+    description: `The Woo family — father John Long Woo and his sons — founded ASRA and serve as chief ambassadors. They coordinate between ASRA (physical world) and SMSC (Spirit Realm), screening candidates for membership until Master Spirit selection is complete.`,
+    storyTeaser: `First door-openers to the Spirit Realm, — truths, timeline, and staged story`,
   },
 
   missions: [
@@ -104,10 +105,10 @@ In the Spirit Realm, the Umma New Century Organization oversees the Society of M
     },
     {
       number: 'II',
-      title: 'Spread the Truth — Lead Humanity to the New Century',
-      description: `The emergence of AI will inevitably lead to universal unemployment across all of humanity; the deployment of military AI will inevitably lead to humanity's extinction. Humanity stands at the edge of the destruction of the old century.
+      title: 'Spread the Truth — Lead Humanity to the New Era',
+      description: `The emergence of AI will inevitably lead to universal unemployment across all of humanity; the deployment of military AI will inevitably lead to humanity's extinction. Humanity stands at the edge of the destruction of the old Era.
 
-Based on the three documentary series — the Woos Spirit Archive, Woos Spirit Medicine, and the Universal Matrix of Meta Awareness — members are obligated to spread to the 8 billion people of humanity the truth of Spirit and Its Governor, which has been concealed for thousands of years, and to lead humanity toward the Umma New Century.`,
+Based on the three documentary series — the Woos Spirit Archive, Woos Spirit Medicine, and the Universal Matrix of Meta Awareness — members are obligated to spread to the 8 billion people of humanity the truth of Spirit and Its Governor, which has been concealed for thousands of years, and to lead humanity toward the Umma New Era.`,
       tag: 'Global Mission',
     },
   ],
@@ -119,7 +120,7 @@ export const siteContent = {
   brand: 'ASra',
   home: {
     heroTitle: "Association of Spirit Realm's Ambassador",
-    heroSubtitle: 'New Era Organization of UMMA',
+    heroSubtitle: 'New Era of UMMA Organization',
     introTitle: 'What is ASRA?',
   },
   links: {
@@ -128,8 +129,18 @@ export const siteContent = {
   recordOfSoul: {
     title: 'Woos Record of Soul',
     description:
+      
+      
+      
+      
+      
       'This Documentary Was Shot Earlier, Recording The Process Of Woos Father And Son Being Possessed By Spirits And Fighting. And The Scientific Summary Of Human Research On Supernatural Phenomena, Near-Death Experience And Reincarnation.',
-    note: 'When Woos record of Soul were filmed, Spirits were sometimes called ghost and sometimes soul, but in the spirit medicine filmed in 2025, ghosts were clearly called spirit(ghost).',
+    note: 
+      
+      
+      
+      
+      'When Woos record of Soul were filmed, Spirits were sometimes called ghost and sometimes soul, but in the spirit medicine filmed in 2025, ghosts were clearly called spirit(ghost).',
     episodesCount: '11',
     minutes: '942+',
     backgroundImage: 'https://images.unsplash.com/photo-1445264618034-159aa57a1535?auto=format&fit=crop&w=1920&q=80',
@@ -227,7 +238,12 @@ export const siteContent = {
     title: 'Woos Spirit Medicine',
     description:
       'Healing methodologies connecting the physical body and ethereal consciousness. This season focuses on practical intervention, structured recovery pathways, and ongoing restoration of balance for mind and soul.',
-    note: 'Episode list follows the official YouTube playlist; FILE groups on /spirit-medicine are ordered 2-1, 2-2, 2-4, 2-3, 2-5. Use “Full curriculum outline” for the ess-esw.org-style directory.',
+    note: 
+      
+      
+      
+      
+      'Episode list follows the official YouTube playlist; FILE groups on /spirit-medicine are ordered 2-1, 2-2, 2-4, 2-3, 2-5. Use “Full curriculum outline” for the ess-esw.org-style directory.',
     bannerImages: [
       'https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=2000&q=80',
       'https://images.unsplash.com/photo-1512678080530-7760d81faba6?auto=format&fit=crop&w=2000&q=80',
@@ -244,8 +260,18 @@ export const siteContent = {
   universalMatrix: {
     title: 'Universal Matrix of Meta Awareness',
     description:
+      
+      
+      
+      
+      
       'Advanced transcendental truths governing systemic universe order and ultimate human destiny. This season presents conceptual architecture, governance logic, and higher-order awareness models.',
-    note: 'This section is scaffolded using the original series layout so you can fine-tune language, hierarchy, and visual rhythm in Layrr.',
+    note: 
+      
+      
+      
+      
+      'This section is scaffolded using the original series layout so you can fine-tune language, hierarchy, and visual rhythm in Layrr.',
     bannerImages: [
       'https://images.unsplash.com/photo-1464802686167-b939a6910659?auto=format&fit=crop&w=2000&q=80',
       'https://images.unsplash.com/photo-1506318137071-a8e063b4bec0?auto=format&fit=crop&w=2000&q=80',

@@ -1,6 +1,6 @@
 /**
  * Full curriculum outline aligned with https://ess-esw.org/spirit-medicine/
- * Display order: FILE 2-1, 2-2, 2-3, 2-4, 2-5 (2-3 before 2-4).
+ * Curriculum order: FILE 2-1 … 2-5 with 2-3 before 2-4 (matches the official outline page). The filmed episode index below reorders 2-4 before 2-3.
  * anchorId must match `id` on main list in SpiritMedicineContents (`sm-file-${fileNumber}`).
  */
 export type SpiritMedicineOutlineFile = {

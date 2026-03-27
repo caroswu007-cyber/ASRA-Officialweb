@@ -12,7 +12,7 @@ All notable changes to this project are documented in this file (local workspace
 - **Universal Matrix**: New `UniversalMatrixHero` and `UniversalMatrixContents` under `src/components/universalMatrix/`, matching **Spirit Medicine** index/timeline layout; page composes them in `UniversalMatrixView`.
 - **`SectionDivider`**: `compact` prop for a lighter strip after Introduction.
 - **Docs**: This `CHANGELOG.md`.
-- **i18n / language switcher**: `LocaleProvider` + `LanguageSwitcher` (navbar, top-right). Default locale **English**; **简体中文** full UI + About copy + patched `siteContent` hero fields; **日本語** partial UI (nav/common labels, falls back to English for long copy). Preference stored in `localStorage` (`asra-locale`); `document.documentElement.lang` updated on change. Files: `src/i18n/*`, `src/content/getLocalizedSite.ts`, `src/content/aboutContent.zh.ts`, `src/content/getAboutContent.ts`, `src/content/useLocalizedSiteContent.ts`.
+- **i18n / language switcher**: historical note from that session. Current supported locales are maintained in `src/i18n/locales.ts`; use that file and `AGENTS.md` as the live source of truth rather than this older changelog entry.
 
 ### Changed
 - **Record of Soul**: Each timeline episode now includes `youtubeLink` from the official listing on [ess-esw.org/woos-record-of-soul-2](https://ess-esw.org/woos-record-of-soul-2/); the existing **Watch** control in `EpisodeItem` opens the matching YouTube video.
@@ -34,4 +34,4 @@ All notable changes to this project are documented in this file (local workspace
 
 ## Earlier history
 
-Prior iterations may be summarized in `AI_CONTEXT.md` or Git history if present; this log starts from the 2026-03-20 consolidation above.
+Git history is the authoritative source for older iterations beyond the entries in this file.

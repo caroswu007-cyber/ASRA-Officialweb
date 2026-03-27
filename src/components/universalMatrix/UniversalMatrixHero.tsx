@@ -74,7 +74,7 @@ const UniversalMatrixHero = () => {
         }}
       />
 
-      <div className="relative z-10 flex flex-col items-center text-center max-w-4xl mx-auto px-6 py-28">
+      <div className="relative z-10 flex flex-col items-center text-center max-w-4xl mx-auto px-4 sm:px-6 py-20 sm:py-28">
         <div className="flex items-center gap-4 mb-8">
           <div className="h-px w-14" style={{ background: 'rgba(148,163,184,0.5)' }} />
           <span className="font-mono text-sm tracking-[0.35em] uppercase" style={{ color: '#cbd5e1' }}>
@@ -118,13 +118,13 @@ const UniversalMatrixHero = () => {
         </div>
 
         <p
-          className="text-base md:text-lg leading-relaxed max-w-2xl mb-10"
+          className="text-sm sm:text-base md:text-lg leading-relaxed max-w-2xl mb-8 sm:mb-10 px-1"
           style={{ color: 'rgba(203,213,225,0.92)' }}
         >
           {universalMatrix.description}
         </p>
 
-        <div className="flex items-stretch border border-slate-500/25 bg-slate-950/35 backdrop-blur-sm">
+        <div className="flex flex-wrap sm:flex-nowrap items-stretch border border-slate-500/25 bg-slate-950/35 backdrop-blur-sm w-full max-w-xs sm:max-w-none sm:w-auto">
           {[
             { value: '5', label: t('common.files') },
             { value: '16', label: t('common.subChapters') },
@@ -132,7 +132,7 @@ const UniversalMatrixHero = () => {
           ].map((stat, i, arr) => (
             <div
               key={stat.label}
-              className="px-8 py-4 text-center"
+              className="px-5 sm:px-8 py-4 text-center flex-1 min-w-[5rem]"
               style={i < arr.length - 1 ? { borderRight: '1px solid rgba(148,163,184,0.18)' } : {}}
             >
               <p

@@ -98,24 +98,21 @@ function escapeCsvField(s) {
 
 function main() {
   const enPath = path.join(messagesDir, 'en.ts');
-  const esPath = path.join(messagesDir, 'es.ts');
   const zhPath = path.join(messagesDir, 'zh.ts');
 
   const en = parseMessagesFile(enPath);
-  const es = parseMessagesFile(esPath);
   const zh = parseMessagesFile(zhPath);
 
   /** Preserve declaration order in `en.ts` (Map insertion order). */
   const keys = [...en.keys()];
 
-  const header = ['key', 'English (en)', 'Español (es)', '中文 (zh)', 'notes'];
+  const header = ['key', 'English (en)', '中文 (zh)', 'notes'];
   const lines = [header.map(escapeCsvField).join(',')];
 
   for (const key of keys) {
     const row = [
       key,
       en.get(key) ?? '',
-      es.get(key) ?? '',
       zh.get(key) ?? '',
       '',
     ];

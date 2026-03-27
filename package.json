@@ -8,9 +8,12 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
+    "preview:dist": "npm run build && vite preview",
     "export:i18n-csv": "node scripts/export-i18n-csv.mjs",
     "export:site-copy": "tsx scripts/export-all-site-copy.ts",
-    "export:page-xlsx": "tsx scripts/export-page-copy-workbooks.ts"
+    "export:page-xlsx": "tsx scripts/export-page-copy-workbooks.ts",
+    "import:page-xlsx": "tsx scripts/generate-page-copy-runtime.ts",
+    "dump:page-copy": "tsx scripts/dump-page-copy-json.ts"
   },
   "dependencies": {
     "framer-motion": "^12.38.0",
@@ -32,6 +35,7 @@
     "eslint-plugin-react-refresh": "^0.5.2",
     "globals": "^17.4.0",
     "postcss": "^8.5.8",
+    "sharp": "^0.34.5",
     "tailwindcss": "^4.2.1",
     "tsx": "^4.21.0",
     "typescript": "~5.9.3",

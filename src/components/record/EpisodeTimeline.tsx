@@ -1,5 +1,5 @@
-import { siteContent } from '../../content/siteContent';
 import EpisodeItem from './EpisodeItem';
+import { useLocalizedSiteContent } from '../../content/useLocalizedSiteContent';
 import { useI18n } from '../../i18n/LocaleProvider';
 
 // Ethereal background images — lightly blurred so shapes remain visible
@@ -37,7 +37,8 @@ const ghostImages = [
 ];
 
 const EpisodeTimeline = () => {
-  const { timeline } = siteContent.recordOfSoul;
+  const { recordOfSoul } = useLocalizedSiteContent();
+  const { timeline } = recordOfSoul;
   const { t } = useI18n();
 
   return (

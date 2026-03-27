@@ -22,7 +22,7 @@ const LocaleContext = createContext<Ctx | null>(null);
 function readInitialLocale(): Locale {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
-    if (raw === 'ja' || raw === 'la') {
+    if (raw === 'ja' || raw === 'la' || raw === 'es') {
       localStorage.setItem(STORAGE_KEY, 'en');
       return 'en';
     }
@@ -34,7 +34,6 @@ function readInitialLocale(): Locale {
 }
 
 function htmlLang(locale: Locale): string {
-  if (locale === 'es') return 'es';
   if (locale === 'zh') return 'zh-Hans';
   return 'en';
 }

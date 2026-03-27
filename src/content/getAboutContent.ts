@@ -1,6 +1,7 @@
 import type { Locale } from '../i18n/locales';
-import { aboutContent, type AboutPageContent } from './siteContent';
+import type { AboutPageContent } from './siteContent';
+import { getLocalizedAboutContent } from './pageCopyRuntime';
 
-export function getAboutContent(_locale: Locale): AboutPageContent {
-  return aboutContent;
+export function getAboutContent(locale: Locale): AboutPageContent {
+  return getLocalizedAboutContent(locale);
 }

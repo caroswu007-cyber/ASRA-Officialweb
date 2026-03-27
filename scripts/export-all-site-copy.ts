@@ -1,5 +1,5 @@
 /**
- * Full site copy export: every user-facing string for EN / ES / ZH review.
+ * Full site copy export: every user-facing string for EN / ZH review.
  * Run: npx tsx scripts/export-all-site-copy.ts
  * Output: docs/full_site_copy_review.csv (UTF-8 BOM, Excel-friendly)
  */
@@ -8,14 +8,9 @@ import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { messagesEn } from '../src/i18n/messages/en';
-import { messagesEs } from '../src/i18n/messages/es';
 import { messagesZh } from '../src/i18n/messages/zh';
 import { aboutContent, siteContent } from '../src/content/siteContent';
-import {
-  founderStoryIllustrations,
-  founderStoryPage,
-  founderTimeline,
-} from '../src/content/founderStory2026Content';
+import { founderStoryPage, founderTimeline } from '../src/content/founderStory2026Content';
 import * as ach from '../src/content/achievements2025Content';
 import { spiritMedicineFileGroups } from '../src/content/spiritMedicineData';
 import type { MainMetric } from '../src/content/achievements2025Content';
@@ -25,7 +20,7 @@ const root = join(__dirname, '..');
 const OUT = join(root, 'docs', 'full_site_copy_review.csv');
 
 const NOTE_I18N = '';
-const NOTE_TRANSLATE = '源码仅英文；核对后补西语/中文';
+const NOTE_TRANSLATE = '源码仅英文；核对后补中文';
 
 type Row = {
   route: string;
@@ -33,7 +28,6 @@ type Row = {
   content_id: string;
   kind: 'i18n' | 'content' | 'hardcoded';
   English: string;
-  Español: string;
   中文: string;
   notes: string;
 };
@@ -83,7 +77,6 @@ function walk(
       content_id: path,
       kind,
       English: val,
-      Español: '',
       中文: '',
       notes: NOTE_TRANSLATE,
     });
@@ -112,7 +105,6 @@ function pushI18n(rows: Row[]): void {
       content_id: key,
       kind: 'i18n',
       English: messagesEn[key] ?? '',
-      Español: messagesEs[key] ?? messagesEn[key] ?? '',
       中文: messagesZh[key] ?? messagesEn[key] ?? '',
       notes: NOTE_I18N,
     });
@@ -126,7 +118,6 @@ function pushMainMetrics(rows: Row[]): void {
       route: '/our-achievements',
       source_file: 'src/content/achievements2025Content.ts',
       kind: 'content' as const,
-      Español: '',
       中文: '',
       notes: NOTE_TRANSLATE,
     };
@@ -185,9 +176,8 @@ function pushSpiritMedicineGroups(rows: Row[]): void {
 }
 
 function pushHardcoded(rows: Row[]): void {
-  const h: Omit<Row, 'English' | 'Español' | '中文'> & {
+  const h: Omit<Row, 'English' | '中文'> & {
     English: string;
-    Español: string;
     中文: string;
   }[] = [
     {
@@ -196,7 +186,6 @@ function pushHardcoded(rows: Row[]): void {
       content_id: 'header.subtitleNames',
       kind: 'hardcoded',
       English: 'John Long Woo · Caros · Sam',
-      Español: '',
       中文: '',
       notes: NOTE_TRANSLATE,
     },
@@ -206,7 +195,6 @@ function pushHardcoded(rows: Row[]): void {
       content_id: 'link.organizationOverview',
       kind: 'hardcoded',
       English: '← Organization overview',
-      Español: '',
       中文: '',
       notes: NOTE_TRANSLATE,
     },
@@ -216,7 +204,6 @@ function pushHardcoded(rows: Row[]): void {
       content_id: 'section.timeline.heading',
       kind: 'hardcoded',
       English: 'Timeline',
-      Español: '',
       中文: '',
       notes: NOTE_TRANSLATE,
     },
@@ -226,7 +213,6 @@ function pushHardcoded(rows: Row[]): void {
       content_id: 'section.phaseA.detailHeading',
       kind: 'hardcoded',
       English: 'Phase A — storyline detail',
-      Español: '',
       中文: '',
       notes: NOTE_TRANSLATE,
     },
@@ -237,7 +223,6 @@ function pushHardcoded(rows: Row[]): void {
       kind: 'hardcoded',
       English:
         'Stages A1–A4 follow the family’s published English chronology; A5 closes the C2 / C3 arc.',
-      Español: '',
       中文: '',
       notes: NOTE_TRANSLATE,
     },
@@ -247,7 +232,6 @@ function pushHardcoded(rows: Row[]): void {
       content_id: 'link.achievementsVisible',
       kind: 'hardcoded',
       English: 'Our Achievements',
-      Español: '',
       中文: '',
       notes: NOTE_TRANSLATE,
     },
@@ -257,17 +241,6 @@ function pushHardcoded(rows: Row[]): void {
       content_id: 'link.achievementsSuffix',
       kind: 'hardcoded',
       English: ' page',
-      Español: '',
-      中文: '',
-      notes: NOTE_TRANSLATE,
-    },
-    {
-      route: '/founder-story',
-      source_file: 'src/views/FounderStoryView.tsx',
-      content_id: 'footer.legacyTimeline',
-      kind: 'hardcoded',
-      English: 'Earlier staged timeline on the legacy site',
-      Español: '',
       中文: '',
       notes: NOTE_TRANSLATE,
     },
@@ -277,7 +250,6 @@ function pushHardcoded(rows: Row[]): void {
       content_id: 'note.prefix',
       kind: 'hardcoded',
       English: '* Note:',
-      Español: '',
       中文: '',
       notes: NOTE_TRANSLATE,
     },
@@ -287,7 +259,6 @@ function pushHardcoded(rows: Row[]): void {
       content_id: 'suspense.loading',
       kind: 'hardcoded',
       English: 'Loading…',
-      Español: '',
       中文: '',
       notes: NOTE_TRANSLATE,
     },
@@ -297,7 +268,6 @@ function pushHardcoded(rows: Row[]): void {
       content_id: 'title',
       kind: 'hardcoded',
       English: 'Spirit Ambassador Association',
-      Español: '',
       中文: '',
       notes: NOTE_TRANSLATE,
     },
@@ -307,7 +277,6 @@ function pushHardcoded(rows: Row[]): void {
       content_id: 'footer.backHome',
       kind: 'hardcoded',
       English: '← Back to Home',
-      Español: '',
       中文: '',
       notes: NOTE_TRANSLATE,
     },
@@ -317,7 +286,6 @@ function pushHardcoded(rows: Row[]): void {
       content_id: 'cta.openPlaylist',
       kind: 'hardcoded',
       English: 'Open playlist',
-      Español: '',
       中文: '',
       notes: NOTE_TRANSLATE,
     },
@@ -327,7 +295,6 @@ function pushHardcoded(rows: Row[]): void {
       content_id: 'youtube.cta',
       kind: 'hardcoded',
       English: '▶ Watch on YouTube',
-      Español: '',
       中文: '',
       notes: NOTE_TRANSLATE,
     },
@@ -337,7 +304,6 @@ function pushHardcoded(rows: Row[]): void {
       content_id: 'toggle.showMore',
       kind: 'hardcoded',
       English: 'Show more',
-      Español: '',
       中文: '',
       notes: NOTE_TRANSLATE,
     },
@@ -347,7 +313,6 @@ function pushHardcoded(rows: Row[]): void {
       content_id: 'toggle.showLess',
       kind: 'hardcoded',
       English: 'Show less',
-      Español: '',
       中文: '',
       notes: NOTE_TRANSLATE,
     },
@@ -359,7 +324,6 @@ function pushHardcoded(rows: Row[]): void {
       content_id: 'hero.replayPlaylistButton',
       kind: 'hardcoded',
       English: 'Replay playlist',
-      Español: '',
       中文: '',
       notes: NOTE_TRANSLATE,
     },
@@ -369,7 +333,6 @@ function pushHardcoded(rows: Row[]): void {
       content_id: 'hero.pill.sessions265',
       kind: 'hardcoded',
       English: '265+ sessions',
-      Español: '',
       中文: '',
       notes: NOTE_TRANSLATE,
     },
@@ -379,7 +342,6 @@ function pushHardcoded(rows: Row[]): void {
       content_id: 'hero.pill.hours800',
       kind: 'hardcoded',
       English: '800+ hrs',
-      Español: '',
       中文: '',
       notes: NOTE_TRANSLATE,
     },
@@ -389,7 +351,6 @@ function pushHardcoded(rows: Row[]): void {
       content_id: 'hero.pill.reach70k',
       kind: 'hardcoded',
       English: '70k+ reach',
-      Español: '',
       中文: '',
       notes: NOTE_TRANSLATE,
     },
@@ -399,7 +360,6 @@ function pushHardcoded(rows: Row[]): void {
       content_id: 'section.findings.subtitle',
       kind: 'hardcoded',
       English: 'Synthesis from baseline interviews with American spirits (ghosts).',
-      Español: '',
       中文: '',
       notes: NOTE_TRANSLATE,
     },
@@ -409,7 +369,6 @@ function pushHardcoded(rows: Row[]): void {
       content_id: 'section.interesting.subtitle',
       kind: 'hardcoded',
       English: 'Notable attached-spirit presentations — use “Show more” when a card runs long.',
-      Español: '',
       中文: '',
       notes: NOTE_TRANSLATE,
     },
@@ -419,7 +378,6 @@ function pushHardcoded(rows: Row[]): void {
       content_id: 'section.master.subtitle',
       kind: 'hardcoded',
       English: 'Chronological highlights from livestreams.',
-      Español: '',
       中文: '',
       notes: NOTE_TRANSLATE,
     },
@@ -430,7 +388,6 @@ function pushHardcoded(rows: Row[]): void {
       kind: 'hardcoded',
       English:
         'Treatment-resistant, refractory cases predominantly entered through TikTok recommendations with a “free trial” posture. All management work occurred in live field conditions with master spirit collaboration.',
-      Español: '',
       中文: '',
       notes: NOTE_TRANSLATE,
     },
@@ -440,7 +397,6 @@ function pushHardcoded(rows: Row[]): void {
       content_id: 'cohort.process.stageHint',
       kind: 'hardcoded',
       English: ' — stages connect in order below.',
-      Español: '',
       中文: '',
       notes: NOTE_TRANSLATE + '（接在 sectionTitles.journey 译文之后）',
     },
@@ -450,7 +406,6 @@ function pushHardcoded(rows: Row[]): void {
       content_id: 'section.tech.subtitle',
       kind: 'hardcoded',
       English: 'Two intervention modalities used with master-spirit coordination.',
-      Español: '',
       中文: '',
       notes: NOTE_TRANSLATE,
     },
@@ -460,7 +415,6 @@ function pushHardcoded(rows: Row[]): void {
       content_id: 'tech.card.labelPrefix',
       kind: 'hardcoded',
       English: 'Technology ',
-      Español: '',
       中文: '',
       notes: NOTE_TRANSLATE + '（后接数字 1、2）',
     },
@@ -470,7 +424,6 @@ function pushHardcoded(rows: Row[]): void {
       content_id: 'tech.illumination.head',
       kind: 'hardcoded',
       English: 'Head',
-      Español: '',
       中文: '',
       notes: NOTE_TRANSLATE,
     },
@@ -480,7 +433,6 @@ function pushHardcoded(rows: Row[]): void {
       content_id: 'tech.illumination.chest',
       kind: 'hardcoded',
       English: 'Chest',
-      Español: '',
       中文: '',
       notes: NOTE_TRANSLATE,
     },
@@ -490,7 +442,6 @@ function pushHardcoded(rows: Row[]): void {
       content_id: 'tech.illumination.back',
       kind: 'hardcoded',
       English: 'Back',
-      Español: '',
       中文: '',
       notes: NOTE_TRANSLATE,
     },
@@ -500,7 +451,6 @@ function pushHardcoded(rows: Row[]): void {
       content_id: 'spiritFinding.pie.legend',
       kind: 'hardcoded',
       English: 'no memory',
-      Español: '',
       中文: '',
       notes: NOTE_TRANSLATE,
     },
@@ -510,7 +460,6 @@ function pushHardcoded(rows: Row[]): void {
       content_id: 'spiritFinding.flow.master',
       kind: 'hardcoded',
       English: 'Master',
-      Español: '',
       中文: '',
       notes: NOTE_TRANSLATE,
     },
@@ -520,7 +469,6 @@ function pushHardcoded(rows: Row[]): void {
       content_id: 'spiritFinding.flow.host',
       kind: 'hardcoded',
       English: 'Host',
-      Español: '',
       中文: '',
       notes: NOTE_TRANSLATE,
     },
@@ -530,7 +478,6 @@ function pushHardcoded(rows: Row[]): void {
       content_id: 'masterCard.hostPrefix',
       kind: 'hardcoded',
       English: 'Host · ',
-      Español: '',
       中文: '',
       notes: NOTE_TRANSLATE + '（后接主播名）',
     },
@@ -541,7 +488,6 @@ function pushHardcoded(rows: Row[]): void {
       kind: 'hardcoded',
       English:
         'Within 30 minutes, >80% of hosts and attached spirits report relief from acute mental suffering (spirits also presented with disorder states). As of December 24, 2025, most had not requested secondary management — suggesting no relapse in that window.',
-      Español: '',
       中文: '',
       notes: NOTE_TRANSLATE + '（原文含 HTML <strong>，上线时需保留强调结构）',
     },
@@ -551,7 +497,6 @@ function pushHardcoded(rows: Row[]): void {
       content_id: 'outcomes.rapidReliefLabel',
       kind: 'hardcoded',
       English: 'rapid relief',
-      Español: '',
       中文: '',
       notes: NOTE_TRANSLATE,
     },
@@ -561,7 +506,6 @@ function pushHardcoded(rows: Row[]): void {
       content_id: 'section.outcomes.subtitle',
       kind: 'hardcoded',
       English: 'Reported relief windows and anonymized case snapshots.',
-      Español: '',
       中文: '',
       notes: NOTE_TRANSLATE,
     },
@@ -571,7 +515,6 @@ function pushHardcoded(rows: Row[]): void {
       content_id: 'section.experiments.subtitle',
       kind: 'hardcoded',
       English: 'Structured trials conducted within live sessions.',
-      Español: '',
       中文: '',
       notes: NOTE_TRANSLATE,
     },
@@ -581,7 +524,6 @@ function pushHardcoded(rows: Row[]): void {
       content_id: 'section.special.subtitle',
       kind: 'hardcoded',
       English: 'Long-form case dossiers — long text folds open per card.',
-      Español: '',
       中文: '',
       notes: NOTE_TRANSLATE,
     },
@@ -591,7 +533,6 @@ function pushHardcoded(rows: Row[]): void {
       content_id: 'featuredCase.footer',
       kind: 'hardcoded',
       English: 'For full session context, use the live archives linked above.',
-      Español: '',
       中文: '',
       notes: NOTE_TRANSLATE,
     },
@@ -601,7 +542,6 @@ function pushHardcoded(rows: Row[]): void {
       content_id: 'section.links.subtitle',
       kind: 'hardcoded',
       English: 'Official channels and placeholders for mirrors once published.',
-      Español: '',
       中文: '',
       notes: NOTE_TRANSLATE,
     },
@@ -611,7 +551,6 @@ function pushHardcoded(rows: Row[]): void {
       content_id: 'links.archivePlaceholder',
       kind: 'hardcoded',
       English: 'Search & calendar filters — connect when your archive API is ready.',
-      Español: '',
       中文: '',
       notes: NOTE_TRANSLATE,
     },
@@ -621,7 +560,6 @@ function pushHardcoded(rows: Row[]): void {
       content_id: 'footer.applyJoin',
       kind: 'hardcoded',
       English: 'Apply / Join',
-      Español: '',
       中文: '',
       notes: NOTE_TRANSLATE,
     },
@@ -631,7 +569,6 @@ function pushHardcoded(rows: Row[]): void {
       content_id: 'homeAchievements.badge.fieldDoc',
       kind: 'hardcoded',
       English: 'Field documentation',
-      Español: '',
       中文: '',
       notes: NOTE_TRANSLATE,
     },
@@ -641,7 +578,6 @@ function pushHardcoded(rows: Row[]): void {
       content_id: 'homeAchievements.badge.cohortMetrics',
       kind: 'hardcoded',
       English: 'Live cohort metrics',
-      Español: '',
       中文: '',
       notes: NOTE_TRANSLATE,
     },
@@ -672,7 +608,6 @@ function main(): void {
 
   walk(founderStoryPage, 'founderStoryPage', { route: '/founder-story', file: 'src/content/founderStory2026Content.ts' }, rows);
   walk(founderTimeline, 'founderTimeline', { route: '/founder-story', file: 'src/content/founderStory2026Content.ts' }, rows);
-  walk([...founderStoryIllustrations], 'founderStoryIllustrations', { route: '/founder-story', file: 'src/content/founderStory2026Content.ts' }, rows);
 
   pushMainMetrics(rows);
   pushAchievementExports(rows);
@@ -685,7 +620,6 @@ function main(): void {
     'content_id',
     'kind',
     'English',
-    'Español',
     '中文',
     'notes',
   ];
@@ -698,7 +632,6 @@ function main(): void {
         r.content_id,
         r.kind,
         r.English,
-        r.Español,
         r.中文,
         r.notes,
       ].map(escapeCsvField).join(','),

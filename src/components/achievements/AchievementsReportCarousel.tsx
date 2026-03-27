@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { carouselSlides, compressUnsplash } from '../../content/achievements2025Content';
+import { compressUnsplash } from '../../content/achievements2025Content';
+import { getLocalizedAchievementsAssets } from '../../content/pageCopyRuntime';
 import { useI18n } from '../../i18n/LocaleProvider';
 import { ReportInline } from './ReportRichText';
 
@@ -13,10 +14,11 @@ type CarouselWidth = 'full' | 'half';
  * `width="half"` keeps the carousel to ~½ content width on md+ for a lighter layout.
  */
 export function AchievementsReportCarousel({ width = 'half' }: { width?: CarouselWidth }) {
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
+  const { carouselSlides } = getLocalizedAchievementsAssets(locale);
   const slides = useMemo(
     () => carouselSlides.map(s => ({ ...s, src: compressUnsplash(s.src, width === 'half' ? 900 : 1400, 78) })),
-    [width],
+    [carouselSlides, width],
   );
   const [index, setIndex] = useState(0);
   const thumbRef = useRef<HTMLDivElement>(null);
@@ -54,7 +56,7 @@ export function AchievementsReportCarousel({ width = 'half' }: { width?: Carouse
             <motion.img
               key={active.src}
               src={active.src}
-              alt=""
+              alt={active.alt}
               initial={{ opacity: 0, scale: 1.03 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0 }}
@@ -85,7 +87,7 @@ export function AchievementsReportCarousel({ width = 'half' }: { width?: Carouse
               }`}
               aria-label={`Slide ${i + 1}`}
             >
-              <img src={s.src} alt="" className="h-full w-full object-cover" draggable={false} />
+              <img src={s.src} alt={s.alt} className="h-full w-full object-cover" draggable={false} />
             </button>
           ))}
         </div>
