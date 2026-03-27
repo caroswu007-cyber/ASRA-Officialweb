@@ -54,7 +54,7 @@ export const messagesZh: Record<string, string> = {
   'home.achievements.subtitle': 'TikTok 直播 · YouTube 频道 · ASRA',
   'home.achievements.kickerDoc': '田野记录',
   'home.achievements.kickerMetrics': '由会话整理的指标',
-  'home.achievements.lead': '与高级掌控灵团队协作，创始人提供了关于美国附体鬼魂的描述性统计数据与定性观察结果，并成功帮助了了大量难治性精神健康案例。',
+  'home.achievements.lead': '与高级掌控灵团队协作，创始人提供了关于美国附体鬼魂的描述性统计数据与定性观察结果，并成功救助了大量难治性精神健康案例。',
   'home.achievements.card1Title': '数据概览',
   'home.achievements.card1Body':
     '265+ 场有记录的公益直播；800+ 播出小时；约 70,000+ 次平台显示的触达；1,200+ 次延展访谈；240+ 名自述精神健康痛苦减轻者；约 400 个在记录中出现的附体灵体（部分宿主报告多重）。结构化回放存档于 YouTube。',
@@ -113,7 +113,7 @@ export const messagesZh: Record<string, string> = {
   'achievementsPage.ctaJoin': '申请 / 加入',
   'home.join.title': '加入与参与',
   'home.join.subtitle': '你的灵界旅程由此开始',
-  'home.join.body': '成为灵魂世界使者协会的一员。你将会将你自己从心理精神障碍中拯救出来，并获得拯救他人的能力，获得一份不会被AI替代的职业',
+  'home.join.body': '成为灵界大使协会的一员——从精神健康困扰中获得解脱，习得帮助他人的能力，找到一份不会被 AI 替代的事业。',
   'home.join.cta': '✦   访问：加入我们   ✦',
   'common.files': '档案',
   'common.subChapters': '子章节',
@@ -158,7 +158,7 @@ export const messagesZh: Record<string, string> = {
   'founderStory.phaseB.title': 'B阶段：2025年2月至2026年3月',
   'founderStory.phaseB.block0.title': '直播间规模与成就记录',
   'founderStory.phaseB.block0.text':
-    '从 **2025年2月19日** 至 **12月24日**，**Caros** 在 **TikTok** 直播共进行 **255** 场；在直播领域取得了 **非凡成就**。完整记录与链接见：{{%ACH%}}',
+    '从 **2025年2月19日** 至 **12月24日**，**Caros** 在 **TikTok** 直播共进行 **265** 场；在直播领域取得了 **非凡成就**。完整记录与链接见：{{%ACH%}}',
   'founderStory.phaseB.block1.title': '高级控制灵、混合灵与远程能力',
   'founderStory.phaseB.block1.text':
     '大批 **高级控制灵** 与 **混合灵**（hybrid spirit）以 **吴氏父子** 为对象建立联系，使我们得知 **灵虚世界** 竟存在 **管理者** 与 **造物主** 层面的秩序。**高级控制灵** 给予我们大量支持与 **超常能力**，使 **Caros** 身处中国也能对地球另一端北美附体 **鬼魂** 施行 **远程** 制约。',

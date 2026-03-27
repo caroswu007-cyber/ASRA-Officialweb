@@ -65,10 +65,10 @@ export const messagesEn: Record<string, string> = {
   'home.achievements.kickerDoc': 'Field documentation',
   'home.achievements.kickerMetrics': 'Session-derived indicators',
   'home.achievements.lead':
-    'Coordinated with Master Spirit teams ,The founder yielded descriptive statistics and qualitative observations on American attached spirits and rescued large sclae treatment-resistant mental-health cases.',
+    'Coordinated with Master Spirit teams, the founder yielded descriptive statistics and qualitative observations on American attached spirits and rescued large-scale treatment-resistant mental-health cases.',
   'home.achievements.card1Title': 'Data overview',
   'home.achievements.card1Body':
-    '255+ documented public-benefit sessions; 800+ broadcast hours; an estimated 70,000+ platform-indicated listener contacts; 1,200+ extended interviews; 240+ individuals reporting improvement in mental-health–related distress; approximately 400 distinct attached spirits noted in records (some hosts carried multiples). Structured replays are archived on YouTube.',
+    '265+ documented public-benefit sessions; 800+ broadcast hours; an estimated 70,000+ platform-indicated listener contacts; 1,200+ extended interviews; 240+ individuals reporting improvement in mental-health–related distress; approximately 400 distinct attached spirits noted in records (some hosts carried multiples). Structured replays are archived on YouTube.',
   'home.achievements.card2Title': 'Content',
   'home.achievements.card2Body':
     'Here displays: American spirits (ghosts) Report,Notable spirits (ghosts),Master Spirit\'s Revelation ,Routine mental-disorder spirit (ghost) management report,Special spirit (ghost) management cases',
@@ -142,7 +142,7 @@ export const messagesEn: Record<string, string> = {
   'home.join.title': 'Join & Participate',
   'home.join.subtitle': 'Your Ethereal Journey Begins',
   'home.join.body':
-    'Become a part of the Spirit Ambassador Association, you will get rescue on your mental problem , gaining power to rescue others, and find your career without been replaced by AI',
+    'Become a part of the Spirit Ambassador Association — receive relief from mental health challenges, gain the ability to help others, and build a career that cannot be replaced by AI.',
   'home.join.cta': '✦   Visit: Join Us   ✦',
   'common.files': 'Files',
   'common.subChapters': 'Sub-chapters',

@@ -601,7 +601,7 @@
         "section_板块": "首页 / siteContent（与 hero 可能重复）",
         "kind": "heading",
         "english_源文": "Association of Spirit Realm's Ambassador",
-        "中文": "",
+        "中文": "灵魂世界使者协会",
         "Latin_Latina": "",
         "notes": "核对与 i18n 是否一致"
       },
@@ -610,7 +610,7 @@
         "section_板块": "首页 / siteContent",
         "kind": "label",
         "english_源文": "New Era of UMMA Organization",
-        "中文": "",
+        "中文": "UMMA新世纪组织",
         "Latin_Latina": "",
         "notes": ""
       },
@@ -619,7 +619,7 @@
         "section_板块": "首页 / siteContent",
         "kind": "heading",
         "english_源文": "What is ASRA?",
-        "中文": "",
+        "中文": "什么是ASRA",
         "Latin_Latina": "",
         "notes": ""
       },
@@ -1290,14 +1290,14 @@
         "section_板块": "创始人故事 / i18n",
         "kind": "paragraph / other",
         "english_源文": "Storyline of Woos",
-        "中文": "《Storyline of Woos》"
+        "中文": "《吴氏家族的故事》"
       },
       {
         "block_key": "founderStory.storylineYoutubeIframeTitle",
         "section_板块": "创始人故事 / i18n",
         "kind": "heading",
         "english_源文": "Storyline of Woos — Stage {{stage}} recording",
-        "中文": "Storyline of Woos — 第 {{stage}} 阶段录像"
+        "中文": "吴氏家族的故事 — 第 {{stage}} 阶段录像"
       },
       {
         "block_key": "founderStorySurfaceCopy.heroNamesLine",
@@ -2727,7 +2727,7 @@
         "section_板块": "灵体医学 / i18n",
         "kind": "heading",
         "english_源文": "Woos",
-        "中文": "伍斯"
+        "中文": "吴氏"
       },
       {
         "block_key": "spirit.hero.titleHighlight",

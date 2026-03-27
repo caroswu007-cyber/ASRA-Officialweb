@@ -19,22 +19,4 @@ Columns:
 - Latin_Latina: fill in for Latin
 - notes: file/source hint
 
-Regenerate workbooks from repo: npm run export:page-xlsx
-
-Apply workbook text to the live site source of truth:
-  npm run import:page-xlsx
-
-This now generates:
-  src/content/pageCopyDocs.generated.ts
-
-The website reads this generated file at runtime for both English and Chinese page copy.
-That means the page text follows these workbooks directly, instead of relying on older
-static content files as the primary source.
-
-Important — duplicate block_key:
-  If the same block_key appears in more than one .xlsx, only the FIRST file (by name:
-  01, 02, … 07) is used. Later rows are ignored.
-
-Optional: dump all sheets to JSON for diff/review:
-  npm run dump:page-copy
-  → docs/page-copy-dump.json
+Regenerate from repo: npm run export:page-xlsx

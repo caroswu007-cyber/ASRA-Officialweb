@@ -171,7 +171,7 @@ export const founderStoryPage = {
     blocks: [
       {
         title: 'Livestream scale and documented outcomes',
-        text: `From **19 February 2025** through **24 December 2025**, **Caros** hosted **265** sessions on **TikTok Live** and achieved **extraordinary outcomes** in the broadcast field. Full documentation and links: {{%ACH%}}`,
+        text: `From **19 February 2025** through **24 December 2025**, **Caros** hosted **265** TikTok Live sessions and achieved **extraordinary outcomes** in the broadcast field. Full documentation and links: {{%ACH%}}`,
       },
       {
         title: 'Master Spirits, hybrid spirits, and remote capacity',
