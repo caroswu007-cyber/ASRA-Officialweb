@@ -11,7 +11,7 @@ const Hero = () => {
   return (
     <section
       id="home"
-      className="relative z-10 min-h-[92vh] md:h-screen flex items-center justify-center text-center px-4 overflow-hidden bg-transparent scroll-mt-24 md:scroll-mt-28"
+      className="relative z-10 min-h-[100svh] md:h-screen flex items-center justify-center text-center px-6 sm:px-8 overflow-hidden bg-transparent scroll-mt-24 md:scroll-mt-28"
     >
       {/* Light readability veils — keep canvas galaxy visible */}
       <div
@@ -34,48 +34,68 @@ const Hero = () => {
       />
 
       <motion.div
-        initial={{ opacity: 0, y: 28 }}
+        initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.9, delay: 0.35, ease: gatherEase }}
-        className="relative z-10"
+        transition={{ duration: 1.1, delay: 0.3, ease: gatherEase }}
+        className="relative z-10 flex flex-col items-center gap-6 sm:gap-7 px-2"
       >
+        {/* Decorative top line */}
+        <motion.div
+          initial={{ scaleX: 0, opacity: 0 }}
+          animate={{ scaleX: 1, opacity: 1 }}
+          transition={{ duration: 1.4, delay: 0.6, ease: gatherEase }}
+          className="w-16 sm:w-20 h-px"
+          style={{ background: 'linear-gradient(to right, transparent, rgba(251,191,36,0.6), transparent)' }}
+        />
+
         <motion.p
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.2, delay: 0.5, ease: gatherEase }}
-          className="font-cinzel text-sm sm:text-base uppercase tracking-[0.4em] mb-5"
-          style={{ color: 'rgba(251,191,36,0.7)' }}
+          initial={{ opacity: 0, letterSpacing: '0.8em', y: 8 }}
+          animate={{ opacity: 1, letterSpacing: '0.4em', y: 0 }}
+          transition={{ duration: 1.4, delay: 0.55, ease: gatherEase }}
+          className="font-cinzel text-xs sm:text-sm md:text-base uppercase tracking-[0.4em]"
+          style={{ color: 'rgba(251,191,36,0.75)' }}
         >
           {heroSubtitle}
         </motion.p>
 
         <motion.h1
-          className="font-cinzel font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#fffaf4] via-[#fcd9a8] to-[#e8a54b] mb-3 drop-shadow-2xl"
+          className="font-cinzel font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#fffaf4] via-[#fcd9a8] to-[#e8a54b] drop-shadow-2xl leading-tight"
           style={{
-            fontSize: 'clamp(2rem, 6.5vw, 5.75rem)',
-            lineHeight: 1.08,
+            fontSize: 'clamp(2.6rem, 10vw, 5.75rem)',
+            lineHeight: 1.12,
             willChange: 'transform, opacity, letter-spacing, filter',
           }}
           initial={{
             opacity: 0,
-            scale: 0.88,
-            letterSpacing: '0.42em',
-            filter: 'blur(14px)',
+            scale: 0.85,
+            letterSpacing: '0.38em',
+            filter: 'blur(18px)',
+            y: 16,
           }}
           animate={{
             opacity: 1,
             scale: 1,
-            letterSpacing: '0.02em',
+            letterSpacing: '0.04em',
             filter: 'blur(0px)',
+            y: 0,
           }}
           transition={{
-            duration: 2.45,
-            delay: 0.15,
+            duration: 2.6,
+            delay: 0.1,
             ease: gatherEase,
           }}
         >
           {heroTitle}
         </motion.h1>
+
+        {/* Decorative bottom line */}
+        <motion.div
+          initial={{ scaleX: 0, opacity: 0 }}
+          animate={{ scaleX: 1, opacity: 1 }}
+          transition={{ duration: 1.4, delay: 0.9, ease: gatherEase }}
+          className="w-24 sm:w-32 h-px"
+          style={{ background: 'linear-gradient(to right, transparent, rgba(251,191,36,0.4), transparent)' }}
+        />
       </motion.div>
     </section>
   );
