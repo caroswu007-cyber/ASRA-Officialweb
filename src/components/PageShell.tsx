@@ -49,10 +49,10 @@ const PageShell = () => {
     <AnimatePresence mode="wait">
       <motion.div
         key={location.pathname + location.search}
-        initial={{ opacity: 0, y: 14 }}
+        initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: -10 }}
-        transition={{ duration: 0.38, ease: [0.22, 1, 0.36, 1] }}
+        exit={{ opacity: 0, y: -8 }}
+        transition={{ duration: 0.42, ease: [0.22, 1, 0.36, 1] }}
         className="flex-grow flex flex-col"
       >
         <Outlet />

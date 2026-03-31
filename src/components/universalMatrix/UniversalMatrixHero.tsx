@@ -150,6 +150,13 @@ const UniversalMatrixHero = () => {
             </div>
           ))}
         </div>
+
+        <p
+          className="mt-6 max-w-md mx-auto font-serif text-sm sm:text-base leading-relaxed px-2"
+          style={{ color: 'rgba(203,213,225,0.88)' }}
+        >
+          {t('matrix.season3FilmingNote')}
+        </p>
       </div>
 
       <div

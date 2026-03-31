@@ -13,8 +13,8 @@ const LanguageSwitcher = () => {
         id="asra-lang"
         value={locale}
         onChange={e => setLocale(e.target.value as Locale)}
-        className="font-ui font-cinzel text-[0.65rem] sm:text-xs uppercase tracking-widest rounded-md border border-amber-800/40 bg-[#1a120e]/85 px-2 py-1.5 text-amber-100/90 cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-amber-400/50 hover:border-amber-500/45 max-w-[9.5rem] sm:max-w-none"
-        style={{ color: '#e8a54b' }}
+        className="font-ui font-cinzel text-[0.65rem] sm:text-xs uppercase tracking-widest rounded-lg border border-amber-700/35 bg-[#1a120e]/88 px-2.5 py-1.5 text-amber-100/92 cursor-pointer outline-none shadow-sm focus-visible:ring-2 focus-visible:ring-amber-400/45 focus-visible:ring-offset-1 focus-visible:ring-offset-[#F5EDE0] hover:border-amber-500/50 max-w-[9.5rem] sm:max-w-none transition-[border-color,box-shadow] duration-200"
+        style={{ color: '#ebb066' }}
         aria-label={t('lang.label')}
       >
         {LOCALE_OPTIONS.map(opt => (

@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { siteContent } from '../../content/siteContent';
 import { useI18n } from '../../i18n/LocaleProvider';
+import { HomeProseBlocks } from './HomeProse';
 
 const JoinSection = () => {
   const { join } = siteContent.links;
@@ -58,20 +59,21 @@ const JoinSection = () => {
         </h2>
 
         {/* Subtitle rule */}
-        <div className="flex items-center justify-center gap-3 flex-wrap mb-8 md:mb-10">
-          <div className="h-px w-12 sm:w-20 shrink-0" style={{ background: 'linear-gradient(to right, transparent, rgba(212,168,83,0.35))' }} />
-          <span
-            className="font-cinzel text-xs sm:text-sm uppercase tracking-[0.2em] sm:tracking-[0.35em] text-center"
-            style={{ color: 'rgba(212,168,83,0.55)' }}
-          >
+        <div className="flex items-center justify-center gap-4 sm:gap-5 flex-wrap mb-8 md:mb-10 px-2">
+          <div className="h-px w-10 sm:w-20 md:w-28 shrink-0" style={{ background: 'linear-gradient(to right, transparent, rgba(212,168,83,0.5))' }} />
+          <span className="home-rule-eyebrow home-rule-eyebrow--dark text-center max-w-[min(100%,36rem)]">
             {t('home.join.subtitle')}
           </span>
-          <div className="h-px w-12 sm:w-20 shrink-0" style={{ background: 'linear-gradient(to left, transparent, rgba(212,168,83,0.35))' }} />
+          <div className="h-px w-10 sm:w-20 md:w-28 shrink-0" style={{ background: 'linear-gradient(to left, transparent, rgba(212,168,83,0.5))' }} />
         </div>
 
-        <p style={{ color: 'rgba(245,237,224,0.82)' }} className="text-base sm:text-xl md:text-2xl mb-10 md:mb-14 leading-relaxed max-w-2xl mx-auto font-light px-2">
-          {t('home.join.body')}
-        </p>
+        <HomeProseBlocks
+          text={t('home.join.body')}
+          tone="creamSoft"
+          align="center"
+          className="mb-10 md:mb-14 max-w-2xl mx-auto px-2"
+          paragraphClassName="text-base sm:text-xl md:text-2xl font-light text-balance"
+        />
 
         <a
           href={join}

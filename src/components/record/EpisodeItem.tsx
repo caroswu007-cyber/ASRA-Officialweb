@@ -7,6 +7,19 @@ interface EpisodeItemProps extends Episode {
   index?: number;
 }
 
+/** High contrast on #E8D5B8: near-black body + vivid amber accents */
+const c = {
+  ink: '#1A0F05',
+  inkSoft: '#3D2510',
+  accent: '#A85A00',
+  accentHot: '#C26700',
+  badgeBg: 'rgba(255,248,235,0.85)',
+  badgeBorder: 'rgba(90,50,12,0.35)',
+  panelBg: 'rgba(255,252,246,0.72)',
+  panelBorder: 'rgba(168,90,0,0.45)',
+  rowBorder: 'rgba(31,18,8,0.15)',
+} as const;
+
 const EpisodeItem: React.FC<EpisodeItemProps> = ({
   fileNumber,
   title,
@@ -18,7 +31,7 @@ const EpisodeItem: React.FC<EpisodeItemProps> = ({
 }) => {
   const { t } = useI18n();
   const [isOpen, setIsOpen] = useState(false);
-  const durationPercent = Math.max(3, (parseInt(videoLength) / 942) * 100);
+  const durationPercent = Math.max(3, (parseInt(videoLength, 10) / 942) * 100);
 
   return (
     <motion.div
@@ -27,17 +40,15 @@ const EpisodeItem: React.FC<EpisodeItemProps> = ({
       viewport={{ once: true, margin: '-40px' }}
       transition={{ duration: 0.45, delay: index * 0.04, ease: 'easeOut' }}
       className="py-8 last:border-b-0"
-      style={{ borderBottom: '1px solid rgba(31,18,8,0.13)' }}
+      style={{ borderBottom: `1px solid ${c.rowBorder}` }}
     >
-      {/* File badge */}
       <div className="flex items-center gap-3 mb-4">
         <span
-          className="font-mono text-sm tracking-[0.2em] uppercase px-2.5 py-1 rounded-sm font-semibold"
+          className="font-mono text-[0.95rem] md:text-[1.02rem] tracking-[0.18em] uppercase px-2.5 py-1 rounded-sm font-bold"
           style={{
-            color: '#7A4A12',
-            background: 'rgba(160,95,25,0.1)',
-            border: '1px solid rgba(140,85,20,0.35)',
-            letterSpacing: '0.18em',
+            color: c.accentHot,
+            background: c.badgeBg,
+            border: `1px solid ${c.badgeBorder}`,
           }}
         >
           {fileNumber}
@@ -45,50 +56,47 @@ const EpisodeItem: React.FC<EpisodeItemProps> = ({
         <div
           className="flex-1 h-px max-w-20"
           style={{
-            background: 'linear-gradient(to right, rgba(140,85,20,0.4), transparent)',
+            background: 'linear-gradient(to right, rgba(31,18,8,0.22), transparent)',
           }}
         />
       </div>
 
-      {/* Title */}
       <h3
         className="font-serif font-bold leading-snug mb-5 transition-colors duration-300"
         style={{
-          fontSize: 'clamp(1.2rem, 2.5vw, 1.6rem)',
-          color: isOpen ? '#1A0A02' : '#2A1408',
-          textShadow: 'none',
+          fontSize: 'clamp(1.3rem, 2.65vw, 1.75rem)',
+          color: c.ink,
         }}
       >
         {title}
       </h3>
 
-      {/* Expand / collapse button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="flex items-center gap-2 transition-all duration-300 mb-5"
         style={{
-          fontSize: '0.7rem',
+          fontSize: '0.8rem',
           fontFamily: 'monospace',
-          letterSpacing: '0.15em',
+          letterSpacing: '0.14em',
           textTransform: 'uppercase',
-          color: isOpen ? '#7A4A12' : '#5A3210',
-          border: `1px solid ${isOpen ? 'rgba(140,85,20,0.5)' : 'rgba(31,18,8,0.22)'}`,
-          padding: '0.4rem 1rem',
+          color: isOpen ? c.accentHot : c.accent,
+          border: `1px solid ${isOpen ? 'rgba(168,90,0,0.55)' : 'rgba(31,18,8,0.2)'}`,
+          padding: '0.45rem 1.05rem',
           borderRadius: '2px',
-          background: isOpen ? 'rgba(160,95,25,0.08)' : 'rgba(31,18,8,0.04)',
+          background: isOpen ? 'rgba(255,248,235,0.9)' : 'rgba(255,252,246,0.5)',
+          fontWeight: 600,
         }}
       >
         <motion.span
           animate={{ rotate: isOpen ? 45 : 0 }}
           transition={{ duration: 0.2 }}
-          style={{ color: '#9A5A18', fontSize: '1rem', lineHeight: 1 }}
+          style={{ color: c.accentHot, fontSize: '1.05rem', lineHeight: 1 }}
         >
           +
         </motion.span>
         {isOpen ? t('episode.closeDossier') : t('episode.openDossier')}
       </button>
 
-      {/* Expandable dossier content */}
       <AnimatePresence initial={false}>
         {isOpen && (
           <motion.div
@@ -102,40 +110,38 @@ const EpisodeItem: React.FC<EpisodeItemProps> = ({
             <div
               className="mb-6 pl-5 py-4 pr-3"
               style={{
-                borderLeft: '2px solid rgba(160,95,25,0.5)',
-                background: 'rgba(31,18,8,0.05)',
+                borderLeft: `2px solid ${c.panelBorder}`,
+                background: c.panelBg,
               }}
             >
-              {/* Abstract */}
               <p
-                className="font-mono text-sm uppercase tracking-[0.2em] mb-2 font-semibold"
-                style={{ color: '#7A4A12' }}
+                className="font-mono text-[0.95rem] uppercase tracking-[0.18em] mb-2 font-bold"
+                style={{ color: c.accentHot }}
               >
                 {t('episode.abstract')}
               </p>
               <p
-                className="text-base leading-relaxed mb-5"
-                style={{ color: '#3D2010' }}
+                className="text-[1.05rem] md:text-[1.08rem] leading-relaxed mb-5"
+                style={{ color: c.inkSoft }}
               >
                 {abstract}
               </p>
 
-              {/* Key features */}
               {keyFeatures && (
                 <>
                   <div
                     className="h-px mb-4"
-                    style={{ background: 'rgba(140,85,20,0.2)' }}
+                    style={{ background: 'rgba(31,18,8,0.12)' }}
                   />
                   <p
-                    className="font-mono text-sm uppercase tracking-[0.2em] mb-2 font-semibold"
-                    style={{ color: '#7A4A12' }}
+                    className="font-mono text-[0.95rem] uppercase tracking-[0.18em] mb-2 font-bold"
+                    style={{ color: c.accentHot }}
                   >
                     {t('episode.keyFeatures')}
                   </p>
                   <p
-                    className="text-base leading-relaxed"
-                    style={{ color: '#3D2010' }}
+                    className="text-[1.05rem] md:text-[1.08rem] leading-relaxed"
+                    style={{ color: c.inkSoft }}
                   >
                     {keyFeatures}
                   </p>
@@ -146,67 +152,67 @@ const EpisodeItem: React.FC<EpisodeItemProps> = ({
         )}
       </AnimatePresence>
 
-      {/* Footer row: duration bar + watch button */}
       <div className="flex items-center justify-between gap-6 mt-2">
-        {/* Duration */}
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-3 mb-1.5">
             <span
-              className="font-mono text-sm uppercase tracking-wider"
-              style={{ color: '#6A4018' }}
+              className="font-mono text-[0.95rem] uppercase tracking-wider font-bold"
+              style={{ color: c.inkSoft }}
             >
               {t('episode.duration')}
             </span>
             <span
-              className="font-mono text-sm font-semibold"
-              style={{ color: '#9A5A18' }}
+              className="font-mono text-[0.95rem] font-bold"
+              style={{ color: c.accentHot }}
             >
               {videoLength}
             </span>
           </div>
           <div
             className="h-0.5 rounded-full overflow-hidden"
-            style={{ background: 'rgba(31,18,8,0.14)', maxWidth: '12rem' }}
+            style={{ background: 'rgba(31,18,8,0.12)', maxWidth: '12rem' }}
           >
             <div
               className="h-full rounded-full"
               style={{
                 width: `${durationPercent}%`,
-                background: 'linear-gradient(to right, #8B5020, #C27B30)',
+                background: 'linear-gradient(to right, #A85A00, #D4A020)',
               }}
             />
           </div>
         </div>
 
-        {/* Watch button */}
         {youtubeLink && (
           <a
             href={youtubeLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 flex-shrink-0 transition-all duration-300"
+            className="flex items-center gap-2 flex-shrink-0 transition-all duration-300 font-semibold"
             style={{
-              fontSize: '0.7rem',
+              fontSize: '0.8rem',
               fontFamily: 'monospace',
-              letterSpacing: '0.18em',
+              letterSpacing: '0.16em',
               textTransform: 'uppercase',
-              color: '#5A3210',
-              border: '1px solid rgba(31,18,8,0.25)',
-              padding: '0.45rem 1rem',
+              color: c.ink,
+              border: '1px solid rgba(31,18,8,0.22)',
+              padding: '0.48rem 1.05rem',
               borderRadius: '2px',
+              background: 'rgba(255,252,246,0.55)',
             }}
             onMouseEnter={e => {
-              (e.currentTarget as HTMLAnchorElement).style.color = '#7A4A12';
-              (e.currentTarget as HTMLAnchorElement).style.borderColor = 'rgba(140,85,20,0.5)';
-              (e.currentTarget as HTMLAnchorElement).style.background = 'rgba(160,95,25,0.08)';
+              (e.currentTarget as HTMLAnchorElement).style.color = c.accentHot;
+              (e.currentTarget as HTMLAnchorElement).style.borderColor = 'rgba(168,90,0,0.5)';
+              (e.currentTarget as HTMLAnchorElement).style.background = '#FFFBF4';
             }}
             onMouseLeave={e => {
-              (e.currentTarget as HTMLAnchorElement).style.color = '#5A3210';
-              (e.currentTarget as HTMLAnchorElement).style.borderColor = 'rgba(31,18,8,0.25)';
-              (e.currentTarget as HTMLAnchorElement).style.background = 'transparent';
+              (e.currentTarget as HTMLAnchorElement).style.color = c.ink;
+              (e.currentTarget as HTMLAnchorElement).style.borderColor = 'rgba(31,18,8,0.22)';
+              (e.currentTarget as HTMLAnchorElement).style.background = 'rgba(255,252,246,0.55)';
             }}
           >
-            <span style={{ color: '#c0392b', fontSize: '0.65rem' }}>▶</span>
+            <span style={{ color: '#B83226', fontSize: '0.72rem' }} aria-hidden>
+              ▶
+            </span>
             {t('episode.watch')}
           </a>
         )}

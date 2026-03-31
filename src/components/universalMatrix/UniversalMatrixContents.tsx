@@ -8,7 +8,6 @@ const accent = '#9aaccc';
 const accentDim = 'rgba(154,172,204,0.32)';
 const accentLine = 'rgba(154,172,204,0.52)';
 const titleColor = '#e8edf5';
-const bodyMuted = '#8b96ab';
 
 const ghostImages = [
   {
@@ -52,7 +51,6 @@ const ComingSoonBadge = () => {
 const UniversalMatrixContents = () => {
   const { t, tFormat, locale } = useI18n();
   const universalMatrixFiles = getLocalizedUniversalMatrixFiles(locale);
-  const totalSubs = universalMatrixFiles.reduce((acc, f) => acc + (f.subChapters?.length ?? 0), 0);
 
   return (
     <div
@@ -98,7 +96,7 @@ const UniversalMatrixContents = () => {
           />
         </div>
         <p className="text-center font-serif tracking-widest text-base font-semibold" style={{ color: '#5c6b82' }}>
-          {tFormat('common.indexSummary', { files: universalMatrixFiles.length, subs: totalSubs })}
+          {tFormat('matrix.indexSummary', { files: String(universalMatrixFiles.length) })}
         </p>
       </div>
 
@@ -164,7 +162,7 @@ const UniversalMatrixContents = () => {
               </div>
 
               <h3
-                className="font-serif font-bold leading-snug mb-6"
+                className="font-serif font-bold leading-snug mb-5"
                 style={{
                   fontSize: 'clamp(1.2rem, 2.5vw, 1.6rem)',
                   color: titleColor,
@@ -173,45 +171,37 @@ const UniversalMatrixContents = () => {
                 {file.title}
               </h3>
 
-              {file.subChapters ? (
-                <div
-                  className="pl-5 py-2 space-y-0"
-                  style={{
-                    borderLeft: `2px solid ${accentDim}`,
-                  }}
-                >
-                  {file.subChapters.map((sub, si) => (
-                    <div
-                      key={sub.id}
-                      className={`flex flex-wrap items-start sm:items-center justify-between gap-3 sm:gap-4 py-3 ${sub.indent ? 'md:pl-6' : ''}`}
-                      style={
-                        si < file.subChapters!.length - 1
-                          ? { borderBottom: '1px solid rgba(255,255,255,0.04)' }
-                          : {}
-                      }
-                    >
-                      <div className="flex items-start gap-2 sm:gap-3 min-w-0 flex-1">
-                        <span
-                          className="w-1.5 h-1.5 rounded-sm rotate-45 flex-shrink-0 mt-1.5"
-                          style={{ background: accent }}
-                        />
-                        <span
-                          className="font-mono text-xs sm:text-sm font-semibold flex-shrink-0 mt-0.5"
-                          style={{ color: accent }}
-                        >
-                          {sub.id}
-                        </span>
-                        <span className="text-sm sm:text-base leading-snug" style={{ color: bodyMuted }}>
-                          {sub.title}
-                        </span>
-                      </div>
-                      <ComingSoonBadge />
-                    </div>
-                  ))}
-                </div>
-              ) : (
-                <ComingSoonBadge />
-              )}
+              <div className="flex flex-wrap items-center gap-3">
+                {file.watchYoutubeUrl ? (
+                  <a
+                    href={file.watchYoutubeUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 font-mono font-semibold uppercase tracking-[0.18em] text-xs sm:text-sm transition-all"
+                    style={{
+                      color: '#d8e2f2',
+                      border: '1px solid rgba(154,172,204,0.45)',
+                      padding: '0.5rem 1.1rem',
+                      borderRadius: '4px',
+                      background: 'rgba(15,23,42,0.35)',
+                    }}
+                    onMouseEnter={e => {
+                      (e.currentTarget as HTMLAnchorElement).style.background = 'rgba(154,172,204,0.12)';
+                      (e.currentTarget as HTMLAnchorElement).style.borderColor = 'rgba(191,219,254,0.55)';
+                    }}
+                    onMouseLeave={e => {
+                      (e.currentTarget as HTMLAnchorElement).style.background = 'rgba(15,23,42,0.35)';
+                      (e.currentTarget as HTMLAnchorElement).style.borderColor = 'rgba(154,172,204,0.45)';
+                    }}
+                  >
+                    <span style={{ color: '#f87171', fontSize: '0.7rem' }} aria-hidden>
+                      ▶
+                    </span>
+                    {t('matrix.watchOnYoutube')}
+                  </a>
+                ) : null}
+                {!file.watchYoutubeUrl ? <ComingSoonBadge /> : null}
+              </div>
             </div>
           </motion.div>
         ))}

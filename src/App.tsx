@@ -35,11 +35,14 @@ function App() {
                     <Suspense
                       fallback={
                         <div
-                          className="min-h-[75vh] bg-[#020814] flex items-center justify-center"
+                          className="min-h-[75vh] flex items-center justify-center ed-vignette"
+                          style={{ background: '#F5EDE0' }}
                           aria-busy
                           aria-label="Loading"
                         >
-                          <span className="font-ui text-sm text-slate-500">Loading…</span>
+                          <span className="font-cinzel text-sm tracking-[0.2em] uppercase" style={{ color: 'rgba(155,142,128,0.85)' }}>
+                            Loading…
+                          </span>
                         </div>
                       }
                     >

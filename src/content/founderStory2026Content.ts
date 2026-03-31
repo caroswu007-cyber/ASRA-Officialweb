@@ -102,7 +102,6 @@ export const founderStoryPage = {
       range: 'March 2018 — July 2020',
       paragraphs: [
         `During this period, the **C1 spirit ghost** in my body used the way of releasing **high voltage electrostatic** in drinks and wine to change the taste of drinks, aimed to fabricate a series of scientific phenomena and laws, which would finally lead to the proof of the existence of **Buddhism**. The details are complicated to explain clearly in words.`,
-        `(详情请看视频)`,
       ],
       /** @see https://ess-esw.org/storyline-of-woos/ Stage 1 — SEE IN YOUTUBE */
       storylineClip: {

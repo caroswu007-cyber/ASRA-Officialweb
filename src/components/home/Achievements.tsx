@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { BarChart3, Microscope, Radio } from 'lucide-react';
 import { useI18n } from '../../i18n/LocaleProvider';
+import { HomeProseBlocks } from './HomeProse';
 
 const Achievements = () => {
   const { t } = useI18n();
@@ -30,7 +31,7 @@ const Achievements = () => {
           transition={{ duration: 0.7 }}
           className="text-center mb-10 md:mb-16"
         >
-          <p className="font-cinzel text-xs md:text-sm uppercase tracking-[0.22em] mb-6" style={{ color: 'rgba(194,123,32,0.6)' }}>
+          <p className="home-rule-eyebrow mb-6 md:mb-8">
             {t('home.achievements.subtitle')}
           </p>
 
@@ -41,9 +42,13 @@ const Achievements = () => {
             {t('home.achievements.title')}
           </h2>
 
-          <p style={{ color: '#3D2510' }} className="text-base sm:text-lg md:text-xl max-w-3xl mx-auto leading-relaxed mb-8 md:mb-10 font-light">
-            {t('home.achievements.lead')}
-          </p>
+          <HomeProseBlocks
+            text={t('home.achievements.lead')}
+            tone="umber"
+            align="center"
+            className="mb-8 md:mb-10 max-w-3xl mx-auto"
+            paragraphClassName="font-light text-balance"
+          />
 
           <div
             className="flex flex-col sm:flex-row flex-wrap justify-center gap-x-10 gap-y-3 mb-12 text-sm md:text-base max-w-2xl mx-auto font-cinzel border-t border-b py-6"
@@ -81,7 +86,7 @@ const Achievements = () => {
               />
             </div>
             <h3 className="font-cinzel text-lg sm:text-xl md:text-2xl mb-4 font-semibold tracking-tight" style={{ color: '#1F1208' }}>{t('home.achievements.card1Title')}</h3>
-            <p className="leading-relaxed text-sm sm:text-base md:text-lg font-cinzel" style={{ color: '#3D2510' }}>{t('home.achievements.card1Body')}</p>
+            <HomeProseBlocks text={t('home.achievements.card1Body')} tone="umber" paragraphClassName="text-balance" />
           </motion.div>
 
           <motion.div
@@ -104,7 +109,7 @@ const Achievements = () => {
               />
             </div>
             <h3 className="font-cinzel text-lg sm:text-xl md:text-2xl mb-4 font-semibold tracking-tight" style={{ color: '#1F1208' }}>{t('home.achievements.card2Title')}</h3>
-            <p className="leading-relaxed text-sm sm:text-base md:text-lg font-cinzel" style={{ color: '#3D2510' }}>{t('home.achievements.card2Body')}</p>
+            <HomeProseBlocks text={t('home.achievements.card2Body')} tone="umber" paragraphClassName="text-balance" />
           </motion.div>
         </div>
 
@@ -114,9 +119,13 @@ const Achievements = () => {
           viewport={{ once: true }}
           className="text-center"
         >
-          <p style={{ color: '#3D2510' }} className="mb-6 md:mb-8 text-base sm:text-lg md:text-xl font-light max-w-2xl mx-auto leading-relaxed">
-            {t('home.achievements.ctaIntro')}
-          </p>
+          <HomeProseBlocks
+            text={t('home.achievements.ctaIntro')}
+            tone="umber"
+            align="center"
+            className="mb-6 md:mb-8 max-w-2xl mx-auto"
+            paragraphClassName="text-base sm:text-lg md:text-xl font-light text-balance"
+          />
           <Link
             to="/our-achievements"
             className="inline-flex items-center gap-2 font-cinzel font-medium text-base md:text-lg py-3.5 px-8 rounded-full border transition-colors"

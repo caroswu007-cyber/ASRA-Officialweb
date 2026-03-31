@@ -14,7 +14,6 @@ import {
   compressUnsplash,
 } from '../content/achievements2025Content';
 import { getLocalizedAchievementsAssets } from '../content/pageCopyRuntime';
-import { siteContent } from '../content/siteContent';
 import { useI18n } from '../i18n/LocaleProvider';
 
 const SPIRIT_ROWS = ['1', '2', '3', '4', '5'] as const;
@@ -126,7 +125,6 @@ function ReportSection({
 
 const OurAchievementsView = () => {
   const { t, locale } = useI18n();
-  const { join } = siteContent.links;
   const { livestreamLinkPlaceholders } = getLocalizedAchievementsAssets(locale);
 
   return (
@@ -495,15 +493,6 @@ const OurAchievementsView = () => {
             >
               {t('achievementsPage.backHome')}
             </Link>
-            <a
-              href={join}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="rounded-full px-6 py-2.5 font-medium shadow-md"
-              style={{ background: 'linear-gradient(to right, #8B5413, #C27B20)', color: '#F5EDE0', border: '1px solid rgba(194,123,32,0.3)' }}
-            >
-              {t('achievementsPage.ctaJoin')}
-            </a>
           </div>
         </footer>
       </article>

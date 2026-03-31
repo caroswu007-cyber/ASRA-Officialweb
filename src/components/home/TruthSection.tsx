@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useI18n } from '../../i18n/LocaleProvider';
+import { HomeProseBlocks } from './HomeProse';
 
 const TruthSection = () => {
   const { t } = useI18n();
@@ -50,7 +51,7 @@ const TruthSection = () => {
         )`,
       }}
     >
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -74,15 +75,12 @@ const TruthSection = () => {
             {t('home.truth.subtitle')}
           </p>
 
-          <div className="flex items-center justify-center gap-3 flex-wrap">
-            <div className="h-px w-12 sm:w-24 shrink-0" style={{ background: 'linear-gradient(to right, transparent, rgba(194,123,32,0.3))' }} />
-            <span
-              className="font-cinzel text-xs sm:text-sm uppercase tracking-[0.2em] sm:tracking-[0.35em] text-center"
-              style={{ color: 'rgba(61,37,16,0.4)' }}
-            >
+          <div className="flex items-center justify-center gap-4 sm:gap-5 flex-wrap px-2">
+            <div className="h-px w-10 sm:w-20 md:w-28 shrink-0" style={{ background: 'linear-gradient(to right, transparent, rgba(194,123,32,0.45))' }} />
+            <span className="home-rule-eyebrow text-center max-w-[min(100%,42rem)]">
               {t('home.truth.seriesLabel')}
             </span>
-            <div className="h-px w-12 sm:w-24 shrink-0" style={{ background: 'linear-gradient(to left, transparent, rgba(194,123,32,0.3))' }} />
+            <div className="h-px w-10 sm:w-20 md:w-28 shrink-0" style={{ background: 'linear-gradient(to left, transparent, rgba(194,123,32,0.45))' }} />
           </div>
         </motion.div>
 
@@ -92,7 +90,7 @@ const TruthSection = () => {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="relative p-6 sm:p-10 md:p-14 rounded-2xl text-center max-w-4xl mx-auto mb-14 md:mb-20 overflow-hidden"
+          className="relative p-6 sm:p-10 md:p-14 rounded-2xl text-center max-w-5xl mx-auto mb-14 md:mb-20 overflow-hidden"
           style={{
             background: '#1A0F05',
             border: '1px solid rgba(194,123,32,0.22)',
@@ -115,7 +113,12 @@ const TruthSection = () => {
             >
               {t('home.truth.abstractHeading')}
             </h3>
-            <p className="text-base sm:text-lg md:text-xl leading-relaxed font-light" style={{ color: 'rgba(245,237,224,0.88)' }}>{t('home.truth.abstractBody')}</p>
+            <HomeProseBlocks
+              text={t('home.truth.abstractBody')}
+              tone="cream"
+              align="center"
+              paragraphClassName="max-w-3xl mx-auto text-balance font-light"
+            />
             <div className="h-px mt-6 md:mt-8" style={{ background: 'linear-gradient(to right, transparent, rgba(194,123,32,0.5), transparent)' }} />
           </div>
         </motion.div>
@@ -124,11 +127,17 @@ const TruthSection = () => {
           <h3 className="font-cinzel mb-3 px-2" style={{ fontSize: 'clamp(1.1rem, 3.15vw, 2.15rem)', letterSpacing: '0.06em', color: '#1F1208' }}>
             {t('home.truth.videoTitle')}
           </h3>
-          <p style={{ color: '#9B8E80' }} className="text-sm sm:text-base md:text-lg max-w-2xl mx-auto font-light px-2">{t('home.truth.videoSubtitle')}</p>
+          <HomeProseBlocks
+            text={t('home.truth.videoSubtitle')}
+            tone="muted"
+            align="center"
+            className="px-2 max-w-2xl mx-auto"
+            paragraphClassName="text-sm sm:text-base md:text-lg font-light text-balance"
+          />
         </div>
 
         {/* Series cards — dark walnut with light text */}
-        <div className="grid md:grid-cols-3 gap-5 md:gap-8">
+        <div className="grid md:grid-cols-3 gap-6 md:gap-8 lg:gap-10">
           {seasons.map((s, i) => (
             <motion.div
               key={s.link}
@@ -165,7 +174,7 @@ const TruthSection = () => {
               {/* Top accent bar — artwork preserved */}
               <div className="h-0.5 w-full relative z-10" style={{ background: `linear-gradient(to right, ${s.accent}, transparent)` }} />
 
-              <div className="p-6 md:p-7 lg:p-8 flex flex-col flex-1 relative z-10">
+              <div className="p-5 sm:p-6 md:p-7 xl:p-8 flex flex-col flex-1 relative z-10 min-w-0">
                 <span
                   className="inline-block font-cinzel font-bold text-xs sm:text-sm tracking-widest px-3 py-1.5 rounded-full mb-5 max-w-max"
                   style={{
@@ -184,7 +193,14 @@ const TruthSection = () => {
                   {s.title}
                 </h4>
 
-                <p style={{ color: 'rgba(245,237,224,0.68)' }} className="leading-relaxed flex-grow mb-7 text-sm sm:text-base md:text-lg">{s.description}</p>
+                <div className="flex-grow mb-7 min-w-0">
+                  <HomeProseBlocks
+                    text={s.description}
+                    tone="mutedOnDark"
+                    size="comfortable"
+                    paragraphClassName="text-balance [text-wrap:pretty]"
+                  />
+                </div>
 
                 <Link
                   to={s.link}

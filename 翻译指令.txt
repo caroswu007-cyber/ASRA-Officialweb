@@ -1,0 +1,53 @@
+重构已经全部完成，现在的系统非常简洁。以下是完整说明：
+
+在目录里启动
+npm run editor
+
+新架构：只有一条路径
+docs/page-copy/*.xlsx（你编辑这里）
+        │
+        │  npm run copy:import（安全：只读 xlsx，只写一个 TS 文件）
+        ▼
+src/content/pageCopyDocs.generated.ts（自动生成，不要手动编辑）
+        │
+        ▼
+getPageCopyText(locale, key, fallback)
+        │   查找顺序：xlsx 中文/英文 → xlsx 英文 → TS 代码中的英文默认值
+        ▼
+  网页渲染中英文内容
+你的日常操作
+场景 1：修改现有文案（最常用）
+打开 docs/page-copy/ 下对应的 xlsx 文件（如 01-首页.xlsx）
+编辑 english_源文 列和/或 中文 列
+保存 xlsx
+运行 npm run copy:import
+完成 — 网站上立刻反映修改
+场景 2：网站新增了板块（偶尔）
+运行 npm run copy:scaffold
+在 docs/page-copy-staging/ 目录找到更新后的模板 xlsx
+对比模板和正式 xlsx，把新增的行复制到正式 xlsx 中
+填入中文翻译
+运行 npm run copy:import
+删除 staging 目录中的文件
+两个命令的安全保证
+命令	作用	安全性
+npm run copy:import	读 xlsx → 写 generated.ts	绝对安全，永远不碰你的 xlsx
+npm run copy:scaffold	读代码结构 → 写到 staging 目录	绝对安全，永远不碰 docs/page-copy/
+旧的 export:page-xlsx（会覆盖你的 xlsx 的那个危险命令）已经被彻底删除了。
+
+xlsx 文件对应关系
+xlsx 文件	对应页面
+01-首页.xlsx	首页 (/)
+02-组织介绍.xlsx	关于 ASRA (/about)
+03-创始人故事.xlsx	创始人故事 (/founder-story)
+04-视频目录-灵魂档案.xlsx	灵魂档案 (/record-of-soul)
+05-视频目录-灵体医学.xlsx	灵体医学 (/spirit-medicine)
+06-视频目录-万有元神.xlsx	万有元神 (/universal-matrix)
+07-我们的成就.xlsx	成就页 (/our-achievements)
+被清除的旧问题
+ZH_FOUNDER_STORY_OVERRIDES（内联中文）→ 已删除，中文现在全部在 xlsx 里
+pageCopyWorkbookOverrides.ts（100KB 重复文件）→ 已删除
+isFounderStoryKey() 绕行逻辑 → 已删除，所有页面走统一路径
+export:page-xlsx（覆盖 xlsx 的危险命令）→ 已删除
+5 个遗留脚本 → 已删除
+详细的 AI 操作规则写在了 .cursor/rules/content-sync.mdc 中，以后任何 AI agent 都会自动读取这个文件，不会再犯之前的错误。

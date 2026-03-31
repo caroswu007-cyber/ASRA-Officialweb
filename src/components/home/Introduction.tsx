@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { useLocalizedSiteContent } from '../../content/useLocalizedSiteContent';
 import { useI18n } from '../../i18n/LocaleProvider';
+import { HomeProseBlocks } from './HomeProse';
 
 const Introduction = () => {
   const { home } = useLocalizedSiteContent();
@@ -22,13 +23,6 @@ const Introduction = () => {
       }}
     >
       <div className="relative z-[1] max-w-6xl mx-auto">
-        <p
-          className="text-center font-cinzel text-[0.62rem] sm:text-xs uppercase tracking-[0.42em] mb-8 md:mb-10"
-          style={{ color: 'rgba(194,123,32,0.55)' }}
-        >
-          {t('home.intro.badge')}
-        </p>
-
         {/* Section title */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -50,31 +44,36 @@ const Introduction = () => {
             {home.introTitle}
           </h2>
 
-          <div className="flex items-center justify-center gap-3 sm:gap-4 mt-5 flex-wrap">
+          <div className="flex items-center justify-center gap-3 sm:gap-4 mt-5 flex-wrap" aria-hidden>
             <div className="h-px w-16 sm:w-32 shrink-0" style={{ background: 'linear-gradient(to right, transparent, rgba(194,123,32,0.3))' }} />
-            <span
-              className="font-cinzel text-xs sm:text-sm uppercase tracking-[0.2em] sm:tracking-[0.35em] text-center"
-              style={{ color: 'rgba(61,37,16,0.5)' }}
-            >
-              {t('home.intro.subtitle')}
-            </span>
+            <span style={{ color: 'rgba(194,123,32,0.45)', fontSize: '0.6rem', letterSpacing: '0.4em' }}>✦ ✦ ✦</span>
             <div className="h-px w-16 sm:w-32 shrink-0" style={{ background: 'linear-gradient(to left, transparent, rgba(194,123,32,0.3))' }} />
           </div>
         </motion.div>
 
-        {/* Overview paragraph */}
-        <motion.p
+        {/* Overview — highlight kept inline; remainder split for readability */}
+        <motion.div
           initial={{ opacity: 0, y: 14 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.05, duration: 0.65 }}
-          className="text-center text-base sm:text-lg md:text-xl leading-relaxed font-light max-w-3xl mx-auto mb-16 md:mb-20 px-2 sm:px-4"
-          style={{ color: '#3D2510' }}
+          className="max-w-3xl mx-auto mb-16 md:mb-20 px-2 sm:px-4"
         >
-          {t('home.intro.overviewBefore')}
-          <span style={{ color: '#C27B20', fontStyle: 'italic' }}>{t('home.intro.overviewHighlight')}</span>
-          {t('home.intro.overviewAfter')}
-        </motion.p>
+          <p
+            className="font-serif text-center text-[0.95rem] sm:text-[1.05rem] md:text-[1.15rem] leading-[1.78] tracking-[0.01em] text-balance"
+            style={{ color: '#3D2510' }}
+          >
+            {t('home.intro.overviewBefore')}
+            <span style={{ color: '#C27B20', fontStyle: 'italic', fontWeight: 600 }}>{t('home.intro.overviewHighlight')}</span>
+          </p>
+          <HomeProseBlocks
+            text={t('home.intro.overviewAfter')}
+            tone="umber"
+            align="center"
+            className="mt-3 md:mt-4"
+            paragraphClassName="max-w-3xl text-balance"
+          />
+        </motion.div>
 
         {/* ASra / SMSC cards — warm paper style */}
         <div className="grid md:grid-cols-2 gap-5 md:gap-8 mb-16 md:mb-20">
@@ -104,7 +103,7 @@ const Introduction = () => {
             <p className="font-cinzel text-xs sm:text-sm uppercase tracking-widest mb-4" style={{ color: 'rgba(194,123,32,0.65)' }}>
               {t('home.intro.asraFull')}
             </p>
-            <p style={{ color: '#3D2510' }} className="leading-relaxed text-base sm:text-lg">{t('home.intro.asraBody')}</p>
+            <HomeProseBlocks text={t('home.intro.asraBody')} tone="umber" paragraphClassName="max-w-[40rem]" />
           </motion.div>
 
           {/* SMSC card */}
@@ -133,7 +132,7 @@ const Introduction = () => {
             <p className="font-cinzel text-xs sm:text-sm uppercase tracking-widest mb-4" style={{ color: 'rgba(61,37,16,0.5)' }}>
               {t('home.intro.smscFull')}
             </p>
-            <p style={{ color: '#3D2510' }} className="leading-relaxed text-base sm:text-lg">{t('home.intro.smscBody')}</p>
+            <HomeProseBlocks text={t('home.intro.smscBody')} tone="umber" paragraphClassName="max-w-[40rem]" />
           </motion.div>
         </div>
 

@@ -2,8 +2,10 @@
  * 2025 program outcomes — long-form documentation copy (English).
  * Hero + carousel use originals in `public/images/achievements/` (see filenames below).
  */
-export const LIVESTREAM_REPLAY_PLAYLIST =
-  'https://www.youtube.com/playlist?list=PL-pt7dbiRizs_N5TVfKmj5ptuG15TeQgK';
+import { WOOS_YOUTUBE_CHANNEL_URL } from './youtubeUrls';
+
+/** Replay / archive CTAs — official Woos Ethereal Life and World YouTube channel. */
+export const LIVESTREAM_REPLAY_PLAYLIST = WOOS_YOUTUBE_CHANNEL_URL;
 
 /** Unsplash URLs only: shrink `w`/`q` for faster loads. Local `/images/...` paths are returned unchanged. */
 export function compressUnsplash(src: string, width: number, quality = 72): string {

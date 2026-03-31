@@ -3,6 +3,8 @@ import {
   spiritMedicineEpisodeUrl,
   spiritMedicineFileGroups,
 } from './spiritMedicineData';
+import { UNIVERSAL_MATRIX_S3E1_YOUTUBE_URL } from './universalMatrixSeries';
+import { WOOS_YOUTUBE_CHANNEL_URL } from './youtubeUrls';
 
 export type Episode = {
   fileNumber: string;
@@ -286,14 +288,14 @@ export const siteContent = {
             title: 'Framework of the Meta Awareness Matrix',
             description:
               'A structural overview of governing layers, interaction rules, and macro-level system dependencies.',
-            link: 'https://ess-esw.org/',
+            link: UNIVERSAL_MATRIX_S3E1_YOUTUBE_URL,
           },
           {
             fileNumber: 'FILE 3-1-2',
             title: 'Origins of Universal Order',
             description:
               'Explores first principles behind life orchestration, continuity mechanics, and order-preserving constraints.',
-            link: 'https://ess-esw.org/',
+            link: WOOS_YOUTUBE_CHANNEL_URL,
             delay: 0.1,
           },
         ],

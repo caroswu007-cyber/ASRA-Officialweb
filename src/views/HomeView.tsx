@@ -4,10 +4,8 @@ import TruthSection from '../components/home/TruthSection';
 import Achievements from '../components/home/Achievements';
 import JoinSection from '../components/home/JoinSection';
 import SectionDivider from '../components/common/SectionDivider';
-import { useI18n } from '../i18n/LocaleProvider';
 
 const HomeView = () => {
-  const { t } = useI18n();
   return (
     <div className="relative ed-vignette" style={{ background: '#F5EDE0' }}>
       {/* Hero + Introduction: warm tonal background, editorial feel */}
@@ -57,11 +55,11 @@ const HomeView = () => {
         </div>
       </div>
 
-      <SectionDivider label={t('home.divider.documentary')} compact />
+      <SectionDivider compact />
       <TruthSection />
-      <SectionDivider label={t('home.divider.discoveries')} />
+      <SectionDivider />
       <Achievements />
-      <SectionDivider label={t('home.divider.join')} />
+      <SectionDivider />
       <JoinSection />
     </div>
   );

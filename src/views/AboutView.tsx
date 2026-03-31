@@ -478,9 +478,8 @@ const AboutCTA = () => {
     <section className="relative py-24 px-4 sm:px-6 text-center overflow-hidden" style={{
       background: '#160D04',
     }}>
-      {/* Gradient transitions */}
+      {/* Top transition from cream sections above */}
       <div className="absolute inset-x-0 top-0 h-24 pointer-events-none" style={{ background: 'linear-gradient(to bottom, rgba(245,237,224,1) 0%, rgba(22,13,4,1) 100%)' }} />
-      <div className="absolute inset-x-0 bottom-0 h-24 pointer-events-none" style={{ background: 'linear-gradient(to top, rgba(245,237,224,1) 0%, rgba(22,13,4,1) 100%)' }} />
       {/* Amber inner glow */}
       <div className="absolute inset-0 pointer-events-none" style={{
         background: `

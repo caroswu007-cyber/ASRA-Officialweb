@@ -12,12 +12,22 @@ export type MatrixFile = {
   fileNumber: string;
   title: string;
   subChapters?: MatrixSubChapter[];
+  /** Shown after this row when set (direct `watch`/`youtu.be` URL recommended). */
+  watchYoutubeUrl?: string;
 };
+
+/** Season III official list: @see https://www.youtube.com/watch?v=A6M1rbSt2p8&list=PL-pt7dbiRizs8xxJABXkxQpfyHDtWZ3W5 */
+export const UNIVERSAL_MATRIX_PLAYLIST_ID = 'PL-pt7dbiRizs8xxJABXkxQpfyHDtWZ3W5';
+
+export const UNIVERSAL_MATRIX_S3E1_VIDEO_ID = 'A6M1rbSt2p8';
+
+export const UNIVERSAL_MATRIX_S3E1_YOUTUBE_URL = `https://www.youtube.com/watch?v=${UNIVERSAL_MATRIX_S3E1_VIDEO_ID}&list=${UNIVERSAL_MATRIX_PLAYLIST_ID}`;
 
 export const universalMatrixFiles: MatrixFile[] = [
   {
     fileNumber: 'FILE 3-1',
     title: 'Introduction to Universal Matrix of Meta Awareness',
+    watchYoutubeUrl: UNIVERSAL_MATRIX_S3E1_YOUTUBE_URL,
   },
   {
     fileNumber: 'FILE 3-2',

@@ -1,12 +1,15 @@
 /**
  * Spirit Medicine — Season II episode list synced to official YouTube playlist.
- * @see https://www.youtube.com/playlist?list=PL-pt7dbiRizs3yIAao06SPk2NrDTBc9q_
+ * @see https://www.youtube.com/watch?v=ISwOmP9N7SU&list=PL-pt7dbiRizs3yIAao06SPk2NrDTBc9q_
  *
  * Titles and video IDs sourced from playlist metadata (Invidious API).
  * Array order matches page-copy keys `spiritMedicineFileGroups[n]`. The detailed on-page list reorders 2-4 before 2-3 via `orderSpiritMedicineFileGroupsForDetailView`.
  */
 
 export const SPIRIT_MEDICINE_PLAYLIST_ID = 'PL-pt7dbiRizs3yIAao06SPk2NrDTBc9q_';
+
+/** First video in the official Season II playlist (opens list in context). */
+export const SPIRIT_MEDICINE_PLAYLIST_START_VIDEO_ID = 'ISwOmP9N7SU';
 
 export type SpiritMedicineEpisode = {
   /** Short code parsed from the YouTube title, e.g. 2-4-1-5-1 */
@@ -29,7 +32,8 @@ export function spiritMedicineEpisodeUrl(videoId: string): string {
   return `https://www.youtube.com/watch?${params.toString()}`;
 }
 
-export const spiritMedicinePlaylistUrl = `https://www.youtube.com/playlist?list=${SPIRIT_MEDICINE_PLAYLIST_ID}`;
+/** Opens the official playlist starting from the canonical list entry video. */
+export const spiritMedicinePlaylistUrl = `https://www.youtube.com/watch?v=${SPIRIT_MEDICINE_PLAYLIST_START_VIDEO_ID}&list=${SPIRIT_MEDICINE_PLAYLIST_ID}`;
 
 /** 17 episodes; one playlist slot is a removed video and is omitted here. */
 export const spiritMedicineFileGroups: SpiritMedicineFileGroup[] = [

@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ChevronDown, ChevronUp, ExternalLink } from 'lucide-react';
 import { useI18n } from '../i18n/LocaleProvider';
-import { STORYLINE_OF_WOOS_URL } from '../content/founderStory2026Content';
 import { getLocalizedFounderStoryContent } from '../content/pageCopyRuntime';
 
 const articleShell =
@@ -144,15 +143,33 @@ const toneDotStyle: Record<string, React.CSSProperties> = {
   gold:   { background: '#E09A42', boxShadow: '0 0 10px rgba(224,154,66,0.35)' },
 };
 
-function TimelineRangeOnly({ range, tone }: { range: string; tone: string }) {
+function TimelineRangeOnly({
+  range,
+  tone,
+  stageLabel,
+}: {
+  range: string;
+  tone: string;
+  stageLabel?: string;
+}) {
+  const alignDot = stageLabel ? 'items-center' : 'items-start';
   return (
-    <div className="flex gap-4 items-start mb-7 pb-7" style={{ borderBottom: '1px solid rgba(31,18,8,0.08)' }}>
+    <div className={`flex gap-4 ${alignDot} mb-7 pb-7`} style={{ borderBottom: '1px solid rgba(31,18,8,0.08)' }}>
       <span
-        className="mt-1.5 w-3.5 h-3.5 rounded-full shrink-0"
+        className={`w-3.5 h-3.5 rounded-full shrink-0 ${stageLabel ? '' : 'mt-1.5'}`}
         style={toneDotStyle[tone] ?? toneDotStyle.amber}
         aria-hidden
       />
-      <p className="font-cinzel text-sm md:text-base tracking-wide pt-0.5" style={{ color: '#9B8E80' }}>{range}</p>
+      <div className="flex-1 min-w-0 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+        <p className={`font-cinzel text-sm md:text-base tracking-wide ${stageLabel ? '' : 'pt-0.5'}`} style={{ color: '#9B8E80' }}>
+          {range}
+        </p>
+        {stageLabel ? (
+          <span className="font-cinzel text-base md:text-lg font-bold tracking-[0.12em] shrink-0" style={{ color: '#1F1208' }}>
+            {stageLabel}
+          </span>
+        ) : null}
+      </div>
     </div>
   );
 }
@@ -210,20 +227,7 @@ function ArchiveButtonRow({
 function StorylineClipBlock({ legacyStage, youtubeId }: { legacyStage: string; youtubeId: string }) {
   const { t, tFormat } = useI18n();
   return (
-    <div className="mt-8 pt-8 space-y-5" style={{ borderTop: '1px solid rgba(31,18,8,0.08)' }}>
-      <p className={`${bodyProse} text-sm md:text-base`} style={{ color: '#9B8E80' }}>
-        <RichText text={tFormat('founderStory.storylineClipLead', { stage: legacyStage })} />{' '}
-        <a
-          href={STORYLINE_OF_WOOS_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="underline-offset-2 font-semibold break-words hover:underline"
-          style={{ color: '#C27B20' }}
-        >
-          {t('founderStory.storylineClipPageLink')}
-        </a>
-        .
-      </p>
+    <div className="mt-8 pt-8 space-y-3" style={{ borderTop: '1px solid rgba(31,18,8,0.08)' }}>
       <div className="max-w-3xl mx-auto space-y-3">
         <div className="relative w-full aspect-video rounded-xl overflow-hidden shadow-xl bg-black"
           style={{ border: '1px solid rgba(31,18,8,0.12)' }}>
@@ -427,10 +431,7 @@ const FounderStoryView = () => {
                     return (
                       <div key={stage.id} id={stage.id} className="scroll-mt-28 md:scroll-mt-32">
                         <SectionCard>
-                          <TimelineRangeOnly range={rangeText} tone={tone} />
-                          <h4 className="font-cinzel text-xl md:text-2xl font-bold tracking-[0.12em] mb-7" style={{ color: '#1F1208' }}>
-                            {stageKey}
-                          </h4>
+                          <TimelineRangeOnly range={rangeText} tone={tone} stageLabel={stageKey} />
                           <div className="space-y-0">
                             {stage.paragraphs.map((para, pi) => (
                               <ContentBlock key={pi} showDivider={pi > 0}>
