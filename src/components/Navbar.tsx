@@ -38,9 +38,12 @@ const Navbar = () => {
 
   const isEtherealTruthSectionActive = ETHEREAL_TRUTH_CHILDREN.some(c => c.match(location.pathname));
 
+  // Close desktop dropdown on outside click. Skip while mobile drawer is open: submenu lives outside `truthWrapRef`
+  // (mobile markup is in the overlay), so otherwise every tap would look "outside" and collapse before navigation.
   useEffect(() => {
     if (!etherealTruthOpen) return;
     const onDown = (e: MouseEvent) => {
+      if (mobileOpen) return;
       const el = truthWrapRef.current;
       if (el && !el.contains(e.target as Node)) {
         setEtherealTruthOpen(false);
@@ -48,7 +51,7 @@ const Navbar = () => {
     };
     document.addEventListener('mousedown', onDown);
     return () => document.removeEventListener('mousedown', onDown);
-  }, [etherealTruthOpen]);
+  }, [etherealTruthOpen, mobileOpen]);
 
   return (
     <>
