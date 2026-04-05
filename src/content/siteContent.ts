@@ -126,7 +126,7 @@ export const siteContent = {
     introTitle: 'What is ASRA?',
   },
   links: {
-    join: 'https://ess-esw.org/',
+    join: 'https://www.facebook.com/groups/654991120042048',
   },
   recordOfSoul: {
     title: 'Woos Record of Soul',

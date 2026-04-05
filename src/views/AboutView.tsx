@@ -574,7 +574,7 @@ const AboutCTA = () => {
           {t('about.cta.subtitle')}
         </p>
         <a
-          href="https://ess-esw.org/"
+          href="https://www.facebook.com/groups/654991120042048"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-block font-cinzel font-bold uppercase tracking-wide py-3.5 sm:py-4 px-8 sm:px-14 rounded-full transition-all hover:-translate-y-1"
