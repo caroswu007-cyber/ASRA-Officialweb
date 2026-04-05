@@ -42,8 +42,6 @@ Helped 240+ patients with mental disorders quickly relieve the suffering caused 
     'The spiritual realm has various types of master spirits. Among them, some are specifically responsible for helping ASRA members acquire the PRCASG superpower to control **spirits (ghosts)**; they are called controllers among the master spirits',
   'siteContent.recordOfSoul.description':
     'This Documentary Was Shot Earlier, Recording the Scientific Summary Of Human Research On Supernatural Phenomena, Near-Death Experience And Reincarnation and the Process Of Woos Father And Son Being Attached By **spirits (ghosts)** And Fighting.',
-  'siteContent.recordOfSoul.note':
-    "When Wu's Spirit Files were filmed, **spirit**, **spirit (ghost)**, and **spirit (soul)** were not strictly distinguished and were used interchangeably. In *Woos Spirit Medicine* (2025), the three terms were formally defined: **spirit** — the living **spirit** in a person; **spirit (ghost)** — after death, the **spirit** that exists apart from the physical body; **spirit (soul)** — umbrella term for **spirit** and **spirit (ghost)**.",
   'siteContent.spiritMedicine.description':
     '**Woos Spirit Medicine** reveals spirit healing from a scientific perspective—both before and after death.',
   'siteContent.universalMatrix.description':
