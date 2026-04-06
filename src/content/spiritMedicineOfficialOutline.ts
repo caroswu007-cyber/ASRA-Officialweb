@@ -1,6 +1,6 @@
 /**
  * Full curriculum outline aligned with https://ess-esw.org/spirit-medicine/
- * Curriculum order: FILE 2-1 … 2-5 with 2-3 before 2-4 (matches the official outline page). The filmed episode index below reorders 2-4 before 2-3.
+ * Display order: FILE 2-1 → 2-2 → 2-4 → 2-3 → 2-5 (2-4 moved before 2-3 per editorial request).
  * anchorId must match `id` on main list in SpiritMedicineContents (`sm-file-${fileNumber}`).
  */
 export type SpiritMedicineOutlineFile = {
@@ -22,15 +22,6 @@ export const spiritMedicineOfficialOutline: SpiritMedicineOutlineFile[] = [
     anchorId: 'sm-file-FILE-2-2',
   },
   {
-    fileLabel: 'FILE 2-3',
-    heading: 'Human Spirit (Soul) Physiology',
-    anchorId: 'sm-file-FILE-2-3',
-    subsections: [
-      { code: '2-3-1', title: 'Understand the Spirit (Soul) from Meridians' },
-      { code: '2-3-2', title: 'Physiological Systems of Spirit (Soul)' },
-    ],
-  },
-  {
     fileLabel: 'FILE 2-4',
     heading: 'Overview: Physiology & Pathology of Spirits (Ghosts)',
     anchorId: 'sm-file-FILE-2-4',
@@ -41,6 +32,15 @@ export const spiritMedicineOfficialOutline: SpiritMedicineOutlineFile[] = [
       { code: '2-4-4', title: 'The Intersection of Spirits (Ghosts) & the Physical World' },
       { code: '2-4-5', title: 'Mutual Harm & Death Among Spirits (Ghosts)' },
       { code: '2-4-6', title: 'Basic Pathology of Spirits (Ghosts)' },
+    ],
+  },
+  {
+    fileLabel: 'FILE 2-3',
+    heading: 'Human Spirit (Soul) Physiology',
+    anchorId: 'sm-file-FILE-2-3',
+    subsections: [
+      { code: '2-3-1', title: 'Understand the Spirit (Soul) from Meridians' },
+      { code: '2-3-2', title: 'Physiological Systems of Spirit (Soul)' },
     ],
   },
   {
